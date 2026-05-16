@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
+
+    Route::resource('categories', CategoryController::class)->except(['show']);
 });
 
 require __DIR__.'/auth.php';
