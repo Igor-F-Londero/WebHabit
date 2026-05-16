@@ -9,6 +9,7 @@
 /.idea
 /.nova
 /.phpunit.cache
+/.vagrant
 /.vscode
 /.zed
 /auth.json
@@ -22,3 +23,5 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+npm-debug.log
+yarn-error.log
