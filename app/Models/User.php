@@ -31,6 +31,16 @@ class User extends Authenticatable
         return $this->role === 'admin';
     }
 
+    public function habits()
+    {
+        return $this->hasMany(Habit::class);
+    }
+
+    public function goals()
+    {
+        return $this->hasMany(Goal::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -1,0 +1,85 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Novo Hábito
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white shadow-sm sm:rounded-lg p-6">
+
+                <form action="{{ route('habits.store') }}" method="POST">
+                    @csrf
+
+                    <div class="space-y-5">
+
+                        <div>
+                            <x-input-label for="name" value="Nome *" />
+                            <x-text-input id="name" name="name" type="text"
+                                class="mt-1 block w-full"
+                                :value="old('name')"
+                                placeholder="Ex: Beber 2L de água, Meditar 10min..."
+                                required autofocus />
+                            <x-input-error :messages="$errors->get('name')" class="mt-1" />
+                        </div>
+
+                        <div>
+                            <x-input-label for="category_id" value="Categoria *" />
+                            <select id="category_id" name="category_id" required
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="">Selecione uma categoria</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('category_id')" class="mt-1" />
+                        </div>
+
+                        <div>
+                            <x-input-label for="frequency" value="Frequência *" />
+                            <select id="frequency" name="frequency" required
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="daily"  {{ old('frequency', 'daily') === 'daily'  ? 'selected' : '' }}>Diário</option>
+                                <option value="weekly" {{ old('frequency') === 'weekly' ? 'selected' : '' }}>Semanal</option>
+                            </select>
+                            <x-input-error :messages="$errors->get('frequency')" class="mt-1" />
+                        </div>
+
+                        <div>
+                            <x-input-label for="color" value="Cor de identificação *" />
+                            <div class="mt-1 flex items-center gap-3">
+                                <input id="color" name="color" type="color"
+                                    value="{{ old('color', '#22C55E') }}"
+                                    class="h-10 w-16 rounded border-gray-300 cursor-pointer" />
+                                <span class="text-sm text-gray-500">Escolha uma cor para identificar este hábito</span>
+                            </div>
+                            <x-input-error :messages="$errors->get('color')" class="mt-1" />
+                        </div>
+
+                        <div>
+                            <x-input-label for="description" value="Descrição" />
+                            <textarea id="description" name="description" rows="3"
+                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                placeholder="Observações ou motivação (opcional)">{{ old('description') }}</textarea>
+                            <x-input-error :messages="$errors->get('description')" class="mt-1" />
+                        </div>
+
+                    </div>
+
+                    <div class="flex items-center gap-4 mt-6">
+                        <x-primary-button>Criar Hábito</x-primary-button>
+                        <a href="{{ route('habits.index') }}"
+                           class="text-sm text-gray-600 hover:text-gray-900">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</x-app-layout>
