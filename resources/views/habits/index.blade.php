@@ -55,8 +55,24 @@
                                 </div>
 
                                 <div class="mt-4 flex items-center justify-between">
-                                    <span class="text-xs text-gray-400">🔥 — dias</span>
+                                    <span class="text-xs {{ $habit->isCompletedToday() ? 'text-orange-500 font-semibold' : 'text-gray-400' }}">
+                                        🔥 {{ $habit->currentStreak() }} {{ $habit->currentStreak() === 1 ? 'dia' : 'dias' }}
+                                    </span>
                                     <div class="flex items-center gap-3">
+                                        @if($habit->isCompletedToday())
+                                            <span class="inline-flex items-center px-3 py-1 bg-green-100 text-green-700 text-xs font-medium rounded-full">
+                                                ✓ Feito hoje
+                                            </span>
+                                        @else
+                                            <form action="{{ route('checkins.store') }}" method="POST" class="inline">
+                                                @csrf
+                                                <input type="hidden" name="habit_id" value="{{ $habit->id }}">
+                                                <button type="submit"
+                                                        class="inline-flex items-center px-3 py-1 bg-gray-800 text-white text-xs font-medium rounded-full hover:bg-gray-700 transition">
+                                                    Check-in
+                                                </button>
+                                            </form>
+                                        @endif
                                         <a href="{{ route('habits.edit', $habit) }}"
                                            class="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
                                             Editar

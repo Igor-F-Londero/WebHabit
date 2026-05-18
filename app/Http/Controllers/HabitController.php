@@ -15,7 +15,10 @@ class HabitController extends Controller
     {
         $habits = auth()->user()
             ->habits()
-            ->with('category')
+            ->with([
+                'category',
+                'checkins' => fn($q) => $q->whereDate('checked_date', today()),
+            ])
             ->orderBy('name')
             ->get();
 

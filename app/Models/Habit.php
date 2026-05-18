@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\StreakService;
 use Illuminate\Database\Eloquent\Model;
 
 class Habit extends Model
@@ -26,5 +27,16 @@ class Habit extends Model
     public function goals()
     {
         return $this->hasMany(Goal::class);
+    }
+
+    public function isCompletedToday(): bool
+    {
+        return $this->checkins
+            ->contains(fn($c) => $c->checked_date->isToday());
+    }
+
+    public function currentStreak(): int
+    {
+        return app(StreakService::class)->calculate($this);
     }
 }
