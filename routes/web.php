@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\CheckinController;
+use App\Http\Controllers\GoalController;
 use App\Http\Controllers\HabitController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('habits', HabitController::class)->except(['show']);
+    Route::resource('goals', GoalController::class)->except(['show']);
     Route::post('/checkins', [CheckinController::class, 'store'])->name('checkins.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

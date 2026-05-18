@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('habits.index')" :active="request()->routeIs('habits.*')">
                         Hábitos
                     </x-nav-link>
+                    <x-nav-link :href="route('goals.index')" :active="request()->routeIs('goals.*')">
+                        Metas
+                    </x-nav-link>
                     @if(auth()->user()?->isAdmin())
                         <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                             Admin
@@ -83,6 +86,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('habits.index')" :active="request()->routeIs('habits.*')">
                 Hábitos
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('goals.index')" :active="request()->routeIs('goals.*')">
+                Metas
             </x-responsive-nav-link>
             @if(auth()->user()?->isAdmin())
                 <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
