@@ -24,6 +24,7 @@ Aplicação web para acompanhamento de hábitos, check-ins e metas pessoais, com
 - Dashboard admin com métricas e gráficos
 - Relatórios do usuário e admin
 - Gestão admin de categorias e usuários
+- API JSON autenticada com Sanctum para hábitos, check-ins e stats
 
 ## Ambiente local
 
@@ -56,8 +57,28 @@ npm run dev
 php artisan test
 ```
 
+## API
+
+Endpoints disponíveis:
+
+- `GET /api/habits`
+- `POST /api/checkins`
+- `GET /api/stats`
+
+Todos exigem `Bearer Token` via Sanctum e respeitam o bloqueio de conta inativa.
+
+Exemplo de geração de token no Tinker:
+
+```bash
+php artisan tinker
+```
+
+```php
+$user = App\Models\User::where('email', 'igor@habitflow.com')->first();
+$user->createToken('mobile')->plainTextToken;
+```
+
 ## Pendências principais
 
-- Implementar a API JSON com Sanctum (`/api/habits`, `/api/checkins`, `/api/stats`)
 - Substituir a landing page padrão
 - Ampliar a cobertura de testes para regras de negócio e fluxos principais

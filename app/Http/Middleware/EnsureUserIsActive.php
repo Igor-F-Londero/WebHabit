@@ -11,6 +11,12 @@ class EnsureUserIsActive
     public function handle(Request $request, Closure $next): mixed
     {
         if ($request->user() && !$request->user()->active) {
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'message' => 'Sua conta foi desativada. Entre em contato com o administrador.',
+                ], 403);
+            }
+
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
