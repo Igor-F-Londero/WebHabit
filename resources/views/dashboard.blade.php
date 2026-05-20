@@ -1,37 +1,40 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-            Dashboard
-        </h2>
+        <div class="flex flex-col gap-1">
+            <p class="text-xs uppercase tracking-[0.24em] text-cyan-200/70">cockpit de execução</p>
+            <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
+                Dashboard
+            </h2>
+        </div>
     </x-slot>
 
     <div class="hf-page">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+        <div class="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
 
             @if(session('success'))
-                <div class="p-4 bg-cyan-300/10 border border-cyan-300/20 text-cyan-100 rounded-lg">
+                <div class="rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4 text-cyan-100">
                     {{ session('success') }}
                 </div>
             @endif
             @if(session('error'))
-                <div class="p-4 bg-rose-400/10 border border-rose-400/20 text-rose-100 rounded-lg">
+                <div class="rounded-2xl border border-rose-400/20 bg-rose-400/10 p-4 text-rose-100">
                     {{ session('error') }}
                 </div>
             @endif
 
             {{-- Cards de resumo --}}
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="hf-panel-pad p-5">
+                <div class="hf-panel-pad">
                     <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Consistência (30 dias)</p>
                     <p class="text-3xl font-bold text-cyan-300">{{ $consistencyRate }}%</p>
                     <p class="mt-1 text-xs text-stone-400">hábitos diários concluídos</p>
                 </div>
-                <div class="hf-panel-pad p-5">
+                <div class="hf-panel-pad">
                     <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Check-ins hoje</p>
                     <p class="text-3xl font-bold text-cyan-200">{{ $checkinsToday }}</p>
                     <p class="mt-1 text-xs text-stone-400">de {{ $todayHabits->count() }} hábito(s) ativo(s)</p>
                 </div>
-                <div class="hf-panel-pad p-5">
+                <div class="hf-panel-pad">
                     <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Hábitos ativos</p>
                     <p class="text-3xl font-bold text-white">{{ $todayHabits->count() }}</p>
                     <p class="mt-1 text-xs text-stone-400">cadastrados</p>
@@ -40,7 +43,7 @@
 
             {{-- Hábitos do dia --}}
             <div class="hf-panel-pad">
-                <div class="flex items-center justify-between mb-4">
+                <div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <h3 class="font-semibold text-white">Hábitos de hoje</h3>
                     <a href="{{ route('habits.index') }}" class="text-sm text-cyan-200 hover:text-cyan-100">Ver todos</a>
                 </div>
@@ -60,7 +63,7 @@
                                     <p class="text-xs text-stone-500">{{ $habit->category->name }}</p>
                                 </div>
                                 @if($habit->isCompletedToday())
-                                            <span class="shrink-0 rounded-full bg-cyan-300/10 px-2 py-1 text-xs font-medium text-cyan-200">✓ Feito</span>
+                                    <span class="shrink-0 rounded-full bg-cyan-300/10 px-2 py-1 text-xs font-medium text-cyan-200">Feito</span>
                                 @else
                                     <form action="{{ route('checkins.store') }}" method="POST" class="shrink-0">
                                         @csrf
@@ -89,7 +92,7 @@
                                 <div class="flex-1 min-w-0">
                                     <p class="truncate text-sm font-semibold text-white">{{ $habit->name }}</p>
                                     <p class="text-xs font-medium text-cyan-300">
-                                        🔥 {{ $streak }} {{ $streak === 1 ? 'dia' : 'dias' }}
+                                        {{ $streak }} {{ $streak === 1 ? 'dia' : 'dias' }}
                                     </p>
                                 </div>
                             </div>

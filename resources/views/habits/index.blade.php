@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
                 Meus Hábitos
             </h2>
@@ -12,22 +12,22 @@
     </x-slot>
 
     <div class="hf-page">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
             @if(session('success'))
-                <div class="mb-4 p-4 bg-cyan-300/10 border border-cyan-300/20 text-cyan-100 rounded-lg">
+                <div class="mb-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4 text-cyan-100">
                     {{ session('success') }}
                 </div>
             @endif
             @if(session('error'))
-                <div class="mb-4 p-4 bg-rose-400/10 border border-rose-400/20 text-rose-100 rounded-lg">
+                <div class="mb-4 rounded-2xl border border-rose-400/20 bg-rose-400/10 p-4 text-rose-100">
                     {{ session('error') }}
                 </div>
             @endif
 
             @if($habits->isEmpty())
-                <div class="hf-panel-pad p-12 text-center">
-                    <p class="mb-4 text-lg text-stone-400">Você ainda não tem hábitos cadastrados.</p>
+                <div class="hf-panel-pad p-8 text-center sm:p-12">
+                    <p class="mb-4 text-base text-slate-400 sm:text-lg">Você ainda não tem hábitos cadastrados.</p>
                     <a href="{{ route('habits.create') }}"
                        class="inline-flex items-center rounded-full bg-cyan-300 px-6 py-3 font-medium text-slate-950 transition hover:bg-cyan-200">
                         Criar meu primeiro hábito
@@ -36,14 +36,14 @@
             @else
                 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach($habits as $habit)
-                        <div class="hf-panel overflow-hidden flex">
+                        <div class="hf-panel flex overflow-hidden">
                             {{-- Barra de cor lateral --}}
                             <div class="w-2 shrink-0" style="background-color: {{ $habit->color }}"></div>
 
                             <div class="p-5 flex-1 flex flex-col justify-between">
                                 <div>
-                                    <div class="flex items-center justify-between mb-1">
-                                        <h3 class="text-base font-semibold text-white">{{ $habit->name }}</h3>
+                                    <div class="mb-1 flex items-start justify-between gap-3">
+                                        <h3 class="min-w-0 text-base font-semibold text-white">{{ $habit->name }}</h3>
                                         <span class="rounded-full bg-white/[0.06] px-2 py-0.5 text-xs text-stone-400">
                                             {{ $habit->frequency === 'daily' ? 'Diário' : 'Semanal' }}
                                         </span>
@@ -54,14 +54,14 @@
                                     @endif
                                 </div>
 
-                                <div class="mt-4 flex items-center justify-between">
+                                <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                                     <span class="text-xs {{ $habit->isCompletedToday() ? 'font-semibold text-cyan-300' : 'text-stone-400' }}">
-                                        🔥 {{ $habit->currentStreak() }} {{ $habit->currentStreak() === 1 ? 'dia' : 'dias' }}
+                                        Streak: {{ $habit->currentStreak() }} {{ $habit->currentStreak() === 1 ? 'dia' : 'dias' }}
                                     </span>
-                                    <div class="flex items-center gap-3">
+                                    <div class="flex flex-wrap items-center gap-3">
                                         @if($habit->isCompletedToday())
-                                            <span class="inline-flex items-center px-3 py-1 bg-cyan-300/10 text-cyan-100 text-xs font-medium rounded-full">
-                                                ✓ Feito hoje
+                                            <span class="inline-flex items-center rounded-full bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-100">
+                                                Feito hoje
                                             </span>
                                         @else
                                             <form action="{{ route('checkins.store') }}" method="POST" class="inline">

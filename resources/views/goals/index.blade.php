@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
                 Minhas Metas
             </h2>
@@ -12,22 +12,22 @@
     </x-slot>
 
     <div class="hf-page">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
             @if(session('success'))
-                <div class="mb-4 p-4 bg-cyan-300/10 border border-cyan-300/20 text-cyan-100 rounded-lg">
+                <div class="mb-4 rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4 text-cyan-100">
                     {{ session('success') }}
                 </div>
             @endif
             @if(session('error'))
-                <div class="mb-4 p-4 bg-rose-400/10 border border-rose-400/20 text-rose-100 rounded-lg">
+                <div class="mb-4 rounded-2xl border border-rose-400/20 bg-rose-400/10 p-4 text-rose-100">
                     {{ session('error') }}
                 </div>
             @endif
 
             @if($goals->isEmpty())
-                <div class="hf-panel-pad p-12 text-center">
-                    <p class="mb-4 text-lg text-stone-400">Você ainda não tem metas cadastradas.</p>
+                <div class="hf-panel-pad p-8 text-center sm:p-12">
+                    <p class="mb-4 text-base text-slate-400 sm:text-lg">Você ainda não tem metas cadastradas.</p>
                     <a href="{{ route('goals.create') }}"
                        class="inline-flex items-center rounded-full bg-cyan-300 px-6 py-3 font-medium text-slate-950 transition hover:bg-cyan-200">
                         Criar minha primeira meta
@@ -53,8 +53,8 @@
 
                         <div class="hf-panel-pad flex flex-col justify-between">
                             <div>
-                                <div class="flex items-start justify-between mb-2">
-                                    <h3 class="text-base font-semibold leading-tight text-white">
+                                <div class="mb-2 flex items-start justify-between gap-3">
+                                    <h3 class="min-w-0 text-base font-semibold leading-tight text-white">
                                         {{ $goal->title }}
                                     </h3>
                                     <span class="ml-2 shrink-0 text-xs font-medium px-2 py-0.5 rounded-full {{ $statusColor }}">
@@ -62,8 +62,8 @@
                                     </span>
                                 </div>
 
-                                <p class="mb-3 text-xs text-stone-500">
-                                    🏷 {{ $goal->habit->name }}
+                                <p class="mb-3 text-xs uppercase tracking-[0.18em] text-slate-500">
+                                    {{ $goal->habit->name }}
                                 </p>
 
                                 @if($goal->description)
@@ -90,7 +90,7 @@
                                 </p>
                             </div>
 
-                            <div class="mt-4 flex items-center justify-end gap-3">
+                            <div class="mt-4 flex flex-wrap items-center justify-end gap-3">
                                 @if($goal->status !== 'completed')
                                     <a href="{{ route('goals.edit', $goal) }}"
                                        class="text-sm font-medium text-cyan-200 hover:text-cyan-100">

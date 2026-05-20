@@ -6,13 +6,13 @@
     </x-slot>
 
     <div class="hf-page">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8 space-y-6">
+        <div class="mx-auto max-w-5xl space-y-6 px-4 sm:px-6 lg:px-8">
 
             {{-- Filtro de período --}}
             <div class="hf-panel-pad p-5">
                 <form method="GET" action="{{ route('reports.index') }}"
                       x-data="{ period: '{{ $period }}' }"
-                      class="flex flex-wrap items-end gap-4">
+                      class="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end">
 
                     <div>
                         <label class="mb-1 block text-xs font-medium text-stone-400">Período</label>
@@ -25,7 +25,7 @@
                         </select>
                     </div>
 
-                    <div x-show="period === 'custom'" class="flex gap-2 items-end">
+                    <div x-show="period === 'custom'" class="flex flex-col gap-2 sm:flex-row sm:items-end">
                         <div>
                             <label class="mb-1 block text-xs font-medium text-stone-400">De</label>
                             <input type="date" name="start"
@@ -77,7 +77,7 @@
                 </div>
 
                 @if($habitStats->isEmpty())
-                    <div class="p-12 text-center text-stone-400">
+                    <div class="p-8 text-center text-slate-400 sm:p-12">
                         Nenhum hábito ativo para exibir.
                     </div>
                 @else
@@ -89,8 +89,8 @@
                                 $rateColor = $rate >= 70 ? 'text-cyan-300' : ($rate >= 40 ? 'text-fuchsia-300' : 'text-rose-300');
                             @endphp
                             <div class="px-6 py-4">
-                                <div class="flex items-center justify-between mb-1.5">
-                                    <div class="flex items-center gap-2 min-w-0">
+                                <div class="mb-1.5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                                    <div class="flex min-w-0 items-center gap-2">
                                         <span class="w-4 shrink-0 text-xs text-stone-500">#{{ $i + 1 }}</span>
                                         <div class="w-2 h-5 rounded-sm shrink-0"
                                              style="background-color: {{ $stat['habit']->color }}"></div>
@@ -101,7 +101,7 @@
                                             {{ $stat['habit']->frequency === 'daily' ? 'Diário' : 'Semanal' }}
                                         </span>
                                     </div>
-                                    <div class="flex items-center gap-3 shrink-0 ml-4">
+                                    <div class="flex shrink-0 items-center gap-3 sm:ml-4">
                                         <span class="text-xs text-stone-400">
                                             {{ $stat['checkins'] }}/{{ $stat['expected'] }}
                                         </span>

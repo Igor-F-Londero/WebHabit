@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="hf-page">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+        <div class="mx-auto max-w-7xl space-y-6 px-4 sm:px-6 lg:px-8">
 
             {{-- Filtro de período --}}
             <div class="hf-panel-pad p-5">

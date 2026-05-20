@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="hf-page">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
             @if(session('success'))
                 <div class="hf-alert-success mb-4">
@@ -16,7 +16,7 @@
 
             {{-- Busca --}}
             <div class="mb-4">
-                <form method="GET" action="{{ route('admin.users.index') }}" class="flex gap-2">
+                <form method="GET" action="{{ route('admin.users.index') }}" class="flex flex-col gap-2 sm:flex-row">
                     <input type="text"
                            name="search"
                            value="{{ $search }}"
@@ -37,64 +37,66 @@
 
             <div class="hf-panel overflow-hidden">
                 @if($users->isEmpty())
-                    <div class="p-12 text-center text-stone-400">
+                    <div class="p-8 text-center text-slate-400 sm:p-12">
                         Nenhum usuário encontrado.
                     </div>
                 @else
-                    <table class="hf-table text-left text-sm">
-                        <thead class="hf-table-head border-b border-white/10">
-                            <tr>
-                                <th class="px-6 py-3 font-medium text-stone-400">Usuário</th>
-                                <th class="px-6 py-3 text-center font-medium text-stone-400">Hábitos</th>
-                                <th class="px-6 py-3 text-center font-medium text-stone-400">Metas</th>
-                                <th class="px-6 py-3 text-center font-medium text-stone-400">Status</th>
-                                <th class="px-6 py-3 text-center font-medium text-stone-400">Cadastro</th>
-                                <th class="px-6 py-3 text-center font-medium text-stone-400">Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($users as $user)
-                                <tr class="hf-table-row">
-                                    <td class="px-6 py-4">
-                                        <p class="font-medium text-white">{{ $user->name }}</p>
-                                        <p class="text-xs text-stone-500">{{ $user->email }}</p>
-                                    </td>
-                                    <td class="px-6 py-4 text-center text-stone-300">
-                                        {{ $user->habits_count }}
-                                    </td>
-                                    <td class="px-6 py-4 text-center text-stone-300">
-                                        {{ $user->goals_count }}
-                                    </td>
-                                    <td class="px-6 py-4 text-center">
-                                        @if($user->active)
-                                            <span class="inline-block rounded-full bg-cyan-300/10 px-2 py-0.5 text-xs font-medium text-cyan-200">
-                                                Ativo
-                                            </span>
-                                        @else
-                                            <span class="inline-block rounded-full bg-rose-400/10 px-2 py-0.5 text-xs font-medium text-rose-300">
-                                                Inativo
-                                            </span>
-                                        @endif
-                                    </td>
-                                    <td class="px-6 py-4 text-center text-xs text-stone-500">
-                                        {{ $user->created_at->format('d/m/Y') }}
-                                    </td>
-                                    <td class="px-6 py-4 text-center">
-                                        <form action="{{ route('admin.users.toggleActive', $user) }}"
-                                              method="POST"
-                                              onsubmit="return confirm('{{ $user->active ? 'Desativar' : 'Reativar' }} a conta de {{ addslashes($user->name) }}?')">
-                                            @csrf
-                                            @method('PATCH')
-                                            <button type="submit"
-                                                    class="text-xs font-medium {{ $user->active ? 'text-rose-300 hover:text-rose-200' : 'text-cyan-200 hover:text-cyan-100' }}">
-                                                {{ $user->active ? 'Desativar' : 'Reativar' }}
-                                            </button>
-                                        </form>
-                                    </td>
+                    <div class="overflow-x-auto">
+                        <table class="hf-table min-w-[760px] text-left text-sm">
+                            <thead class="hf-table-head border-b border-white/10">
+                                <tr>
+                                    <th class="px-6 py-3 font-medium text-stone-400">Usuário</th>
+                                    <th class="px-6 py-3 text-center font-medium text-stone-400">Hábitos</th>
+                                    <th class="px-6 py-3 text-center font-medium text-stone-400">Metas</th>
+                                    <th class="px-6 py-3 text-center font-medium text-stone-400">Status</th>
+                                    <th class="px-6 py-3 text-center font-medium text-stone-400">Cadastro</th>
+                                    <th class="px-6 py-3 text-center font-medium text-stone-400">Ação</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach($users as $user)
+                                    <tr class="hf-table-row">
+                                        <td class="px-6 py-4">
+                                            <p class="font-medium text-white">{{ $user->name }}</p>
+                                            <p class="text-xs text-stone-500">{{ $user->email }}</p>
+                                        </td>
+                                        <td class="px-6 py-4 text-center text-stone-300">
+                                            {{ $user->habits_count }}
+                                        </td>
+                                        <td class="px-6 py-4 text-center text-stone-300">
+                                            {{ $user->goals_count }}
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            @if($user->active)
+                                                <span class="inline-block rounded-full bg-cyan-300/10 px-2 py-0.5 text-xs font-medium text-cyan-200">
+                                                    Ativo
+                                                </span>
+                                            @else
+                                                <span class="inline-block rounded-full bg-rose-400/10 px-2 py-0.5 text-xs font-medium text-rose-300">
+                                                    Inativo
+                                                </span>
+                                            @endif
+                                        </td>
+                                        <td class="px-6 py-4 text-center text-xs text-stone-500">
+                                            {{ $user->created_at->format('d/m/Y') }}
+                                        </td>
+                                        <td class="px-6 py-4 text-center">
+                                            <form action="{{ route('admin.users.toggleActive', $user) }}"
+                                                  method="POST"
+                                                  onsubmit="return confirm('{{ $user->active ? 'Desativar' : 'Reativar' }} a conta de {{ addslashes($user->name) }}?')">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit"
+                                                        class="text-xs font-medium {{ $user->active ? 'text-rose-300 hover:text-rose-200' : 'text-cyan-200 hover:text-cyan-100' }}">
+                                                    {{ $user->active ? 'Desativar' : 'Reativar' }}
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
                     @if($users->hasPages())
                         <div class="border-t border-white/10 px-6 py-4">

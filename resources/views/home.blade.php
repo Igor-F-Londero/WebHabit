@@ -7,7 +7,7 @@
                     Escolha sua próxima missão
                 </h2>
             </div>
-            <p class="text-sm text-stone-400">
+            <p class="text-sm text-slate-400">
                 {{ now()->translatedFormat('d M Y') }}
             </p>
         </div>
@@ -74,24 +74,24 @@
             <div class="mb-6 grid gap-4 md:grid-cols-4">
                 <div class="hf-panel-pad md:col-span-2">
                     <p class="text-xs uppercase tracking-[0.24em] text-cyan-200/70">status do agente</p>
-                    <h3 class="mt-3 font-['Outfit'] text-3xl font-black text-white">
+                    <h3 class="mt-3 break-words font-['Outfit'] text-2xl font-black text-white sm:text-3xl">
                         {{ auth()->user()->name }}, o sistema está pronto.
                     </h3>
-                    <p class="mt-3 max-w-2xl text-sm leading-7 text-stone-400">
+                    <p class="mt-3 max-w-2xl text-sm leading-7 text-slate-400">
                         Use os cards abaixo como atalhos visuais para navegar entre execução, criação de hábitos, metas e leitura de performance.
                     </p>
                 </div>
                 <div class="hf-panel-pad">
-                    <p class="text-xs uppercase tracking-[0.2em] text-stone-500">check-ins hoje</p>
+                    <p class="text-xs uppercase tracking-[0.2em] text-slate-500">check-ins hoje</p>
                     <p class="mt-4 font-['Outfit'] text-4xl font-black text-cyan-300">{{ $checkinsToday }}</p>
                 </div>
                 <div class="hf-panel-pad">
-                    <p class="text-xs uppercase tracking-[0.2em] text-stone-500">melhor streak</p>
+                    <p class="text-xs uppercase tracking-[0.2em] text-slate-500">melhor streak</p>
                     <p class="mt-4 font-['Outfit'] text-4xl font-black text-pink-300">{{ $bestStreak }}</p>
                 </div>
             </div>
 
-            <div class="grid auto-rows-[19rem] gap-4 md:grid-cols-2">
+            <div class="grid auto-rows-[17.5rem] gap-4 sm:auto-rows-[19rem] md:grid-cols-2">
                 @foreach($cards as $index => $card)
                     <a
                         href="{{ $card['href'] }}"
@@ -106,18 +106,18 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                         <div class="absolute inset-0 bg-black/10 transition group-hover:bg-black/0"></div>
 
-                        <div class="relative flex h-full flex-col justify-between p-6">
-                            <div class="flex items-start justify-between gap-4">
+                        <div class="relative flex h-full flex-col justify-between p-5 sm:p-6">
+                            <div class="flex flex-wrap items-start justify-between gap-3">
                                 <span class="rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs uppercase tracking-[0.18em] text-white/80 backdrop-blur">
                                     {{ $card['label'] }}
                                 </span>
-                                <span class="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-100 backdrop-blur">
+                                <span class="max-w-full truncate rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-100 backdrop-blur sm:max-w-[12rem]">
                                     {{ $card['metric'] }}
                                 </span>
                             </div>
 
                             <div>
-                                <h3 class="font-['Outfit'] text-5xl font-medium leading-none text-white drop-shadow-[0_0_18px_rgba(0,0,0,0.55)]">
+                                <h3 class="font-['Outfit'] text-4xl font-medium leading-none text-white drop-shadow-[0_0_18px_rgba(0,0,0,0.55)] sm:text-5xl">
                                     {{ $card['title'] }}
                                 </h3>
                                 <p class="mt-3 max-w-md text-sm leading-6 text-zinc-200 opacity-90">
