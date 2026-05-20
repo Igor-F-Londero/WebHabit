@@ -11,343 +11,208 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="bg-stone-950 text-stone-100 antialiased">
-        <div class="relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(251,146,60,0.24),_transparent_32%),radial-gradient(circle_at_80%_10%,_rgba(16,185,129,0.2),_transparent_24%),linear-gradient(180deg,_rgba(12,10,9,0.9),_rgba(12,10,9,1))]"></div>
-            <div class="absolute inset-x-0 top-0 h-px bg-white/10"></div>
+    <body class="bg-black text-zinc-100 antialiased">
+        <div class="relative min-h-screen overflow-hidden bg-black">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,_rgba(236,72,153,0.26),_transparent_30%),radial-gradient(circle_at_18%_25%,_rgba(168,85,247,0.14),_transparent_28%),linear-gradient(180deg,_rgba(12,8,12,0.35),_#000_62%)]"></div>
+            <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,_transparent_1px),linear-gradient(90deg,_rgba(255,255,255,0.025)_1px,_transparent_1px)] bg-[size:72px_72px] opacity-20"></div>
+            <div class="absolute inset-x-8 top-12 h-px bg-gradient-to-r from-transparent via-pink-400/50 to-transparent"></div>
 
-            <header class="relative z-10">
-                <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-8">
-                    <a href="/" class="flex items-center gap-3">
-                        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-500/15 ring-1 ring-orange-300/20">
-                            <span class="font-['Outfit'] text-lg font-bold text-orange-200">HF</span>
-                        </div>
-                        <div>
-                            <p class="font-['Outfit'] text-lg font-semibold tracking-tight text-white">HabitFlow</p>
-                            <p class="text-xs uppercase tracking-[0.24em] text-stone-400">rotina com clareza</p>
-                        </div>
-                    </a>
-
-                    @if (Route::has('login'))
-                        <nav class="flex items-center gap-3">
-                            @auth
-                                <a href="{{ url('/dashboard') }}" class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-stone-200 transition hover:border-white/30 hover:bg-white/5">
-                                    Abrir painel
-                                </a>
-                            @else
-                                <a href="{{ route('login') }}" class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-stone-200 transition hover:border-white/30 hover:bg-white/5">
-                                    Entrar
-                                </a>
-                                <a href="{{ route('register') }}" class="rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-stone-950 transition hover:bg-orange-400">
-                                    Criar conta
-                                </a>
-                            @endauth
-                        </nav>
-                    @endif
-                </div>
-            </header>
-
-            <main class="relative z-10">
-                <section class="px-6 pb-12 pt-8 lg:px-8 lg:pb-20 lg:pt-10">
-                    <div class="mx-auto max-w-7xl">
-                        <div class="max-w-4xl">
-                            <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-stone-200 backdrop-blur">
-                                <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-                                Hábitos, metas, relatórios e API em um único fluxo
+            <div class="relative z-10 mx-auto max-w-7xl px-6 py-8 lg:px-8">
+                <div class="rounded-[2rem] border border-pink-400/20 bg-zinc-950/70 shadow-[0_0_80px_rgba(236,72,153,0.14)] backdrop-blur-xl">
+                    <header class="flex items-center justify-between px-6 py-5 lg:px-8">
+                        <a href="/" class="flex items-center gap-3">
+                            <div class="relative flex h-11 w-11 items-center justify-center rounded-2xl border border-pink-300/30 bg-pink-500/10 shadow-[0_0_28px_rgba(236,72,153,0.35)]">
+                                <span class="absolute h-5 w-7 rounded-full border border-pink-200/80"></span>
+                                <span class="font-['Outfit'] text-sm font-black tracking-tight text-pink-100">HF</span>
                             </div>
+                            <div>
+                                <p class="font-['Outfit'] text-lg font-semibold tracking-tight text-white">HabitFlow</p>
+                                <p class="text-xs uppercase tracking-[0.24em] text-pink-200/60">neon discipline</p>
+                            </div>
+                        </a>
 
-                            <h1 class="max-w-4xl font-['Outfit'] text-5xl font-semibold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-7xl">
-                                HabitFlow
-                            </h1>
-                            <p class="mt-6 max-w-2xl text-lg leading-8 text-stone-300 sm:text-xl">
-                                Organize hábitos, registre check-ins e acompanhe consistência com uma visão que ajuda você a manter ritmo sem perder contexto.
-                            </p>
+                        <nav class="hidden items-center gap-7 text-sm text-zinc-300 md:flex">
+                            <a href="#valores" class="transition hover:text-pink-200">Valores</a>
+                            <a href="#fluxo" class="transition hover:text-pink-200">Fluxo</a>
+                            <a href="#recursos" class="transition hover:text-pink-200">Recursos</a>
+                            <a href="#api" class="transition hover:text-pink-200">API</a>
+                        </nav>
 
-                            <div class="mt-8 flex flex-wrap items-center gap-4">
+                        @if (Route::has('login'))
+                            <div class="flex items-center gap-3">
                                 @auth
-                                    <a href="{{ url('/dashboard') }}" class="rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-stone-950 transition hover:bg-orange-400">
-                                        Ir para o dashboard
+                                    <a href="{{ url('/dashboard') }}" class="rounded-xl border border-pink-300/30 bg-pink-500/10 px-4 py-2 text-sm font-semibold text-pink-100 shadow-[0_0_24px_rgba(236,72,153,0.22)] transition hover:border-pink-200/60 hover:bg-pink-500/20">
+                                        Abrir painel
                                     </a>
                                 @else
-                                    <a href="{{ route('register') }}" class="rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-stone-950 transition hover:bg-orange-400">
-                                        Começar agora
+                                    <a href="{{ route('login') }}" class="hidden rounded-xl border border-white/10 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:border-pink-300/40 hover:bg-pink-500/10 sm:inline-flex">
+                                        Entrar
                                     </a>
-                                    <a href="{{ route('login') }}" class="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-stone-100 transition hover:border-white/30 hover:bg-white/5">
-                                        Já tenho conta
+                                    <a href="{{ route('register') }}" class="rounded-xl border border-pink-200/50 bg-pink-500/20 px-4 py-2 text-sm font-semibold text-white shadow-[0_0_28px_rgba(236,72,153,0.35)] transition hover:bg-pink-500/30">
+                                        Get Started
                                     </a>
                                 @endauth
                             </div>
-                        </div>
+                        @endif
+                    </header>
 
-                        <div class="mt-12 grid gap-4 sm:grid-cols-3">
-                            <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-                                <p class="text-xs uppercase tracking-[0.22em] text-stone-400">foco diário</p>
-                                <p class="mt-3 font-['Outfit'] text-3xl font-semibold text-white">1 painel</p>
-                                <p class="mt-2 text-sm leading-6 text-stone-300">Hábitos do dia, streaks e visão rápida do que ainda falta fazer.</p>
-                            </div>
-                            <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-                                <p class="text-xs uppercase tracking-[0.22em] text-stone-400">ritmo visível</p>
-                                <p class="mt-3 font-['Outfit'] text-3xl font-semibold text-white">7/30 dias</p>
-                                <p class="mt-2 text-sm leading-6 text-stone-300">Gráficos e heatmap para enxergar consistência sem planilha paralela.</p>
-                            </div>
-                            <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-                                <p class="text-xs uppercase tracking-[0.22em] text-stone-400">escala</p>
-                                <p class="mt-3 font-['Outfit'] text-3xl font-semibold text-white">admin + api</p>
-                                <p class="mt-2 text-sm leading-6 text-stone-300">Área administrativa e endpoints autenticados prontos para integração.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                    <main>
+                        <section class="relative px-6 pb-14 pt-12 text-center lg:px-8 lg:pb-20 lg:pt-16">
+                            <div class="absolute left-1/2 top-20 h-56 w-56 -translate-x-1/2 rounded-full bg-pink-500/20 blur-3xl"></div>
 
-                <section class="px-6 pb-20 lg:px-8">
-                    <div class="mx-auto max-w-7xl">
-                        <div class="overflow-hidden rounded-[2rem] border border-white/10 bg-stone-900/80 shadow-2xl shadow-black/30 backdrop-blur">
-                            <div class="grid gap-0 lg:grid-cols-[1.35fr_0.95fr]">
-                                <div class="border-b border-white/10 p-6 lg:border-b-0 lg:border-r">
-                                    <div class="mb-5 flex items-center justify-between">
-                                        <div>
-                                            <p class="text-xs uppercase tracking-[0.22em] text-stone-500">dashboard pessoal</p>
-                                            <h2 class="mt-2 font-['Outfit'] text-2xl font-semibold text-white">Visão do dia com progresso real</h2>
-                                        </div>
-                                        <span class="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">ao vivo</span>
-                                    </div>
-
-                                    <div class="grid gap-4 sm:grid-cols-3">
-                                        <div class="rounded-2xl bg-stone-800 p-4">
-                                            <p class="text-xs uppercase tracking-[0.18em] text-stone-500">consistência</p>
-                                            <p class="mt-3 font-['Outfit'] text-4xl font-semibold text-orange-300">82%</p>
-                                            <p class="mt-2 text-sm text-stone-400">últimos 30 dias</p>
-                                        </div>
-                                        <div class="rounded-2xl bg-stone-800 p-4">
-                                            <p class="text-xs uppercase tracking-[0.18em] text-stone-500">check-ins hoje</p>
-                                            <p class="mt-3 font-['Outfit'] text-4xl font-semibold text-emerald-300">4</p>
-                                            <p class="mt-2 text-sm text-stone-400">de 5 hábitos ativos</p>
-                                        </div>
-                                        <div class="rounded-2xl bg-stone-800 p-4">
-                                            <p class="text-xs uppercase tracking-[0.18em] text-stone-500">top streak</p>
-                                            <p class="mt-3 font-['Outfit'] text-4xl font-semibold text-sky-300">21</p>
-                                            <p class="mt-2 text-sm text-stone-400">dias seguidos</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-6 rounded-[1.5rem] border border-white/10 bg-stone-950 p-5">
-                                        <div class="mb-4 flex items-center justify-between">
-                                            <div>
-                                                <p class="text-sm font-medium text-white">Hábitos de hoje</p>
-                                                <p class="text-xs text-stone-500">check-ins rápidos com contexto</p>
-                                            </div>
-                                            <span class="text-xs text-stone-500">terça-feira</span>
-                                        </div>
-
-                                        <div class="space-y-3">
-                                            <div class="flex items-center gap-4 rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">
-                                                <div class="h-10 w-1.5 rounded-full bg-orange-400"></div>
-                                                <div class="min-w-0 flex-1">
-                                                    <p class="truncate text-sm font-medium text-white">Ler 20 páginas</p>
-                                                    <p class="text-xs text-stone-500">Estudo</p>
-                                                </div>
-                                                <span class="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-300">feito</span>
-                                            </div>
-                                            <div class="flex items-center gap-4 rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">
-                                                <div class="h-10 w-1.5 rounded-full bg-emerald-400"></div>
-                                                <div class="min-w-0 flex-1">
-                                                    <p class="truncate text-sm font-medium text-white">Caminhar 30 min</p>
-                                                    <p class="text-xs text-stone-500">Saúde</p>
-                                                </div>
-                                                <button class="rounded-full bg-orange-500 px-3 py-1 text-xs font-semibold text-stone-950">check-in</button>
-                                            </div>
-                                            <div class="flex items-center gap-4 rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-3">
-                                                <div class="h-10 w-1.5 rounded-full bg-sky-400"></div>
-                                                <div class="min-w-0 flex-1">
-                                                    <p class="truncate text-sm font-medium text-white">Revisão semanal</p>
-                                                    <p class="text-xs text-stone-500">Planejamento</p>
-                                                </div>
-                                                <span class="rounded-full bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-300">1x semana</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="relative mx-auto max-w-5xl">
+                                <div class="mx-auto mb-7 inline-flex items-center gap-3 rounded-2xl border border-pink-300/20 bg-black/50 px-4 py-2 text-xs uppercase tracking-[0.24em] text-pink-100 shadow-[0_0_32px_rgba(236,72,153,0.16)]">
+                                    <span class="h-2 w-2 rounded-full bg-pink-300 shadow-[0_0_18px_rgba(249,168,212,0.9)]"></span>
+                                    Sistema de rotina gamificada
                                 </div>
 
-                                <div class="p-6">
-                                    <div class="rounded-[1.5rem] border border-white/10 bg-stone-950 p-5">
-                                        <div class="flex items-center justify-between">
-                                            <div>
-                                                <p class="text-sm font-medium text-white">Últimos 7 dias</p>
-                                                <p class="text-xs text-stone-500">ritmo de execução</p>
-                                            </div>
-                                            <span class="text-xs text-stone-500">check-ins</span>
-                                        </div>
+                                <h1 class="font-['Outfit'] text-5xl font-black uppercase leading-[0.9] tracking-tight text-white sm:text-7xl lg:text-8xl">
+                                    Domine sua
+                                    <span class="block bg-gradient-to-r from-pink-200 via-fuchsia-400 to-pink-600 bg-clip-text text-transparent drop-shadow-[0_0_28px_rgba(236,72,153,0.38)]">
+                                        rotina futura
+                                    </span>
+                                </h1>
 
-                                        <div class="mt-6 flex h-40 items-end gap-3">
-                                            <div class="flex flex-1 flex-col items-center gap-3">
-                                                <div class="w-full rounded-t-2xl bg-stone-800" style="height: 32%"></div>
-                                                <span class="text-xs text-stone-500">S</span>
-                                            </div>
-                                            <div class="flex flex-1 flex-col items-center gap-3">
-                                                <div class="w-full rounded-t-2xl bg-stone-700" style="height: 48%"></div>
-                                                <span class="text-xs text-stone-500">T</span>
-                                            </div>
-                                            <div class="flex flex-1 flex-col items-center gap-3">
-                                                <div class="w-full rounded-t-2xl bg-orange-500/70" style="height: 82%"></div>
-                                                <span class="text-xs text-stone-500">Q</span>
-                                            </div>
-                                            <div class="flex flex-1 flex-col items-center gap-3">
-                                                <div class="w-full rounded-t-2xl bg-orange-400" style="height: 94%"></div>
-                                                <span class="text-xs text-stone-500">Q</span>
-                                            </div>
-                                            <div class="flex flex-1 flex-col items-center gap-3">
-                                                <div class="w-full rounded-t-2xl bg-emerald-400" style="height: 68%"></div>
-                                                <span class="text-xs text-stone-500">S</span>
-                                            </div>
-                                            <div class="flex flex-1 flex-col items-center gap-3">
-                                                <div class="w-full rounded-t-2xl bg-sky-400" style="height: 38%"></div>
-                                                <span class="text-xs text-stone-500">S</span>
-                                            </div>
-                                            <div class="flex flex-1 flex-col items-center gap-3">
-                                                <div class="w-full rounded-t-2xl bg-stone-700" style="height: 58%"></div>
-                                                <span class="text-xs text-stone-500">D</span>
-                                            </div>
-                                        </div>
+                                <p class="mx-auto mt-7 max-w-2xl text-base leading-8 text-zinc-300 sm:text-lg">
+                                    Transforme hábitos, check-ins, metas e relatórios em um cockpit pessoal com cadência, streaks e leitura visual do seu progresso.
+                                </p>
+
+                                <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
+                                    @auth
+                                        <a href="{{ url('/dashboard') }}" class="rounded-2xl border border-pink-200/50 bg-pink-500/20 px-7 py-3 text-sm font-bold text-white shadow-[0_0_34px_rgba(236,72,153,0.35)] transition hover:bg-pink-500/30">
+                                            Entrar no cockpit
+                                        </a>
+                                    @else
+                                        <a href="{{ route('register') }}" class="rounded-2xl border border-pink-200/50 bg-pink-500/20 px-7 py-3 text-sm font-bold text-white shadow-[0_0_34px_rgba(236,72,153,0.35)] transition hover:bg-pink-500/30">
+                                            Começar agora
+                                        </a>
+                                        <a href="{{ route('login') }}" class="rounded-2xl border border-white/10 bg-white/[0.03] px-7 py-3 text-sm font-semibold text-zinc-100 transition hover:border-pink-300/40 hover:bg-pink-500/10">
+                                            Já tenho conta
+                                        </a>
+                                    @endauth
+                                </div>
+                            </div>
+
+                            <div class="mx-auto mt-14 max-w-5xl">
+                                <div class="grid gap-4 rounded-[1.7rem] border border-pink-300/20 bg-black/55 p-4 shadow-[0_0_60px_rgba(236,72,153,0.13)] backdrop-blur md:grid-cols-4">
+                                    <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                                        <p class="font-['Outfit'] text-3xl font-bold text-white">82%</p>
+                                        <p class="mt-1 text-sm text-zinc-400">Consistência</p>
                                     </div>
-
-                                    <div class="mt-6 rounded-[1.5rem] border border-white/10 bg-stone-950 p-5">
-                                        <p class="text-sm font-medium text-white">Cobertura do produto</p>
-                                        <div class="mt-5 space-y-4">
-                                            <div>
-                                                <div class="mb-2 flex items-center justify-between text-xs text-stone-400">
-                                                    <span>hábitos e check-ins</span>
-                                                    <span>núcleo pronto</span>
-                                                </div>
-                                                <div class="h-2 rounded-full bg-stone-800">
-                                                    <div class="h-2 w-[92%] rounded-full bg-orange-400"></div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="mb-2 flex items-center justify-between text-xs text-stone-400">
-                                                    <span>metas e relatórios</span>
-                                                    <span>pronto</span>
-                                                </div>
-                                                <div class="h-2 rounded-full bg-stone-800">
-                                                    <div class="h-2 w-[88%] rounded-full bg-emerald-400"></div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="mb-2 flex items-center justify-between text-xs text-stone-400">
-                                                    <span>admin e api</span>
-                                                    <span>em operação</span>
-                                                </div>
-                                                <div class="h-2 rounded-full bg-stone-800">
-                                                    <div class="h-2 w-[84%] rounded-full bg-sky-400"></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                                        <p class="font-['Outfit'] text-3xl font-bold text-pink-200">21</p>
+                                        <p class="mt-1 text-sm text-zinc-400">Dias de streak</p>
                                     </div>
-
-                                    <div class="mt-6 rounded-[1.5rem] border border-orange-400/20 bg-orange-500/10 p-5">
-                                        <p class="font-['Outfit'] text-2xl font-semibold text-white">Feito para manter cadência</p>
-                                        <p class="mt-3 text-sm leading-6 text-stone-300">
-                                            O sistema combina execução diária, leitura de tendência e uma base pronta para crescer sem reinventar o fluxo.
-                                        </p>
+                                    <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                                        <p class="font-['Outfit'] text-3xl font-bold text-fuchsia-300">4/5</p>
+                                        <p class="mt-1 text-sm text-zinc-400">Missões hoje</p>
+                                    </div>
+                                    <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                                        <p class="font-['Outfit'] text-3xl font-bold text-white">API</p>
+                                        <p class="mt-1 text-sm text-zinc-400">Pronta para escala</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </section>
+                        </section>
 
-                <section class="border-t border-white/10 bg-stone-100 text-stone-900">
-                    <div class="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-3 lg:px-8">
-                        <div>
-                            <p class="text-sm uppercase tracking-[0.24em] text-stone-500">como funciona</p>
-                            <h2 class="mt-4 font-['Outfit'] text-4xl font-semibold tracking-tight text-stone-950">
-                                Um fluxo simples para manter rotina sem fricção.
-                            </h2>
-                        </div>
+                        <section id="valores" class="border-y border-pink-300/10 px-6 py-12 lg:px-8">
+                            <div class="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
+                                <article class="rounded-[1.5rem] border border-pink-300/15 bg-zinc-950/80 p-6 shadow-[0_0_36px_rgba(236,72,153,0.08)]">
+                                    <p class="text-xs uppercase tracking-[0.22em] text-pink-200/60">foco diário</p>
+                                    <h2 class="mt-4 font-['Outfit'] text-2xl font-bold text-white">Painel de missões</h2>
+                                    <p class="mt-3 text-sm leading-7 text-zinc-400">Veja o que precisa ser feito hoje, registre check-ins e proteja sua sequência sem fricção.</p>
+                                </article>
+                                <article class="rounded-[1.5rem] border border-pink-300/15 bg-zinc-950/80 p-6 shadow-[0_0_36px_rgba(236,72,153,0.08)]">
+                                    <p class="text-xs uppercase tracking-[0.22em] text-pink-200/60">progressão</p>
+                                    <h2 class="mt-4 font-['Outfit'] text-2xl font-bold text-white">Metas com prazo</h2>
+                                    <p class="mt-3 text-sm leading-7 text-zinc-400">Transforme intenção em alvo mensurável, com contagem, status e histórico de execução.</p>
+                                </article>
+                                <article class="rounded-[1.5rem] border border-pink-300/15 bg-zinc-950/80 p-6 shadow-[0_0_36px_rgba(236,72,153,0.08)]">
+                                    <p class="text-xs uppercase tracking-[0.22em] text-pink-200/60">leitura tática</p>
+                                    <h2 class="mt-4 font-['Outfit'] text-2xl font-bold text-white">Relatórios visuais</h2>
+                                    <p class="mt-3 text-sm leading-7 text-zinc-400">Acompanhe taxas, heatmap, categorias e padrões para ajustar a rotina antes da queda.</p>
+                                </article>
+                            </div>
+                        </section>
 
-                        <div class="lg:col-span-2 grid gap-8 md:grid-cols-3">
-                            <div>
-                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-orange-100 font-['Outfit'] text-lg font-semibold text-orange-700">1</div>
-                                <h3 class="mt-5 font-['Outfit'] text-2xl font-semibold text-stone-950">Configure</h3>
-                                <p class="mt-3 text-sm leading-7 text-stone-600">
-                                    Defina hábito, categoria, frequência, cor e metas com prazo para dar contexto ao que importa.
-                                </p>
-                            </div>
-                            <div>
-                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 font-['Outfit'] text-lg font-semibold text-emerald-700">2</div>
-                                <h3 class="mt-5 font-['Outfit'] text-2xl font-semibold text-stone-950">Execute</h3>
-                                <p class="mt-3 text-sm leading-7 text-stone-600">
-                                    Faça check-ins rápidos no painel do dia e mantenha streaks diários ou semanais sem burocracia.
-                                </p>
-                            </div>
-                            <div>
-                                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-100 font-['Outfit'] text-lg font-semibold text-sky-700">3</div>
-                                <h3 class="mt-5 font-['Outfit'] text-2xl font-semibold text-stone-950">Leia o ritmo</h3>
-                                <p class="mt-3 text-sm leading-7 text-stone-600">
-                                    Use dashboard, heatmap e relatórios para enxergar padrão, corrigir queda e sustentar consistência.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                        <section id="fluxo" class="px-6 py-20 lg:px-8">
+                            <div class="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+                                <div>
+                                    <p class="text-sm uppercase tracking-[0.24em] text-pink-200/60">como funciona</p>
+                                    <h2 class="mt-4 font-['Outfit'] text-4xl font-black leading-tight text-white sm:text-5xl">
+                                        Cinco ações. Zero ruído.
+                                    </h2>
+                                    <p class="mt-5 text-sm leading-7 text-zinc-400">
+                                        O HabitFlow organiza o ciclo inteiro: criar hábitos, executar check-ins, manter streaks, revisar métricas e expandir para API/admin.
+                                    </p>
+                                </div>
 
-                <section class="bg-stone-950 px-6 py-20 lg:px-8">
-                    <div class="mx-auto max-w-7xl">
-                        <div class="grid gap-8 lg:grid-cols-2">
-                            <div class="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8">
-                                <p class="text-sm uppercase tracking-[0.24em] text-stone-500">área administrativa</p>
-                                <h2 class="mt-4 font-['Outfit'] text-3xl font-semibold text-white">Operação com métricas e controle</h2>
-                                <p class="mt-4 max-w-xl text-sm leading-7 text-stone-300">
-                                    Acompanhe usuários, categorias, retenção e engajamento com uma leitura mais operacional da plataforma.
-                                </p>
-                                <ul class="mt-8 space-y-4 text-sm text-stone-300">
-                                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-orange-400"></span><span>Dashboard admin com engajamento de 7 e 30 dias</span></li>
-                                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-emerald-400"></span><span>Gestão de usuários com ativação e desativação de conta</span></li>
-                                    <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-sky-400"></span><span>Relatórios por período e visão de categorias mais populares</span></li>
-                                </ul>
-                            </div>
-
-                            <div class="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8">
-                                <p class="text-sm uppercase tracking-[0.24em] text-stone-500">api sanctum</p>
-                                <h2 class="mt-4 font-['Outfit'] text-3xl font-semibold text-white">Integração pronta para mobile e serviços externos</h2>
-                                <p class="mt-4 max-w-xl text-sm leading-7 text-stone-300">
-                                    O projeto já expõe endpoints autenticados para listar hábitos, registrar check-ins e consultar estatísticas agregadas.
-                                </p>
-                                <div class="mt-8 space-y-3 font-mono text-sm text-stone-200">
-                                    <div class="rounded-2xl border border-white/8 bg-stone-950 px-4 py-3">GET <span class="text-orange-300">/api/habits</span></div>
-                                    <div class="rounded-2xl border border-white/8 bg-stone-950 px-4 py-3">POST <span class="text-emerald-300">/api/checkins</span></div>
-                                    <div class="rounded-2xl border border-white/8 bg-stone-950 px-4 py-3">GET <span class="text-sky-300">/api/stats</span></div>
+                                <div class="relative">
+                                    <div class="absolute left-6 top-5 h-[calc(100%-2.5rem)] w-px bg-gradient-to-b from-pink-300 via-fuchsia-500 to-transparent"></div>
+                                    <div class="space-y-5">
+                                        @foreach ([
+                                            ['01', 'Configure hábitos', 'Categoria, frequência, cor e contexto em uma única tela.'],
+                                            ['02', 'Faça check-ins', 'Registro rápido para manter a sequência viva.'],
+                                            ['03', 'Persiga metas', 'Alvos por período com progresso claro.'],
+                                            ['04', 'Leia os sinais', 'Dashboard e relatórios mostram ritmo e queda.'],
+                                            ['05', 'Escale o fluxo', 'Admin e API prontos para integrar novas experiências.'],
+                                        ] as [$step, $title, $copy])
+                                            <div class="relative ml-12 rounded-2xl border border-pink-300/15 bg-zinc-950/90 p-5 shadow-[0_0_28px_rgba(236,72,153,0.08)]">
+                                                <span class="absolute -left-[3.35rem] top-6 h-4 w-4 rounded-full border border-pink-200 bg-pink-500 shadow-[0_0_22px_rgba(236,72,153,0.85)]"></span>
+                                                <p class="font-['Outfit'] text-sm font-bold text-pink-200">{{ $step }}</p>
+                                                <h3 class="mt-1 font-['Outfit'] text-xl font-bold text-white">{{ $title }}</h3>
+                                                <p class="mt-2 text-sm leading-6 text-zinc-400">{{ $copy }}</p>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </section>
+                        </section>
 
-                <section class="border-t border-white/10 bg-stone-900 px-6 py-16 lg:px-8">
-                    <div class="mx-auto flex max-w-7xl flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-                        <div class="max-w-2xl">
-                            <p class="text-sm uppercase tracking-[0.24em] text-stone-500">pronto para começar</p>
-                            <h2 class="mt-4 font-['Outfit'] text-4xl font-semibold tracking-tight text-white">
-                                Construa uma rotina que continue fazendo sentido depois do entusiasmo inicial.
-                            </h2>
-                        </div>
+                        <section id="recursos" class="px-6 pb-20 lg:px-8">
+                            <div class="mx-auto max-w-6xl">
+                                <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                                    <div>
+                                        <p class="text-sm uppercase tracking-[0.24em] text-pink-200/60">recursos</p>
+                                        <h2 class="mt-3 font-['Outfit'] text-4xl font-black text-white">Receipts. Not promises.</h2>
+                                    </div>
+                                    <p class="max-w-md text-sm leading-7 text-zinc-400">A base já cobre a rotina real: hábitos, metas, check-ins, relatórios, administração e endpoints autenticados.</p>
+                                </div>
 
-                        <div class="flex flex-wrap gap-4">
-                            @auth
-                                <a href="{{ url('/dashboard') }}" class="rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-stone-950 transition hover:bg-orange-400">
-                                    Abrir HabitFlow
-                                </a>
-                            @else
-                                <a href="{{ route('register') }}" class="rounded-full bg-orange-500 px-6 py-3 text-sm font-semibold text-stone-950 transition hover:bg-orange-400">
-                                    Criar conta grátis
-                                </a>
-                                <a href="{{ route('login') }}" class="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-stone-100 transition hover:border-white/30 hover:bg-white/5">
-                                    Entrar
-                                </a>
-                            @endauth
-                        </div>
-                    </div>
-                </section>
-            </main>
+                                <div class="grid gap-4 md:grid-cols-2">
+                                    <article class="rounded-[1.5rem] border border-pink-300/15 bg-gradient-to-br from-pink-500/15 to-zinc-950 p-6">
+                                        <p class="text-xs uppercase tracking-[0.22em] text-pink-200/70">dashboard</p>
+                                        <h3 class="mt-10 font-['Outfit'] text-2xl font-bold text-white">Cockpit de execução diária</h3>
+                                        <p class="mt-3 text-sm leading-7 text-zinc-400">Resumo de hábitos, check-ins, streaks e mapa de consistência.</p>
+                                    </article>
+                                    <article class="rounded-[1.5rem] border border-fuchsia-300/15 bg-gradient-to-br from-fuchsia-500/15 to-zinc-950 p-6">
+                                        <p class="text-xs uppercase tracking-[0.22em] text-fuchsia-200/70">admin</p>
+                                        <h3 class="mt-10 font-['Outfit'] text-2xl font-bold text-white">Operação da plataforma</h3>
+                                        <p class="mt-3 text-sm leading-7 text-zinc-400">Gestão de usuários, categorias e relatórios administrativos.</p>
+                                    </article>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="api" class="border-t border-pink-300/10 px-6 py-16 lg:px-8">
+                            <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[1fr_0.85fr] lg:items-center">
+                                <div>
+                                    <p class="text-sm uppercase tracking-[0.24em] text-pink-200/60">api sanctum</p>
+                                    <h2 class="mt-4 font-['Outfit'] text-4xl font-black text-white">Integre o cockpit em outros canais.</h2>
+                                    <p class="mt-5 max-w-2xl text-sm leading-7 text-zinc-400">
+                                        Endpoints autenticados permitem listar hábitos, registrar check-ins e consultar estatísticas para apps mobile, automações ou serviços externos.
+                                    </p>
+                                </div>
+                                <div class="space-y-3 font-mono text-sm text-zinc-200">
+                                    <div class="rounded-2xl border border-pink-300/15 bg-black px-4 py-3">GET <span class="text-pink-300">/api/habits</span></div>
+                                    <div class="rounded-2xl border border-pink-300/15 bg-black px-4 py-3">POST <span class="text-fuchsia-300">/api/checkins</span></div>
+                                    <div class="rounded-2xl border border-pink-300/15 bg-black px-4 py-3">GET <span class="text-pink-100">/api/stats</span></div>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
         </div>
     </body>
 </html>
