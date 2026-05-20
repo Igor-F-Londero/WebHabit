@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Perfil">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#1b1025"/><stop offset=".55" stop-color="#08111f"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".35" r=".58"><stop stop-color="#a78bfa" stop-opacity=".7"/><stop offset=".5" stop-color="#ec4899" stop-opacity=".18"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".78" numOctaves="3"/><feComponentTransfer><feFuncA type="table" tableValues="0 .15"/></feComponentTransfer></filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#glow)"/>
+  <rect x="250" y="145" width="700" height="610" rx="54" fill="#050507" stroke="#c084fc" stroke-opacity=".35" stroke-width="5"/>
+  <circle cx="600" cy="350" r="110" fill="#111827" stroke="#f9a8d4" stroke-width="10"/>
+  <path d="M395 650c35-122 125-180 205-180s170 58 205 180" fill="#111827" stroke="#f9a8d4" stroke-width="10" stroke-linecap="round"/>
+  <g fill="#67e8f9" opacity=".75">
+    <rect x="380" y="210" width="95" height="16" rx="8"/><rect x="725" y="210" width="95" height="16" rx="8"/><rect x="470" y="700" width="260" height="14" rx="7"/>
+  </g>
+  <rect width="1200" height="900" filter="url(#noise)" opacity=".75"/>
+</svg>

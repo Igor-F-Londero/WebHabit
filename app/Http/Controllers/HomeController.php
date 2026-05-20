@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Checkin;
+use Illuminate\View\View;
+
+class HomeController extends Controller
+{
+    public function __invoke(): View
+    {
+        $user = auth()->user();
+
+        $activeHabits = $user->habits()->where('active', true)->count();
+        $activeGoals = $user->goals()->where('status', 'active')->count();
+        $checkinsToday = Checkin::whereHas('habit', fn($query) => $query->where('user_id', $user->id))
+            ->whereDate('checked_date', today())
+            ->count();
+
+        $bestStreak = $user->habits()
+            ->where('active', true)
+            ->with('checkins')
+            ->get()
+            ->max(fn($habit) => $habit->currentStreak()) ?? 0;
+
+        return view('home', compact(
+            'activeHabits',
+            'activeGoals',
+            'checkinsToday',
+            'bestStreak',
+        ));
+    }
+}

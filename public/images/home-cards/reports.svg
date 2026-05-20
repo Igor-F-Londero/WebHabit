@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Relatorios neon">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#031d24"/><stop offset=".5" stop-color="#080814"/><stop offset="1" stop-color="#000"/></linearGradient>
+    <radialGradient id="glow" cx=".35" cy=".2" r=".65"><stop stop-color="#22d3ee" stop-opacity=".7"/><stop offset=".48" stop-color="#8b5cf6" stop-opacity=".2"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3"/><feComponentTransfer><feFuncA type="table" tableValues="0 .14"/></feComponentTransfer></filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect width="1200" height="900" fill="url(#glow)"/>
+  <rect x="160" y="170" width="880" height="560" rx="44" fill="#050507" stroke="#22d3ee" stroke-opacity=".32" stroke-width="5"/>
+  <g transform="translate(230 250)">
+    <path d="M0 330h760" stroke="#fff" stroke-opacity=".12" stroke-width="4"/>
+    <path d="M40 280C160 210 220 245 310 160s180-70 260-35 125 15 190-70" fill="none" stroke="#22d3ee" stroke-width="14" stroke-linecap="round"/>
+    <path d="M40 325C170 285 235 305 335 250s185-44 272-8 120 25 172-15" fill="none" stroke="#f472b6" stroke-width="10" stroke-linecap="round" opacity=".72"/>
+    <g fill="#111827" stroke="#fff" stroke-opacity=".1">
+      <rect x="35" y="20" width="160" height="70" rx="18"/><rect x="225" y="20" width="160" height="70" rx="18"/><rect x="415" y="20" width="160" height="70" rx="18"/>
+    </g>
+    <g fill="#fff" opacity=".9">
+      <rect x="65" y="45" width="85" height="12" rx="6"/><rect x="255" y="45" width="90" height="12" rx="6"/><rect x="445" y="45" width="75" height="12" rx="6"/>
+    </g>
+  </g>
+  <rect width="1200" height="900" filter="url(#noise)" opacity=".8"/>
+</svg>
