@@ -1,72 +1,72 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
             Dashboard
         </h2>
     </x-slot>
 
-    <div class="py-8">
+    <div class="hf-page">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             @if(session('success'))
-                <div class="p-4 bg-green-100 border border-green-300 text-green-800 rounded-lg">
+                <div class="p-4 bg-cyan-300/10 border border-cyan-300/20 text-cyan-100 rounded-lg">
                     {{ session('success') }}
                 </div>
             @endif
             @if(session('error'))
-                <div class="p-4 bg-red-100 border border-red-300 text-red-800 rounded-lg">
+                <div class="p-4 bg-rose-400/10 border border-rose-400/20 text-rose-100 rounded-lg">
                     {{ session('error') }}
                 </div>
             @endif
 
             {{-- Cards de resumo --}}
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Consistência (30 dias)</p>
-                    <p class="text-3xl font-bold text-indigo-600">{{ $consistencyRate }}%</p>
-                    <p class="text-xs text-gray-400 mt-1">hábitos diários concluídos</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Consistência (30 dias)</p>
+                    <p class="text-3xl font-bold text-cyan-300">{{ $consistencyRate }}%</p>
+                    <p class="mt-1 text-xs text-stone-400">hábitos diários concluídos</p>
                 </div>
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Check-ins hoje</p>
-                    <p class="text-3xl font-bold text-green-600">{{ $checkinsToday }}</p>
-                    <p class="text-xs text-gray-400 mt-1">de {{ $todayHabits->count() }} hábito(s) ativo(s)</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Check-ins hoje</p>
+                    <p class="text-3xl font-bold text-cyan-200">{{ $checkinsToday }}</p>
+                    <p class="mt-1 text-xs text-stone-400">de {{ $todayHabits->count() }} hábito(s) ativo(s)</p>
                 </div>
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Hábitos ativos</p>
-                    <p class="text-3xl font-bold text-gray-800">{{ $todayHabits->count() }}</p>
-                    <p class="text-xs text-gray-400 mt-1">cadastrados</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Hábitos ativos</p>
+                    <p class="text-3xl font-bold text-white">{{ $todayHabits->count() }}</p>
+                    <p class="mt-1 text-xs text-stone-400">cadastrados</p>
                 </div>
             </div>
 
             {{-- Hábitos do dia --}}
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
+            <div class="hf-panel-pad">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="font-semibold text-gray-800">Hábitos de hoje</h3>
-                    <a href="{{ route('habits.index') }}" class="text-sm text-indigo-600 hover:text-indigo-800">Ver todos</a>
+                    <h3 class="font-semibold text-white">Hábitos de hoje</h3>
+                    <a href="{{ route('habits.index') }}" class="text-sm text-cyan-200 hover:text-cyan-100">Ver todos</a>
                 </div>
 
                 @if($todayHabits->isEmpty())
-                    <p class="text-gray-400 text-sm text-center py-6">
+                    <p class="py-6 text-center text-sm text-stone-400">
                         Nenhum hábito ativo.
-                        <a href="{{ route('habits.create') }}" class="text-indigo-600 hover:underline">Criar um hábito</a>
+                        <a href="{{ route('habits.create') }}" class="text-cyan-200 hover:underline">Criar um hábito</a>
                     </p>
                 @else
                     <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                         @foreach($todayHabits as $habit)
-                            <div class="flex items-center gap-3 border border-gray-100 rounded-lg p-3">
+                            <div class="hf-panel-soft flex items-center gap-3 rounded-2xl p-3">
                                 <div class="w-1.5 h-10 rounded-full shrink-0" style="background-color: {{ $habit->color }}"></div>
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-medium text-gray-900 truncate">{{ $habit->name }}</p>
-                                    <p class="text-xs text-gray-400">{{ $habit->category->name }}</p>
+                                    <p class="truncate text-sm font-medium text-white">{{ $habit->name }}</p>
+                                    <p class="text-xs text-stone-500">{{ $habit->category->name }}</p>
                                 </div>
                                 @if($habit->isCompletedToday())
-                                    <span class="shrink-0 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">✓ Feito</span>
+                                            <span class="shrink-0 rounded-full bg-cyan-300/10 px-2 py-1 text-xs font-medium text-cyan-200">✓ Feito</span>
                                 @else
                                     <form action="{{ route('checkins.store') }}" method="POST" class="shrink-0">
                                         @csrf
                                         <input type="hidden" name="habit_id" value="{{ $habit->id }}">
                                         <button type="submit"
-                                                class="text-xs bg-gray-800 text-white px-3 py-1 rounded-full hover:bg-gray-700 transition">
+                                                class="rounded-full bg-cyan-300 px-3 py-1 text-xs font-semibold text-slate-950 transition hover:bg-cyan-200">
                                             Check-in
                                         </button>
                                     </form>
@@ -79,16 +79,16 @@
 
             {{-- Top 3 Streaks --}}
             @if($topStreaks->isNotEmpty())
-                <div class="bg-white shadow-sm sm:rounded-lg p-6">
-                    <h3 class="font-semibold text-gray-800 mb-4">Top streaks ativos</h3>
+                <div class="hf-panel-pad">
+                    <h3 class="mb-4 font-semibold text-white">Top streaks ativos</h3>
                     <div class="grid gap-4 sm:grid-cols-3">
                         @foreach($topStreaks as $i => $habit)
                             @php $streak = $habit->currentStreak(); @endphp
-                            <div class="flex items-center gap-3 p-3 rounded-lg bg-orange-50 border border-orange-100">
-                                <span class="text-2xl font-black text-orange-300">#{{ $i + 1 }}</span>
+                            <div class="flex items-center gap-3 rounded-2xl border border-cyan-300/10 bg-cyan-300/10 p-3">
+                                <span class="text-2xl font-black text-cyan-200">#{{ $i + 1 }}</span>
                                 <div class="flex-1 min-w-0">
-                                    <p class="text-sm font-semibold text-gray-900 truncate">{{ $habit->name }}</p>
-                                    <p class="text-xs text-orange-500 font-medium">
+                                    <p class="truncate text-sm font-semibold text-white">{{ $habit->name }}</p>
+                                    <p class="text-xs font-medium text-cyan-300">
                                         🔥 {{ $streak }} {{ $streak === 1 ? 'dia' : 'dias' }}
                                     </p>
                                 </div>
@@ -99,15 +99,15 @@
             @endif
 
             {{-- Gráfico últimos 7 dias --}}
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
-                <h3 class="font-semibold text-gray-800 mb-4">Check-ins — últimos 7 dias</h3>
+            <div class="hf-panel-pad">
+                <h3 class="mb-4 font-semibold text-white">Check-ins — últimos 7 dias</h3>
                 <canvas id="checkinChart" height="80"></canvas>
             </div>
 
             {{-- Heatmap --}}
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
-                <h3 class="font-semibold text-gray-800 mb-1">Atividade — último ano</h3>
-                <p class="text-xs text-gray-400 mb-4">Cada célula representa um dia; mais escuro = mais check-ins</p>
+            <div class="hf-panel-pad">
+                <h3 class="mb-1 font-semibold text-white">Atividade — último ano</h3>
+                <p class="mb-4 text-xs text-stone-400">Cada célula representa um dia; mais escuro = mais check-ins</p>
 
                 @php
                     $heatStart = today()->subWeeks(51)->startOfWeek(\Carbon\Carbon::MONDAY);
@@ -121,12 +121,12 @@
                     });
 
                     $cellColor = function (int $count, bool $future): string {
-                        if ($future)       return 'bg-gray-50';
-                        if ($count === 0)  return 'bg-gray-100';
-                        if ($count === 1)  return 'bg-green-200';
-                        if ($count <= 3)   return 'bg-green-400';
-                        if ($count <= 5)   return 'bg-green-600';
-                        return 'bg-green-800';
+                        if ($future)       return 'bg-stone-900/60 ring-1 ring-white/5';
+                        if ($count === 0)  return 'bg-stone-800 ring-1 ring-white/5';
+                        if ($count === 1)  return 'bg-cyan-300/50 shadow-[0_0_10px_rgba(103,232,249,0.28)]';
+                        if ($count <= 3)   return 'bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.35)]';
+                        if ($count <= 5)   return 'bg-fuchsia-400 shadow-[0_0_14px_rgba(217,70,239,0.35)]';
+                        return 'bg-pink-400 shadow-[0_0_16px_rgba(244,114,182,0.42)]';
                     };
 
                     $dayLabels = ['Seg', '', 'Qua', '', 'Sex', '', 'Dom'];
@@ -138,7 +138,7 @@
                         <div class="h-3"></div>
                         @foreach($dayLabels as $label)
                             <div class="h-3 flex items-center">
-                                <span class="text-[9px] text-gray-400 w-6">{{ $label }}</span>
+                                <span class="w-6 text-[9px] text-stone-500">{{ $label }}</span>
                             </div>
                         @endforeach
                     </div>
@@ -149,7 +149,7 @@
                             @php $firstDay = $week->first()['date']; @endphp
                             <div class="h-3 flex items-center">
                                 @if($firstDay->day <= 7)
-                                    <span class="text-[9px] text-gray-400 whitespace-nowrap">
+                                    <span class="whitespace-nowrap text-[9px] text-stone-500">
                                         {{ $firstDay->translatedFormat('M') }}
                                     </span>
                                 @endif
@@ -165,13 +165,13 @@
 
                 {{-- Legenda --}}
                 <div class="flex items-center gap-1 mt-3">
-                    <span class="text-xs text-gray-400 mr-1">Menos</span>
-                    <div class="w-3 h-3 rounded-sm bg-gray-100"></div>
-                    <div class="w-3 h-3 rounded-sm bg-green-200"></div>
-                    <div class="w-3 h-3 rounded-sm bg-green-400"></div>
-                    <div class="w-3 h-3 rounded-sm bg-green-600"></div>
-                    <div class="w-3 h-3 rounded-sm bg-green-800"></div>
-                    <span class="text-xs text-gray-400 ml-1">Mais</span>
+                    <span class="mr-1 text-xs text-stone-500">Menos</span>
+                    <div class="h-3 w-3 rounded-sm bg-stone-800 ring-1 ring-white/5"></div>
+                    <div class="h-3 w-3 rounded-sm bg-cyan-300/50"></div>
+                    <div class="h-3 w-3 rounded-sm bg-cyan-400"></div>
+                    <div class="h-3 w-3 rounded-sm bg-fuchsia-400"></div>
+                    <div class="h-3 w-3 rounded-sm bg-pink-400"></div>
+                    <span class="ml-1 text-xs text-stone-500">Mais</span>
                 </div>
             </div>
 
@@ -188,8 +188,8 @@
                 datasets: [{
                     label: 'Check-ins',
                     data: {!! $chartData->toJson() !!},
-                    backgroundColor: 'rgba(99, 102, 241, 0.7)',
-                    borderColor: 'rgba(99, 102, 241, 1)',
+                    backgroundColor: 'rgba(34, 211, 238, 0.72)',
+                    borderColor: 'rgba(103, 232, 249, 1)',
                     borderWidth: 1,
                     borderRadius: 4,
                 }]
@@ -201,7 +201,7 @@
                     y: {
                         beginAtZero: true,
                         ticks: { stepSize: 1, precision: 0 },
-                        grid: { color: 'rgba(0,0,0,0.05)' }
+                        grid: { color: 'rgba(148, 163, 184, 0.08)' }
                     },
                     x: { grid: { display: false } }
                 }

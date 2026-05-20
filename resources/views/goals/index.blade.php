@@ -1,35 +1,35 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
                 Minhas Metas
             </h2>
             <a href="{{ route('goals.create') }}"
-               class="inline-flex items-center px-4 py-2 bg-gray-800 text-white text-sm font-medium rounded-md hover:bg-gray-700 transition">
+               class="inline-flex items-center rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-200">
                 + Nova Meta
             </a>
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="hf-page">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             @if(session('success'))
-                <div class="mb-4 p-4 bg-green-100 border border-green-300 text-green-800 rounded-lg">
+                <div class="mb-4 p-4 bg-cyan-300/10 border border-cyan-300/20 text-cyan-100 rounded-lg">
                     {{ session('success') }}
                 </div>
             @endif
             @if(session('error'))
-                <div class="mb-4 p-4 bg-red-100 border border-red-300 text-red-800 rounded-lg">
+                <div class="mb-4 p-4 bg-rose-400/10 border border-rose-400/20 text-rose-100 rounded-lg">
                     {{ session('error') }}
                 </div>
             @endif
 
             @if($goals->isEmpty())
-                <div class="bg-white shadow-sm sm:rounded-lg p-12 text-center">
-                    <p class="text-gray-400 text-lg mb-4">Você ainda não tem metas cadastradas.</p>
+                <div class="hf-panel-pad p-12 text-center">
+                    <p class="mb-4 text-lg text-stone-400">Você ainda não tem metas cadastradas.</p>
                     <a href="{{ route('goals.create') }}"
-                       class="inline-flex items-center px-6 py-3 bg-gray-800 text-white font-medium rounded-md hover:bg-gray-700 transition">
+                       class="inline-flex items-center rounded-full bg-cyan-300 px-6 py-3 font-medium text-slate-950 transition hover:bg-cyan-200">
                         Criar minha primeira meta
                     </a>
                 </div>
@@ -40,9 +40,9 @@
                             $progress = $goal->progressPercent();
                             $checkins = $goal->checkinCount();
                             $statusColor = match($goal->status) {
-                                'completed' => 'bg-green-100 text-green-700',
-                                'expired'   => 'bg-red-100 text-red-700',
-                                default     => 'bg-blue-100 text-blue-700',
+                                'completed' => 'bg-cyan-300/10 text-cyan-100',
+                                'expired'   => 'bg-rose-400/10 text-rose-200',
+                                default     => 'bg-cyan-300/10 text-cyan-100',
                             };
                             $statusLabel = match($goal->status) {
                                 'completed' => 'Concluída',
@@ -51,10 +51,10 @@
                             };
                         @endphp
 
-                        <div class="bg-white shadow-sm sm:rounded-lg p-5 flex flex-col justify-between">
+                        <div class="hf-panel-pad flex flex-col justify-between">
                             <div>
                                 <div class="flex items-start justify-between mb-2">
-                                    <h3 class="font-semibold text-gray-900 text-base leading-tight">
+                                    <h3 class="text-base font-semibold leading-tight text-white">
                                         {{ $goal->title }}
                                     </h3>
                                     <span class="ml-2 shrink-0 text-xs font-medium px-2 py-0.5 rounded-full {{ $statusColor }}">
@@ -62,27 +62,26 @@
                                     </span>
                                 </div>
 
-                                <p class="text-xs text-gray-500 mb-3">
+                                <p class="mb-3 text-xs text-stone-500">
                                     🏷 {{ $goal->habit->name }}
                                 </p>
 
                                 @if($goal->description)
-                                    <p class="text-sm text-gray-400 mb-3 line-clamp-2">{{ $goal->description }}</p>
+                                    <p class="mb-3 line-clamp-2 text-sm text-stone-400">{{ $goal->description }}</p>
                                 @endif
 
-                                {{-- Barra de progresso --}}
-                                <div class="mb-1 flex items-center justify-between text-xs text-gray-500">
+                                <div class="mb-1 flex items-center justify-between text-xs text-stone-400">
                                     <span>{{ $checkins }} / {{ $goal->target_count }} check-ins</span>
                                     <span>{{ $progress }}%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2 mb-3">
-                                    <div class="h-2 rounded-full transition-all
-                                        {{ $goal->status === 'completed' ? 'bg-green-500' : ($goal->status === 'expired' ? 'bg-red-400' : 'bg-indigo-500') }}"
+                                <div class="mb-3 h-2 w-full rounded-full bg-stone-950 ring-1 ring-white/10">
+                                    <div class="h-2 rounded-full transition-all shadow-[0_0_18px_rgba(34,211,238,0.35)]
+                                        {{ $goal->status === 'completed' ? 'bg-cyan-300' : ($goal->status === 'expired' ? 'bg-rose-400' : 'bg-cyan-400') }}"
                                         style="width: {{ $progress }}%">
                                     </div>
                                 </div>
 
-                                <p class="text-xs text-gray-400">
+                                <p class="text-xs text-stone-500">
                                     {{ $goal->start_date->format('d/m/Y') }} →
                                     {{ $goal->end_date->format('d/m/Y') }}
                                     @if($goal->status === 'active')
@@ -94,7 +93,7 @@
                             <div class="mt-4 flex items-center justify-end gap-3">
                                 @if($goal->status !== 'completed')
                                     <a href="{{ route('goals.edit', $goal) }}"
-                                       class="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
+                                       class="text-sm font-medium text-cyan-200 hover:text-cyan-100">
                                         Editar
                                     </a>
                                 @endif
@@ -105,7 +104,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                            class="text-red-500 hover:text-red-700 text-sm font-medium">
+                                            class="text-sm font-medium text-rose-300 hover:text-rose-200">
                                         Excluir
                                     </button>
                                 </form>

@@ -1,3 +1,75 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-slate-950 text-slate-100;
+    }
+}
+
+@layer components {
+    .hf-page {
+        @apply py-10;
+    }
+
+    .hf-container {
+        @apply mx-auto max-w-7xl sm:px-6 lg:px-8;
+    }
+
+    .hf-panel {
+        @apply rounded-[1.35rem] border border-cyan-300/10 bg-slate-950/80 shadow-[0_0_40px_rgba(34,211,238,0.06)] backdrop-blur;
+    }
+
+    .hf-panel-pad {
+        @apply rounded-[1.35rem] border border-cyan-300/10 bg-slate-950/80 p-6 shadow-[0_0_40px_rgba(34,211,238,0.06)] backdrop-blur;
+    }
+
+    .hf-panel-soft {
+        @apply rounded-[1.15rem] border border-cyan-300/10 bg-white/[0.025];
+    }
+
+    .hf-input {
+        @apply rounded-xl border border-cyan-300/10 bg-slate-950/90 text-slate-100 shadow-sm placeholder:text-slate-500 focus:border-cyan-300 focus:ring-cyan-300;
+    }
+
+    .hf-select {
+        @apply rounded-xl border border-cyan-300/10 bg-slate-950/90 text-slate-100 shadow-sm focus:border-cyan-300 focus:ring-cyan-300;
+    }
+
+    .hf-textarea {
+        @apply rounded-xl border border-cyan-300/10 bg-slate-950/90 text-slate-100 shadow-sm placeholder:text-slate-500 focus:border-cyan-300 focus:ring-cyan-300;
+    }
+
+    .hf-link {
+        @apply text-sm font-medium text-cyan-200 transition hover:text-cyan-100;
+    }
+
+    .hf-subtle-link {
+        @apply text-sm text-slate-400 transition hover:text-slate-200;
+    }
+
+    .hf-note {
+        @apply text-xs text-slate-500;
+    }
+
+    .hf-alert-success {
+        @apply rounded-2xl border border-cyan-300/20 bg-cyan-300/10 p-4 text-cyan-100;
+    }
+
+    .hf-alert-error {
+        @apply rounded-2xl border border-rose-400/20 bg-rose-400/10 p-4 text-rose-200;
+    }
+
+    .hf-table {
+        @apply min-w-full divide-y divide-white/10;
+    }
+
+    .hf-table-head {
+        @apply bg-cyan-300/[0.035] text-slate-400;
+    }
+
+    .hf-table-row {
+        @apply border-t border-cyan-300/10 text-slate-200 transition hover:bg-cyan-300/[0.035];
+    }
+}

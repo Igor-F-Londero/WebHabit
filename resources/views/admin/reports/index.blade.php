@@ -1,27 +1,27 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
             Relatório de Uso — Admin
         </h2>
     </x-slot>
 
-    <div class="py-8">
+    <div class="hf-page">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             {{-- Filtro de período --}}
-            <div class="bg-white shadow-sm sm:rounded-lg p-5">
+            <div class="hf-panel-pad p-5">
                 <form method="GET" action="{{ route('admin.reports.index') }}" class="flex items-end gap-4">
                     <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Período</label>
+                        <label class="mb-1 block text-xs font-medium text-stone-400">Período</label>
                         <select name="period"
-                                class="rounded-md border-gray-300 shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                class="hf-select text-sm">
                             <option value="7"  {{ $period === '7'  ? 'selected' : '' }}>Últimos 7 dias</option>
                             <option value="30" {{ $period === '30' ? 'selected' : '' }}>Últimos 30 dias</option>
                             <option value="90" {{ $period === '90' ? 'selected' : '' }}>Últimos 90 dias</option>
                         </select>
                     </div>
                     <button type="submit"
-                            class="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 transition">
+                            class="rounded-full bg-cyan-300 px-4 py-2 text-sm text-slate-950 transition hover:bg-cyan-200">
                         Filtrar
                     </button>
                 </form>
@@ -29,33 +29,33 @@
 
             {{-- Cards de métricas --}}
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Novos usuários</p>
-                    <p class="text-3xl font-bold text-indigo-600">{{ $newUsers }}</p>
-                    <p class="text-xs text-gray-400 mt-1">no período</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Novos usuários</p>
+                    <p class="text-3xl font-bold text-cyan-300">{{ $newUsers }}</p>
+                    <p class="mt-1 text-xs text-stone-400">no período</p>
                 </div>
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Novos hábitos</p>
-                    <p class="text-3xl font-bold text-gray-800">{{ $newHabits }}</p>
-                    <p class="text-xs text-gray-400 mt-1">no período</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Novos hábitos</p>
+                    <p class="text-3xl font-bold text-white">{{ $newHabits }}</p>
+                    <p class="mt-1 text-xs text-stone-400">no período</p>
                 </div>
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Check-ins</p>
-                    <p class="text-3xl font-bold text-green-600">{{ $totalCheckins }}</p>
-                    <p class="text-xs text-gray-400 mt-1">no período</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Check-ins</p>
+                    <p class="text-3xl font-bold text-cyan-200">{{ $totalCheckins }}</p>
+                    <p class="mt-1 text-xs text-stone-400">no período</p>
                 </div>
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Retenção</p>
-                    <p class="text-3xl font-bold text-orange-500">{{ $retentionRate }}%</p>
-                    <p class="text-xs text-gray-400 mt-1">
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Retenção</p>
+                    <p class="text-3xl font-bold text-fuchsia-300">{{ $retentionRate }}%</p>
+                    <p class="mt-1 text-xs text-stone-400">
                         {{ $retainedUsers }}/{{ $usersBeforePeriod }} usuários antigos ativos
                     </p>
                 </div>
             </div>
 
             {{-- Gráfico combinado --}}
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
-                <h3 class="font-semibold text-gray-800 mb-4">Evolução no período</h3>
+            <div class="hf-panel-pad">
+                <h3 class="mb-4 font-semibold text-white">Evolução no período</h3>
                 <canvas id="reportChart" height="80"></canvas>
             </div>
 
@@ -73,8 +73,8 @@
                     {
                         label: 'Check-ins/dia',
                         data: {!! $chartData->toJson() !!},
-                        borderColor: 'rgba(99, 102, 241, 1)',
-                        backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                        borderColor: 'rgba(34, 211, 238, 1)',
+                        backgroundColor: 'rgba(34, 211, 238, 0.08)',
                         borderWidth: 2,
                         pointRadius: 2,
                         fill: true,

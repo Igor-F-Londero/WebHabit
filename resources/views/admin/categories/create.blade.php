@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
             Nova Categoria
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="hf-page">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
+            <div class="hf-panel-pad">
 
                 <form action="{{ route('admin.categories.store') }}" method="POST">
                     @csrf
@@ -27,7 +27,7 @@
                         <div>
                             <x-input-label for="description" value="Descrição" />
                             <textarea id="description" name="description" rows="3"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                                class="hf-textarea mt-1 block w-full"
                                 placeholder="Descrição opcional da categoria">{{ old('description') }}</textarea>
                             <x-input-error :messages="$errors->get('description')" class="mt-1" />
                         </div>
@@ -38,7 +38,7 @@
                                 class="mt-1 block w-full"
                                 :value="old('icon')"
                                 placeholder="Ex: ti-heart, ti-book..." />
-                            <p class="mt-1 text-xs text-gray-400">Classe de ícone (Tabler Icons). Deixe em branco para não exibir.</p>
+                            <p class="hf-note mt-1">Classe de ícone. Deixe em branco para não exibir.</p>
                             <x-input-error :messages="$errors->get('icon')" class="mt-1" />
                         </div>
 
@@ -47,7 +47,7 @@
                     <div class="flex items-center gap-4 mt-6">
                         <x-primary-button>Salvar</x-primary-button>
                         <a href="{{ route('admin.categories.index') }}"
-                           class="text-sm text-gray-600 hover:text-gray-900">
+                           class="hf-subtle-link">
                             Cancelar
                         </a>
                     </div>

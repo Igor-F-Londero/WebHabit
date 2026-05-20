@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
             Editar Meta: {{ $goal->title }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="hf-page">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
+            <div class="hf-panel-pad">
 
                 <form action="{{ route('goals.update', $goal) }}" method="POST">
                     @csrf
@@ -27,7 +27,7 @@
                         <div>
                             <x-input-label for="habit_id" value="Hábito vinculado *" />
                             <select id="habit_id" name="habit_id" required
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                class="hf-select mt-1 block w-full">
                                 @foreach($habits as $habit)
                                     <option value="{{ $habit->id }}"
                                         {{ old('habit_id', $goal->habit_id) == $habit->id ? 'selected' : '' }}>
@@ -70,7 +70,7 @@
                         <div>
                             <x-input-label for="description" value="Descrição" />
                             <textarea id="description" name="description" rows="3"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">{{ old('description', $goal->description) }}</textarea>
+                                class="hf-textarea mt-1 block w-full">{{ old('description', $goal->description) }}</textarea>
                             <x-input-error :messages="$errors->get('description')" class="mt-1" />
                         </div>
 
@@ -79,7 +79,7 @@
                     <div class="flex items-center gap-4 mt-6">
                         <x-primary-button>Salvar Alterações</x-primary-button>
                         <a href="{{ route('goals.index') }}"
-                           class="text-sm text-gray-600 hover:text-gray-900">
+                           class="hf-subtle-link">
                             Cancelar
                         </a>
                     </div>

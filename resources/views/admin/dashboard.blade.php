@@ -1,49 +1,49 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
             Dashboard Administrativo
         </h2>
     </x-slot>
 
-    <div class="py-8">
+    <div class="hf-page">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             {{-- Cards de métricas --}}
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Total de usuários</p>
-                    <p class="text-3xl font-bold text-gray-800">{{ $totalUsers }}</p>
-                    <p class="text-xs text-gray-400 mt-1">contas ativas</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Total de usuários</p>
+                    <p class="text-3xl font-bold text-white">{{ $totalUsers }}</p>
+                    <p class="mt-1 text-xs text-stone-400">contas ativas</p>
                 </div>
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Total de hábitos</p>
-                    <p class="text-3xl font-bold text-indigo-600">{{ $totalHabits }}</p>
-                    <p class="text-xs text-gray-400 mt-1">cadastrados</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Total de hábitos</p>
+                    <p class="text-3xl font-bold text-cyan-300">{{ $totalHabits }}</p>
+                    <p class="mt-1 text-xs text-stone-400">cadastrados</p>
                 </div>
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Check-ins hoje</p>
-                    <p class="text-3xl font-bold text-green-600">{{ $checkinsToday }}</p>
-                    <p class="text-xs text-gray-400 mt-1">registrados</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Check-ins hoje</p>
+                    <p class="text-3xl font-bold text-cyan-200">{{ $checkinsToday }}</p>
+                    <p class="mt-1 text-xs text-stone-400">registrados</p>
                 </div>
-                <div class="bg-white shadow-sm sm:rounded-lg p-5">
-                    <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Engajamento (7d)</p>
-                    <p class="text-3xl font-bold text-orange-500">{{ $engagementRate }}%</p>
-                    <p class="text-xs text-gray-400 mt-1">{{ $activeUsers }} de {{ $totalUsers }} ativos</p>
+                <div class="hf-panel-pad p-5">
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Engajamento (7d)</p>
+                    <p class="text-3xl font-bold text-fuchsia-300">{{ $engagementRate }}%</p>
+                    <p class="mt-1 text-xs text-stone-400">{{ $activeUsers }} de {{ $totalUsers }} ativos</p>
                 </div>
             </div>
 
             {{-- Gráfico de engajamento (RF17) --}}
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
-                <h3 class="font-semibold text-gray-800 mb-1">Check-ins por dia — últimos 30 dias</h3>
-                <p class="text-xs text-gray-400 mb-4">Linha tracejada = média móvel de 7 dias</p>
+            <div class="hf-panel-pad">
+                <h3 class="mb-1 font-semibold text-white">Check-ins por dia — últimos 30 dias</h3>
+                <p class="mb-4 text-xs text-stone-400">Linha tracejada = média móvel de 7 dias</p>
                 <canvas id="engagementChart" height="80"></canvas>
             </div>
 
             {{-- Hábitos populares por categoria (RF18) --}}
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
-                <h3 class="font-semibold text-gray-800 mb-4">Categorias mais populares</h3>
+            <div class="hf-panel-pad">
+                <h3 class="mb-4 font-semibold text-white">Categorias mais populares</h3>
                 @if($popularCategories->isEmpty())
-                    <p class="text-gray-400 text-sm">Nenhuma categoria com hábitos cadastrados.</p>
+                    <p class="text-sm text-stone-400">Nenhuma categoria com hábitos cadastrados.</p>
                 @else
                     <canvas id="categoriesChart" height="120"></canvas>
                 @endif
@@ -64,8 +64,8 @@
                     {
                         label: 'Check-ins/dia',
                         data: {!! $chartData->toJson() !!},
-                        borderColor: 'rgba(99, 102, 241, 1)',
-                        backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                        borderColor: 'rgba(34, 211, 238, 1)',
+                        backgroundColor: 'rgba(34, 211, 238, 0.08)',
                         borderWidth: 2,
                         pointRadius: 2,
                         fill: true,
@@ -74,7 +74,7 @@
                     {
                         label: 'Média 7 dias',
                         data: {!! $movingAvg->toJson() !!},
-                        borderColor: 'rgba(249, 115, 22, 0.9)',
+                        borderColor: 'rgba(217, 70, 239, 0.9)',
                         borderWidth: 2,
                         borderDash: [5, 4],
                         pointRadius: 0,
@@ -92,7 +92,7 @@
                     y: {
                         beginAtZero: true,
                         ticks: { stepSize: 1, precision: 0 },
-                        grid: { color: 'rgba(0,0,0,0.05)' }
+                        grid: { color: 'rgba(148, 163, 184, 0.08)' }
                     },
                     x: { grid: { display: false }, ticks: { maxTicksLimit: 10 } }
                 }
@@ -108,8 +108,8 @@
                 datasets: [{
                     label: 'Hábitos',
                     data: {!! $popularCategories->pluck('habits_count')->toJson() !!},
-                    backgroundColor: 'rgba(99, 102, 241, 0.7)',
-                    borderColor: 'rgba(99, 102, 241, 1)',
+                    backgroundColor: 'rgba(34, 211, 238, 0.72)',
+                    borderColor: 'rgba(103, 232, 249, 1)',
                     borderWidth: 1,
                     borderRadius: 4,
                 }]
@@ -122,7 +122,7 @@
                     x: {
                         beginAtZero: true,
                         ticks: { stepSize: 1, precision: 0 },
-                        grid: { color: 'rgba(0,0,0,0.05)' }
+                        grid: { color: 'rgba(148, 163, 184, 0.08)' }
                     },
                     y: { grid: { display: false } }
                 }

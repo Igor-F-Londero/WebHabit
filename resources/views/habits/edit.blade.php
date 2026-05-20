@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
             Editar Hábito: {{ $habit->name }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="hf-page">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm sm:rounded-lg p-6">
+            <div class="hf-panel-pad">
 
                 <form action="{{ route('habits.update', $habit) }}" method="POST">
                     @csrf
@@ -27,7 +27,7 @@
                         <div>
                             <x-input-label for="category_id" value="Categoria *" />
                             <select id="category_id" name="category_id" required
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                class="hf-select mt-1 block w-full">
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}"
                                         {{ old('category_id', $habit->category_id) == $category->id ? 'selected' : '' }}>
@@ -41,7 +41,7 @@
                         <div>
                             <x-input-label for="frequency" value="Frequência *" />
                             <select id="frequency" name="frequency" required
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                class="hf-select mt-1 block w-full">
                                 <option value="daily"  {{ old('frequency', $habit->frequency) === 'daily'  ? 'selected' : '' }}>Diário</option>
                                 <option value="weekly" {{ old('frequency', $habit->frequency) === 'weekly' ? 'selected' : '' }}>Semanal</option>
                             </select>
@@ -53,8 +53,8 @@
                             <div class="mt-1 flex items-center gap-3">
                                 <input id="color" name="color" type="color"
                                     value="{{ old('color', $habit->color) }}"
-                                    class="h-10 w-16 rounded border-gray-300 cursor-pointer" />
-                                <span class="text-sm text-gray-500">Cor atual do hábito</span>
+                                    class="h-10 w-16 cursor-pointer rounded-xl border border-white/10 bg-stone-950" />
+                                <span class="text-sm text-stone-400">Cor atual do hábito</span>
                             </div>
                             <x-input-error :messages="$errors->get('color')" class="mt-1" />
                         </div>
@@ -62,7 +62,7 @@
                         <div>
                             <x-input-label for="description" value="Descrição" />
                             <textarea id="description" name="description" rows="3"
-                                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">{{ old('description', $habit->description) }}</textarea>
+                                class="hf-textarea mt-1 block w-full">{{ old('description', $habit->description) }}</textarea>
                             <x-input-error :messages="$errors->get('description')" class="mt-1" />
                         </div>
 
@@ -71,7 +71,7 @@
                     <div class="flex items-center gap-4 mt-6">
                         <x-primary-button>Salvar Alterações</x-primary-button>
                         <a href="{{ route('habits.index') }}"
-                           class="text-sm text-gray-600 hover:text-gray-900">
+                           class="hf-subtle-link">
                             Cancelar
                         </a>
                     </div>

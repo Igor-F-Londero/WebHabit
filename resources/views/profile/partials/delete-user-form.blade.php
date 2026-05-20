@@ -1,11 +1,11 @@
 <section class="space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Delete Account') }}
+        <h2 class="font-['Outfit'] text-xl font-semibold text-white">
+            {{ __('Excluir conta') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+        <p class="mt-1 text-sm text-stone-400">
+            {{ __('Ao excluir sua conta, todos os recursos e dados serão removidos permanentemente.') }}
         </p>
     </header>
 
@@ -19,12 +19,12 @@
             @csrf
             @method('delete')
 
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Are you sure you want to delete your account?') }}
+            <h2 class="font-['Outfit'] text-xl font-semibold text-white">
+                {{ __('Tem certeza de que deseja excluir sua conta?') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+            <p class="mt-1 text-sm text-stone-400">
+                {{ __('Essa ação remove permanentemente seus dados. Digite sua senha para confirmar.') }}
             </p>
 
             <div class="mt-6">

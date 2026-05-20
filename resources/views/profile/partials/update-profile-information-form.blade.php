@@ -1,11 +1,11 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+        <h2 class="font-['Outfit'] text-xl font-semibold text-white">
+            {{ __('Informações do perfil') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+        <p class="mt-1 text-sm text-stone-400">
+            {{ __("Atualize os dados da conta e o endereço de e-mail.") }}
         </p>
     </header>
 
@@ -30,17 +30,17 @@
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
+                    <p class="mt-2 text-sm text-stone-300">
+                        {{ __('Seu endereço de e-mail ainda não foi verificado.') }}
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
+                        <button form="send-verification" class="rounded-md text-sm text-cyan-200 underline transition hover:text-cyan-100 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-0">
+                            {{ __('Clique aqui para reenviar o e-mail de verificação.') }}
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
+                        <p class="mt-2 text-sm font-medium text-cyan-100">
+                            {{ __('Um novo link de verificação foi enviado para o seu e-mail.') }}
                         </p>
                     @endif
                 </div>
@@ -56,8 +56,8 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Saved.') }}</p>
+                    class="text-sm text-cyan-100"
+                >{{ __('Salvo.') }}</p>
             @endif
         </div>
     </form>

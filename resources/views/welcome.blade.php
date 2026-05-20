@@ -41,7 +41,7 @@
                         @if (Route::has('login'))
                             <div class="flex items-center gap-3">
                                 @auth
-                                    <a href="{{ url('/dashboard') }}" class="rounded-xl border border-pink-300/30 bg-pink-500/10 px-4 py-2 text-sm font-semibold text-pink-100 shadow-[0_0_24px_rgba(236,72,153,0.22)] transition hover:border-pink-200/60 hover:bg-pink-500/20">
+                                    <a href="{{ route('home') }}" class="rounded-xl border border-pink-300/30 bg-pink-500/10 px-4 py-2 text-sm font-semibold text-pink-100 shadow-[0_0_24px_rgba(236,72,153,0.22)] transition hover:border-pink-200/60 hover:bg-pink-500/20">
                                         Abrir painel
                                     </a>
                                 @else
@@ -79,7 +79,7 @@
 
                                 <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
                                     @auth
-                                        <a href="{{ url('/dashboard') }}" class="rounded-2xl border border-pink-200/50 bg-pink-500/20 px-7 py-3 text-sm font-bold text-white shadow-[0_0_34px_rgba(236,72,153,0.35)] transition hover:bg-pink-500/30">
+                                        <a href="{{ route('home') }}" class="rounded-2xl border border-pink-200/50 bg-pink-500/20 px-7 py-3 text-sm font-bold text-white shadow-[0_0_34px_rgba(236,72,153,0.35)] transition hover:bg-pink-500/30">
                                             Entrar no cockpit
                                         </a>
                                     @else

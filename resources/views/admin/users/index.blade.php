@@ -1,15 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
             Gerenciar Usuários
         </h2>
     </x-slot>
 
-    <div class="py-8">
+    <div class="hf-page">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             @if(session('success'))
-                <div class="mb-4 p-4 bg-green-100 border border-green-300 text-green-800 rounded-lg">
+                <div class="hf-alert-success mb-4">
                     {{ session('success') }}
                 </div>
             @endif
@@ -21,62 +21,62 @@
                            name="search"
                            value="{{ $search }}"
                            placeholder="Buscar por nome ou e-mail..."
-                           class="flex-1 rounded-md border-gray-300 shadow-sm text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                           class="hf-input flex-1 text-sm">
                     <button type="submit"
-                            class="px-4 py-2 bg-gray-800 text-white text-sm rounded-md hover:bg-gray-700 transition">
+                            class="rounded-full bg-cyan-300 px-4 py-2 text-sm text-slate-950 transition hover:bg-cyan-200">
                         Buscar
                     </button>
                     @if($search)
                         <a href="{{ route('admin.users.index') }}"
-                           class="px-4 py-2 bg-gray-200 text-gray-700 text-sm rounded-md hover:bg-gray-300 transition">
+                           class="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-stone-200 transition hover:bg-white/[0.08]">
                             Limpar
                         </a>
                     @endif
                 </form>
             </div>
 
-            <div class="bg-white shadow-sm sm:rounded-lg overflow-hidden">
+            <div class="hf-panel overflow-hidden">
                 @if($users->isEmpty())
-                    <div class="p-12 text-center text-gray-400">
+                    <div class="p-12 text-center text-stone-400">
                         Nenhum usuário encontrado.
                     </div>
                 @else
-                    <table class="w-full text-sm text-left">
-                        <thead class="bg-gray-50 border-b border-gray-200">
+                    <table class="hf-table text-left text-sm">
+                        <thead class="hf-table-head border-b border-white/10">
                             <tr>
-                                <th class="px-6 py-3 font-medium text-gray-600">Usuário</th>
-                                <th class="px-6 py-3 font-medium text-gray-600 text-center">Hábitos</th>
-                                <th class="px-6 py-3 font-medium text-gray-600 text-center">Metas</th>
-                                <th class="px-6 py-3 font-medium text-gray-600 text-center">Status</th>
-                                <th class="px-6 py-3 font-medium text-gray-600 text-center">Cadastro</th>
-                                <th class="px-6 py-3 font-medium text-gray-600 text-center">Ação</th>
+                                <th class="px-6 py-3 font-medium text-stone-400">Usuário</th>
+                                <th class="px-6 py-3 text-center font-medium text-stone-400">Hábitos</th>
+                                <th class="px-6 py-3 text-center font-medium text-stone-400">Metas</th>
+                                <th class="px-6 py-3 text-center font-medium text-stone-400">Status</th>
+                                <th class="px-6 py-3 text-center font-medium text-stone-400">Cadastro</th>
+                                <th class="px-6 py-3 text-center font-medium text-stone-400">Ação</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-100">
+                        <tbody>
                             @foreach($users as $user)
-                                <tr class="hover:bg-gray-50">
+                                <tr class="hf-table-row">
                                     <td class="px-6 py-4">
-                                        <p class="font-medium text-gray-900">{{ $user->name }}</p>
-                                        <p class="text-xs text-gray-400">{{ $user->email }}</p>
+                                        <p class="font-medium text-white">{{ $user->name }}</p>
+                                        <p class="text-xs text-stone-500">{{ $user->email }}</p>
                                     </td>
-                                    <td class="px-6 py-4 text-center text-gray-700">
+                                    <td class="px-6 py-4 text-center text-stone-300">
                                         {{ $user->habits_count }}
                                     </td>
-                                    <td class="px-6 py-4 text-center text-gray-700">
+                                    <td class="px-6 py-4 text-center text-stone-300">
                                         {{ $user->goals_count }}
                                     </td>
                                     <td class="px-6 py-4 text-center">
                                         @if($user->active)
-                                            <span class="inline-block px-2 py-0.5 text-xs font-medium bg-green-100 text-green-700 rounded-full">
+                                            <span class="inline-block rounded-full bg-cyan-300/10 px-2 py-0.5 text-xs font-medium text-cyan-200">
                                                 Ativo
                                             </span>
                                         @else
-                                            <span class="inline-block px-2 py-0.5 text-xs font-medium bg-red-100 text-red-700 rounded-full">
+                                            <span class="inline-block rounded-full bg-rose-400/10 px-2 py-0.5 text-xs font-medium text-rose-300">
                                                 Inativo
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4 text-center text-gray-500 text-xs">
+                                    <td class="px-6 py-4 text-center text-xs text-stone-500">
                                         {{ $user->created_at->format('d/m/Y') }}
                                     </td>
                                     <td class="px-6 py-4 text-center">
@@ -86,7 +86,7 @@
                                             @csrf
                                             @method('PATCH')
                                             <button type="submit"
-                                                    class="text-xs font-medium {{ $user->active ? 'text-red-600 hover:text-red-800' : 'text-green-600 hover:text-green-800' }}">
+                                                    class="text-xs font-medium {{ $user->active ? 'text-rose-300 hover:text-rose-200' : 'text-cyan-200 hover:text-cyan-100' }}">
                                                 {{ $user->active ? 'Desativar' : 'Reativar' }}
                                             </button>
                                         </form>
@@ -97,7 +97,7 @@
                     </table>
 
                     @if($users->hasPages())
-                        <div class="px-6 py-4 border-t border-gray-100">
+                        <div class="border-t border-white/10 px-6 py-4">
                             {{ $users->links() }}
                         </div>
                     @endif
