@@ -16,10 +16,10 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        Home
+                        Campanha
                     </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        Dashboard
+                        Campanha
                     </x-nav-link>
                     <x-nav-link :href="route('habits.index')" :active="request()->routeIs('habits.*')">
                         Missões
@@ -34,7 +34,7 @@
                     @endif
                     @if(auth()->user()?->isAdmin())
                         <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                            Admin
+                            Guilda
                         </x-nav-link>
                         <x-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
                             Categorias
@@ -65,7 +65,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Avatar') }}
+                            {{ __('Herói') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -96,10 +96,10 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                Home
+                Campanha
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                Dashboard
+                Campanha
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('habits.index')" :active="request()->routeIs('habits.*')">
                 Missões
@@ -114,7 +114,7 @@
             @endif
             @if(auth()->user()?->isAdmin())
                 <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                    Admin
+                    Guilda
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.categories.index')" :active="request()->routeIs('admin.categories.*')">
                     Categorias
@@ -136,7 +136,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Avatar') }}
+                    {{ __('Herói') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

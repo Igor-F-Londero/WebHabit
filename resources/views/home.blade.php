@@ -18,22 +18,22 @@
         $cards = [
             [
                 'title' => 'Cockpit',
-                'label' => 'Mapa geral',
+                'label' => 'Campanha',
                 'copy' => 'Resumo diário, streaks, check-ins e mapa de atividade.',
                 'href' => route('dashboard'),
                 'image' => 'images/home-cards/cockpit.svg',
                 'metric' => $game['quest_done'] . '/' . $game['quest_total'] . ' missões',
             ],
             [
-                'title' => 'Hábitos',
+                'title' => 'Missões',
                 'label' => 'Missões recorrentes',
-                'copy' => 'Crie, edite e conclua hábitos diários ou semanais.',
+                'copy' => 'Crie, edite e conclua missões diárias ou semanais.',
                 'href' => route('habits.index'),
                 'image' => 'images/home-cards/habits.svg',
                 'metric' => $activeHabits . ' ativos',
             ],
             [
-                'title' => 'Metas',
+                'title' => 'Chefes',
                 'label' => 'Chefes',
                 'copy' => 'Acompanhe objetivos com prazo e contagem de execução.',
                 'href' => route('goals.index'),
@@ -41,7 +41,7 @@
                 'metric' => $activeGoals . ' em batalha',
             ],
             [
-                'title' => 'Relatórios',
+                'title' => 'Relatório',
                 'label' => 'Guilda de dados',
                 'copy' => 'Veja padrões, taxa de consistência e sinais de queda.',
                 'href' => route('reports.index'),
@@ -49,8 +49,8 @@
                 'metric' => $bestStreak . ' dias no combo',
             ],
             [
-                'title' => 'Perfil',
-                'label' => 'Avatar',
+                'title' => 'Herói',
+                'label' => 'Herói',
                 'copy' => 'Atualize dados, senha e preferências da sua conta.',
                 'href' => route('profile.edit'),
                 'image' => 'images/home-cards/profile.svg',
@@ -60,8 +60,8 @@
 
         if (auth()->user()?->isAdmin()) {
             $cards[] = [
-                'title' => 'Operação',
-                'label' => 'Admin',
+                'title' => 'Guilda',
+                'label' => 'Guilda',
                 'copy' => 'Gerencie usuários, categorias e relatórios da plataforma.',
                 'href' => route('admin.dashboard'),
                 'image' => 'images/home-cards/admin.svg',
@@ -114,7 +114,7 @@
                         <div class="min-w-0 flex-1">
                             <p class="text-xs uppercase tracking-[0.24em] text-cyan-200/70">status do personagem</p>
                             <h3 class="mt-3 break-words font-['Outfit'] text-3xl font-black leading-tight text-white sm:text-4xl">
-                                {{ auth()->user()->name }}, nível {{ $game['level'] }}
+                                {{ auth()->user()->name }}, Nível {{ $game['level'] }}
                             </h3>
                             <p class="mt-2 text-sm font-semibold text-fuchsia-100">{{ $game['rank'] }}</p>
 
@@ -202,7 +202,7 @@
                             </div>
                         @empty
                             <div class="rounded-xl border border-cyan-300/10 bg-cyan-300/[0.035] p-5 text-sm text-slate-300">
-                                Nenhuma missão ativa. Crie um hábito para começar sua jornada.
+                                Nenhuma missão ativa. Crie uma Missão para começar sua jornada.
                             </div>
                         @endforelse
                     </div>

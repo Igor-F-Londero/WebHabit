@@ -14,15 +14,17 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-[radial-gradient(circle_at_18%_0%,_rgba(34,211,238,0.16),_transparent_28%),radial-gradient(circle_at_88%_12%,_rgba(217,70,239,0.12),_transparent_22%),linear-gradient(180deg,_rgba(2,6,23,0.98),_rgba(0,0,0,1))]">
-            @include('layouts.navigation')
+            @unless(isset($hideShellNav))
+                @include('layouts.navigation')
+            @endunless
 
-            @isset($header)
+            @if(isset($header) && !isset($hideShellHeader))
                 <header class="relative z-10 border-b border-cyan-300/10 bg-slate-950/55 backdrop-blur">
                     <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
-            @endisset
+            @endif
 
             <main class="relative z-0">
                 {{ $slot }}

@@ -94,7 +94,7 @@
                                         <form action="{{ route('habits.destroy', $habit) }}"
                                               method="POST"
                                               class="inline"
-                                              onsubmit="return confirm('Excluir o hábito \'{{ addslashes($habit->name) }}\'? Esta ação não pode ser desfeita.')">
+                                              onsubmit="return confirm('Excluir a missao \'{{ addslashes($habit->name) }}\'? Esta acao nao pode ser desfeita.')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-            Relatório Pessoal
+            Relatório
         </h2>
     </x-slot>
 
@@ -65,20 +65,20 @@
                     <p class="text-3xl font-bold {{ $avgRate >= 70 ? 'text-cyan-300' : ($avgRate >= 40 ? 'text-fuchsia-300' : 'text-rose-300') }}">
                         {{ $avgRate }}%
                     </p>
-                    <p class="mt-1 text-xs text-stone-400">entre todos os hábitos</p>
+                    <p class="mt-1 text-xs text-stone-400">entre todas as missões</p>
                 </div>
             </div>
 
             {{-- Tabela por hábito --}}
             <div class="hf-panel overflow-hidden">
                 <div class="border-b border-white/10 px-6 py-4">
-                    <h3 class="font-semibold text-white">Desempenho por hábito</h3>
+                    <h3 class="font-semibold text-white">Desempenho por missão</h3>
                     <p class="mt-0.5 text-xs text-stone-400">Ordenado do melhor para o pior</p>
                 </div>
 
                 @if($habitStats->isEmpty())
                     <div class="p-8 text-center text-slate-400 sm:p-12">
-                        Nenhum hábito ativo para exibir.
+                        Nenhuma missão ativa para exibir.
                     </div>
                 @else
                     <div class="divide-y divide-cyan-300/10">

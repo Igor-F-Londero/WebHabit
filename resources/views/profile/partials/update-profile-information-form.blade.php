@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="font-['Outfit'] text-xl font-semibold text-white">
-            {{ __('Informações do perfil') }}
+            {{ __('Informações do Herói') }}
         </h2>
 
         <p class="mt-1 text-sm text-stone-400">
-            {{ __("Atualize os dados da conta e o endereço de e-mail.") }}
+            {{ __("Atualize os dados do Herói e o endereço de e-mail.") }}
         </p>
     </header>
 
@@ -48,7 +48,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('Salvar') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p

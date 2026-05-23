@@ -34,7 +34,7 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-stone-400">Ícone</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-stone-400">Nome</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-stone-400">Descrição</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-stone-400">Hábitos</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-stone-400">Missões</th>
                                 <th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-stone-400">Ações</th>
                             </tr>
                         </thead>
@@ -72,7 +72,7 @@
                                                 </button>
                                             </form>
                                         @else
-                                            <span class="cursor-not-allowed text-sm text-stone-600" title="Possui hábitos vinculados">
+                                            <span class="cursor-not-allowed text-sm text-stone-600" title="Possui missões vinculadas">
                                                 Excluir
                                             </span>
                                         @endif

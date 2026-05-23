@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-            Gerenciar Usuários
+            Heróis da Guilda
         </h2>
     </x-slot>
 
@@ -46,8 +46,8 @@
                             <thead class="hf-table-head border-b border-white/10">
                                 <tr>
                                     <th class="px-6 py-3 font-medium text-stone-400">Usuário</th>
-                                    <th class="px-6 py-3 text-center font-medium text-stone-400">Hábitos</th>
-                                    <th class="px-6 py-3 text-center font-medium text-stone-400">Metas</th>
+                                    <th class="px-6 py-3 text-center font-medium text-stone-400">Missões</th>
+                                    <th class="px-6 py-3 text-center font-medium text-stone-400">Chefes</th>
                                     <th class="px-6 py-3 text-center font-medium text-stone-400">Status</th>
                                     <th class="px-6 py-3 text-center font-medium text-stone-400">Cadastro</th>
                                     <th class="px-6 py-3 text-center font-medium text-stone-400">Ação</th>

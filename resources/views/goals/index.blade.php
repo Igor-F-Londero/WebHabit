@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-                Chefes e Metas
+                Chefes
             </h2>
             <a href="{{ route('goals.create') }}"
                class="inline-flex items-center rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-200">
@@ -109,7 +109,7 @@
                                 <form action="{{ route('goals.destroy', $goal) }}"
                                       method="POST"
                                       class="inline"
-                                      onsubmit="return confirm('Excluir a meta \'{{ addslashes($goal->title) }}\'?')">
+                                      onsubmit="return confirm('Excluir o chefe \'{{ addslashes($goal->title) }}\'?')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-            Dashboard Administrativo
+            Campanha da Guilda
         </h2>
     </x-slot>
 
@@ -16,9 +16,9 @@
                     <p class="mt-1 text-xs text-stone-400">contas ativas</p>
                 </div>
                 <div class="hf-panel-pad p-5">
-                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Total de hábitos</p>
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Total de missões</p>
                     <p class="text-3xl font-bold text-cyan-300">{{ $totalHabits }}</p>
-                    <p class="mt-1 text-xs text-stone-400">cadastrados</p>
+                    <p class="mt-1 text-xs text-stone-400">cadastradas</p>
                 </div>
                 <div class="hf-panel-pad p-5">
                     <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Check-ins hoje</p>
@@ -43,7 +43,7 @@
             <div class="hf-panel-pad">
                 <h3 class="mb-4 font-semibold text-white">Categorias mais populares</h3>
                 @if($popularCategories->isEmpty())
-                    <p class="text-sm text-stone-400">Nenhuma categoria com hábitos cadastrados.</p>
+                    <p class="text-sm text-stone-400">Nenhuma categoria com missões cadastradas.</p>
                 @else
                     <canvas id="categoriesChart" height="120"></canvas>
                 @endif
@@ -106,7 +106,7 @@
             data: {
                 labels: {!! $popularCategories->pluck('name')->toJson() !!},
                 datasets: [{
-                    label: 'Hábitos',
+                    label: 'Missões',
                     data: {!! $popularCategories->pluck('habits_count')->toJson() !!},
                     backgroundColor: 'rgba(34, 211, 238, 0.72)',
                     borderColor: 'rgba(103, 232, 249, 1)',

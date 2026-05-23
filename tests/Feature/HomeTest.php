@@ -26,7 +26,7 @@ class HomeTest extends TestCase
         $response->assertOk();
         $response->assertSee('Escolha sua próxima missão');
         $response->assertSee('Cockpit');
-        $response->assertSee('Hábitos');
+        $response->assertSee('Missões');
     }
 
     public function test_admin_home_shows_operation_card(): void
@@ -36,7 +36,7 @@ class HomeTest extends TestCase
         $response = $this->actingAs($admin)->get('/home');
 
         $response->assertOk();
-        $response->assertSee('Operação');
+        $response->assertSee('Guilda');
         $response->assertSee('modo admin');
     }
 }

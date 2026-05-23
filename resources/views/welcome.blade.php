@@ -57,7 +57,7 @@
                     <div class="mx-auto grid min-h-[calc(100vh-73px)] max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[0.94fr_1.06fr] lg:px-8 lg:py-16">
                         <div class="max-w-2xl">
                             <p class="mb-5 inline-flex rounded-lg border border-cyan-300/15 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-100">
-                                sistema gamificado de hábitos
+                                sistema gamificado de Missões
                             </p>
 
                             <h1 class="font-['Outfit'] text-5xl font-black leading-[0.94] tracking-tight text-white sm:text-6xl lg:text-7xl">
@@ -65,7 +65,7 @@
                             </h1>
 
                             <p class="mt-6 max-w-xl text-base leading-8 text-slate-300 sm:text-lg">
-                                Uma plataforma para criar missões, registrar check-ins, ganhar XP, acompanhar metas e transformar a rotina em uma jornada de progresso.
+                                Uma plataforma para criar Missões, enfrentar Chefes, ganhar XP e transformar a rotina em Campanha.
                             </p>
 
                             <div class="mt-8 flex flex-wrap gap-3">
@@ -93,8 +93,8 @@
                                     <p class="mt-1 text-xs text-slate-400">JSON com Sanctum</p>
                                 </div>
                                 <div class="border-l border-cyan-300/30 pl-4">
-                                    <p class="font-['Outfit'] text-2xl font-bold text-white">Missões</p>
-                                    <p class="mt-1 text-xs text-slate-400">hábitos e metas</p>
+                                    <p class="font-['Outfit'] text-2xl font-bold text-white">Herói</p>
+                                    <p class="mt-1 text-xs text-slate-400">Missões e Chefes</p>
                                 </div>
                             </div>
                         </div>
@@ -142,8 +142,8 @@
                     <div class="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
                         @foreach ([
                             ['Área pública', 'Apresenta o produto e leva visitantes para cadastro ou login.'],
-                            ['Área do usuário', 'Centraliza avatar, missões, metas, check-ins, XP e relatórios pessoais.'],
-                            ['Área administrativa', 'Permite acompanhar usuários, categorias, métricas e relatórios gerais.'],
+                            ['Área do usuário', 'Centraliza Herói, Missões, Chefes, Recompensas, XP e Relatório pessoal.'],
+                            ['Área administrativa', 'Permite acompanhar a Guilda, categorias, métricas e Relatórios gerais.'],
                         ] as [$title, $copy])
                             <article class="rounded-lg border border-cyan-300/10 bg-slate-950/80 p-6">
                                 <h2 class="font-['Outfit'] text-xl font-bold text-white">{{ $title }}</h2>
@@ -163,9 +163,9 @@
                         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                             @foreach ([
                                 ['Missões', 'Cadastro, edição, ativação, categoria, frequência e cor.'],
-                                ['Chefes', 'Objetivos com prazo, progresso, status e vínculo com hábitos.'],
-                                ['Gamificação', 'Níveis, XP, moedas, conquistas e recompensas calculadas.'],
-                                ['Relatórios', 'Taxas, períodos customizados e leitura de desempenho.'],
+                                ['Chefes', 'Objetivos com prazo, progresso, status e vínculo com Missões.'],
+                                ['Conquistas', 'Nível, XP, Combo e Recompensas calculadas.'],
+                                ['Relatório', 'Taxas, períodos customizados e leitura de desempenho.'],
                             ] as [$title, $copy])
                                 <article class="rounded-lg border border-white/10 bg-white/[0.03] p-5">
                                     <h3 class="font-['Outfit'] text-lg font-bold text-white">{{ $title }}</h3>

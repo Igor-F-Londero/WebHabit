@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-            Relatório de Uso — Admin
+            Relatório da Guilda
         </h2>
     </x-slot>
 
@@ -35,7 +35,7 @@
                     <p class="mt-1 text-xs text-stone-400">no período</p>
                 </div>
                 <div class="hf-panel-pad p-5">
-                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Novos hábitos</p>
+                    <p class="mb-1 text-xs uppercase tracking-wide text-stone-500">Novas missões</p>
                     <p class="text-3xl font-bold text-white">{{ $newHabits }}</p>
                     <p class="mt-1 text-xs text-stone-400">no período</p>
                 </div>
