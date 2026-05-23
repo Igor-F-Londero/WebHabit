@@ -2,11 +2,11 @@
     <x-slot name="header">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-                Minhas Metas
+                Chefes e Metas
             </h2>
             <a href="{{ route('goals.create') }}"
                class="inline-flex items-center rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-200">
-                + Nova Meta
+                + Novo Chefe
             </a>
         </div>
     </x-slot>
@@ -27,10 +27,10 @@
 
             @if($goals->isEmpty())
                 <div class="hf-panel-pad p-8 text-center sm:p-12">
-                    <p class="mb-4 text-base text-slate-400 sm:text-lg">Você ainda não tem metas cadastradas.</p>
+                    <p class="mb-4 text-base text-slate-400 sm:text-lg">Você ainda não tem chefes cadastrados.</p>
                     <a href="{{ route('goals.create') }}"
                        class="inline-flex items-center rounded-full bg-cyan-300 px-6 py-3 font-medium text-slate-950 transition hover:bg-cyan-200">
-                        Criar minha primeira meta
+                        Criar meu primeiro chefe
                     </a>
                 </div>
             @else
@@ -66,12 +66,21 @@
                                     {{ $goal->habit->name }}
                                 </p>
 
+                                <div class="mb-3 flex flex-wrap gap-2">
+                                    <span class="rounded-full bg-fuchsia-300/10 px-2.5 py-1 text-xs font-semibold text-fuchsia-100">
+                                        Recompensa: +80 XP
+                                    </span>
+                                    <span class="rounded-full bg-amber-300/10 px-2.5 py-1 text-xs font-semibold text-amber-200">
+                                        +25 moedas
+                                    </span>
+                                </div>
+
                                 @if($goal->description)
                                     <p class="mb-3 line-clamp-2 text-sm text-stone-400">{{ $goal->description }}</p>
                                 @endif
 
                                 <div class="mb-1 flex items-center justify-between text-xs text-stone-400">
-                                    <span>{{ $checkins }} / {{ $goal->target_count }} check-ins</span>
+                                    <span>Dano: {{ $checkins }} / {{ $goal->target_count }} check-ins</span>
                                     <span>{{ $progress }}%</span>
                                 </div>
                                 <div class="mb-3 h-2 w-full rounded-full bg-stone-950 ring-1 ring-white/10">

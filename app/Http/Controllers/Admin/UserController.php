@@ -16,9 +16,9 @@ class UserController extends Controller
 
         $users = User::where('role', 'user')
             ->withCount(['habits', 'goals'])
-            ->when($search, fn($q) => $q->where(
-                fn($q2) => $q2->where('name', 'like', "%$search%")
-                               ->orWhere('email', 'like', "%$search%")
+            ->when($search, fn ($q) => $q->where(
+                fn ($q2) => $q2->where('name', 'like', "%$search%")
+                    ->orWhere('email', 'like', "%$search%")
             ))
             ->orderBy('name')
             ->paginate(15)
@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         abort_if($user->isAdmin(), 403);
 
-        $user->update(['active' => !$user->active]);
+        $user->update(['active' => ! $user->active]);
 
         $status = $user->active ? 'reativada' : 'desativada';
 

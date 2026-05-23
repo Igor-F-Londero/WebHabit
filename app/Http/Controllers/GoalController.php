@@ -18,7 +18,7 @@ class GoalController extends Controller
             ->orderBy('end_date')
             ->get();
 
-        $goals->each(fn($g) => $g->syncStatus());
+        $goals->each(fn ($g) => $g->syncStatus());
 
         return view('goals.index', compact('goals'));
     }
@@ -36,14 +36,14 @@ class GoalController extends Controller
         $data['user_id'] = auth()->id();
 
         abort_if(
-            !auth()->user()->habits()->where('id', $data['habit_id'])->exists(),
+            ! auth()->user()->habits()->where('id', $data['habit_id'])->exists(),
             403
         );
 
         Goal::create($data);
 
         return redirect()->route('goals.index')
-            ->with('success', 'Meta criada com sucesso!');
+            ->with('success', 'Chefe criado com sucesso!');
     }
 
     public function edit(Goal $goal): View
@@ -62,7 +62,7 @@ class GoalController extends Controller
         $goal->update($request->validated());
 
         return redirect()->route('goals.index')
-            ->with('success', 'Meta atualizada com sucesso!');
+            ->with('success', 'Chefe atualizado com sucesso!');
     }
 
     public function destroy(Goal $goal): RedirectResponse
@@ -72,6 +72,6 @@ class GoalController extends Controller
         $goal->delete();
 
         return redirect()->route('goals.index')
-            ->with('success', 'Meta excluída.');
+            ->with('success', 'Chefe excluído.');
     }
 }

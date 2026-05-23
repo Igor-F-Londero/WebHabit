@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-            Novo Hábito
+            Nova Missão
         </h2>
     </x-slot>
 
@@ -55,7 +55,7 @@
                                 <input id="color" name="color" type="color"
                                     value="{{ old('color', '#22C55E') }}"
                                     class="h-10 w-16 cursor-pointer rounded-xl border border-white/10 bg-stone-950" />
-                                <span class="text-sm text-stone-400">Escolha uma cor para identificar este hábito</span>
+                                <span class="text-sm text-stone-400">Escolha uma cor para identificar esta missão</span>
                             </div>
                             <x-input-error :messages="$errors->get('color')" class="mt-1" />
                         </div>
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="flex items-center gap-4 mt-6">
-                        <x-primary-button>Criar Hábito</x-primary-button>
+                        <x-primary-button>Criar Missão</x-primary-button>
                         <a href="{{ route('habits.index') }}"
                            class="hf-subtle-link">
                             Cancelar

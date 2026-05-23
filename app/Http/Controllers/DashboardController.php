@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Checkin;
+use App\Services\GamificationService;
 use Illuminate\Support\Carbon;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
+    public function __construct(private readonly GamificationService $gamification) {}
+
     public function index(): View
     {
         $user = auth()->user();
@@ -16,7 +19,7 @@ class DashboardController extends Controller
             ->where('active', true)
             ->with([
                 'category',
-                'checkins' => fn($q) => $q->whereDate('checked_date', today()),
+                'checkins' => fn ($q) => $q->where('checked_date', '>=', today()->startOfWeek()->toDateString()),
             ])
             ->orderBy('name')
             ->get();
@@ -25,7 +28,7 @@ class DashboardController extends Controller
             ->where('active', true)
             ->with(['checkins'])
             ->get()
-            ->sortByDesc(fn($h) => $h->currentStreak())
+            ->sortByDesc(fn ($h) => $h->currentStreak())
             ->take(3)
             ->values();
 
@@ -33,7 +36,7 @@ class DashboardController extends Controller
         $dailyCount = $user->habits()->where('active', true)->where('frequency', 'daily')->count();
         $expectedTotal = $dailyCount * 30;
 
-        $actualTotal = Checkin::whereHas('habit', fn($q) => $q->where('user_id', $user->id))
+        $actualTotal = Checkin::whereHas('habit', fn ($q) => $q->where('user_id', $user->id))
             ->where('checked_date', '>=', $startDate)
             ->count();
 
@@ -41,26 +44,28 @@ class DashboardController extends Controller
             ? round(($actualTotal / $expectedTotal) * 100, 1)
             : 0;
 
-        $checkinsToday = Checkin::whereHas('habit', fn($q) => $q->where('user_id', $user->id))
+        $checkinsToday = Checkin::whereHas('habit', fn ($q) => $q->where('user_id', $user->id))
             ->whereDate('checked_date', today())
             ->count();
 
-        $last7 = collect(range(6, 0))->map(fn($i) => today()->subDays($i)->toDateString());
+        $last7 = collect(range(6, 0))->map(fn ($i) => today()->subDays($i)->toDateString());
 
         $checkinsByDay = Checkin::selectRaw('DATE(checked_date) as date, COUNT(*) as total')
-            ->whereHas('habit', fn($q) => $q->where('user_id', $user->id))
+            ->whereHas('habit', fn ($q) => $q->where('user_id', $user->id))
             ->where('checked_date', '>=', today()->subDays(6))
             ->groupBy('date')
             ->pluck('total', 'date');
 
-        $chartLabels = $last7->map(fn($d) => Carbon::parse($d)->format('d/m'))->values();
-        $chartData   = $last7->map(fn($d) => $checkinsByDay->get($d, 0))->values();
+        $chartLabels = $last7->map(fn ($d) => Carbon::parse($d)->format('d/m'))->values();
+        $chartData = $last7->map(fn ($d) => $checkinsByDay->get($d, 0))->values();
 
         $heatmapData = Checkin::selectRaw('DATE(checked_date) as date, COUNT(*) as total')
-            ->whereHas('habit', fn($q) => $q->where('user_id', $user->id))
+            ->whereHas('habit', fn ($q) => $q->where('user_id', $user->id))
             ->where('checked_date', '>=', today()->subYear())
             ->groupBy('date')
             ->pluck('total', 'date');
+
+        $game = $this->gamification->forUser($user);
 
         return view('dashboard', compact(
             'todayHabits',
@@ -70,6 +75,7 @@ class DashboardController extends Controller
             'chartLabels',
             'chartData',
             'heatmapData',
+            'game',
         ));
     }
 }

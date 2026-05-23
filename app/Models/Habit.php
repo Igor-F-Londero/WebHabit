@@ -32,7 +32,20 @@ class Habit extends Model
     public function isCompletedToday(): bool
     {
         return $this->checkins
-            ->contains(fn($c) => $c->checked_date->isToday());
+            ->contains(fn ($c) => $c->checked_date->isToday());
+    }
+
+    public function isCompletedForCurrentCycle(): bool
+    {
+        if ($this->frequency === 'weekly') {
+            $weekStart = today()->startOfWeek();
+            $weekEnd = today()->endOfWeek();
+
+            return $this->checkins
+                ->contains(fn ($c) => $c->checked_date->betweenIncluded($weekStart, $weekEnd));
+        }
+
+        return $this->isCompletedToday();
     }
 
     public function currentStreak(): int

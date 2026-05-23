@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="border-b border-cyan-300/10 bg-slate-950/80 backdrop-blur">
+<nav x-data="{ open: false }" class="relative z-50 border-b border-cyan-300/10 bg-slate-950/80 backdrop-blur">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -9,7 +9,7 @@
                         </div>
                         <div class="hidden sm:block">
                             <div class="font-['Outfit'] text-base font-semibold text-white">HabitFlow</div>
-                            <div class="text-[10px] uppercase tracking-[0.24em] text-stone-500">hub</div>
+                            <div class="text-[10px] uppercase tracking-[0.24em] text-stone-500">guilda</div>
                         </div>
                     </a>
                 </div>
@@ -22,10 +22,10 @@
                         Dashboard
                     </x-nav-link>
                     <x-nav-link :href="route('habits.index')" :active="request()->routeIs('habits.*')">
-                        Hábitos
+                        Missões
                     </x-nav-link>
                     <x-nav-link :href="route('goals.index')" :active="request()->routeIs('goals.*')">
-                        Metas
+                        Chefes
                     </x-nav-link>
                     @if(!auth()->user()?->isAdmin())
                         <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')">
@@ -65,7 +65,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Avatar') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -75,7 +75,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Sair') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -102,10 +102,10 @@
                 Dashboard
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('habits.index')" :active="request()->routeIs('habits.*')">
-                Hábitos
+                Missões
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('goals.index')" :active="request()->routeIs('goals.*')">
-                Metas
+                Chefes
             </x-responsive-nav-link>
             @if(!auth()->user()?->isAdmin())
                 <x-responsive-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')">
@@ -136,7 +136,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Perfil') }}
+                    {{ __('Avatar') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Checkin;
 use App\Models\User;
+use App\Services\GamificationService;
 use App\Services\StreakService;
 use Illuminate\Http\JsonResponse;
 
 class StatsController extends Controller
 {
-    public function __construct(private readonly StreakService $streakService)
-    {
-    }
+    public function __construct(
+        private readonly StreakService $streakService,
+        private readonly GamificationService $gamification,
+    ) {}
 
     public function index(): JsonResponse
     {
@@ -26,7 +28,7 @@ class StatsController extends Controller
             ->get();
 
         $bestHabit = $habits
-            ->sortByDesc(fn($habit) => $this->streakService->calculate($habit))
+            ->sortByDesc(fn ($habit) => $this->streakService->calculate($habit))
             ->first();
 
         $mostCheckedHabit = $habits
@@ -48,6 +50,7 @@ class StatsController extends Controller
                     'habit_name' => $mostCheckedHabit?->name,
                     'total_checkins' => $mostCheckedHabit?->checkins_count ?? 0,
                 ],
+                'gamification' => $this->gamification->forUser($user),
             ],
         ]);
     }
@@ -62,12 +65,12 @@ class StatsController extends Controller
             return 0;
         }
 
-        $actual = Checkin::whereHas('habit', fn($query) => $query->where('user_id', $user->id))
+        $actual = Checkin::whereHas('habit', fn ($query) => $query->where('user_id', $user->id))
             ->where('checked_date', '>=', today()->subDays($days - 1))
             ->count();
 
         $expected = $habits->sum(
-            fn($habit) => $habit->frequency === 'daily' ? $days : (int) ceil($days / 7)
+            fn ($habit) => $habit->frequency === 'daily' ? $days : (int) ceil($days / 7)
         );
 
         if ($expected === 0) {

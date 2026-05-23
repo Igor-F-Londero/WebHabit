@@ -14,7 +14,7 @@ class Checkin extends Model
     {
         return [
             'checked_date' => 'date',
-            'checked_at'   => 'datetime',
+            'checked_at' => 'datetime',
         ];
     }
 

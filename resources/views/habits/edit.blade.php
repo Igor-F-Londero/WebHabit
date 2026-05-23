@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-            Editar Hábito: {{ $habit->name }}
+            Editar Missão: {{ $habit->name }}
         </h2>
     </x-slot>
 
@@ -54,7 +54,7 @@
                                 <input id="color" name="color" type="color"
                                     value="{{ old('color', $habit->color) }}"
                                     class="h-10 w-16 cursor-pointer rounded-xl border border-white/10 bg-stone-950" />
-                                <span class="text-sm text-stone-400">Cor atual do hábito</span>
+                                <span class="text-sm text-stone-400">Cor atual da missão</span>
                             </div>
                             <x-input-error :messages="$errors->get('color')" class="mt-1" />
                         </div>

@@ -17,7 +17,7 @@ class HabitController extends Controller
             ->habits()
             ->with([
                 'category',
-                'checkins' => fn($q) => $q->whereDate('checked_date', today()),
+                'checkins' => fn ($q) => $q->where('checked_date', '>=', today()->startOfWeek()->toDateString()),
             ])
             ->orderBy('name')
             ->get();
@@ -40,7 +40,7 @@ class HabitController extends Controller
         Habit::create($data);
 
         return redirect()->route('habits.index')
-            ->with('success', 'Hábito criado com sucesso!');
+            ->with('success', 'Missão criada com sucesso!');
     }
 
     public function edit(Habit $habit): View
@@ -59,7 +59,7 @@ class HabitController extends Controller
         $habit->update($request->validated());
 
         return redirect()->route('habits.index')
-            ->with('success', 'Hábito atualizado com sucesso!');
+            ->with('success', 'Missão atualizada com sucesso!');
     }
 
     public function destroy(Habit $habit): RedirectResponse
@@ -69,6 +69,6 @@ class HabitController extends Controller
         $habit->delete();
 
         return redirect()->route('habits.index')
-            ->with('success', 'Hábito excluído com sucesso.');
+            ->with('success', 'Missão excluída com sucesso.');
     }
 }

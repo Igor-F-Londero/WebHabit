@@ -2,11 +2,11 @@
     <x-slot name="header">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-                Meus Hábitos
+                Minhas Missões
             </h2>
             <a href="{{ route('habits.create') }}"
                class="inline-flex items-center rounded-full bg-cyan-300 px-4 py-2 text-sm font-medium text-slate-950 transition hover:bg-cyan-200">
-                + Novo Hábito
+                + Nova Missão
             </a>
         </div>
     </x-slot>
@@ -27,15 +27,21 @@
 
             @if($habits->isEmpty())
                 <div class="hf-panel-pad p-8 text-center sm:p-12">
-                    <p class="mb-4 text-base text-slate-400 sm:text-lg">Você ainda não tem hábitos cadastrados.</p>
+                    <p class="mb-4 text-base text-slate-400 sm:text-lg">Você ainda não tem missões cadastradas.</p>
                     <a href="{{ route('habits.create') }}"
                        class="inline-flex items-center rounded-full bg-cyan-300 px-6 py-3 font-medium text-slate-950 transition hover:bg-cyan-200">
-                        Criar meu primeiro hábito
+                        Criar minha primeira missão
                     </a>
                 </div>
             @else
                 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach($habits as $habit)
+                        @php
+                            $completed = $habit->isCompletedForCurrentCycle();
+                            $rewardXp = $habit->frequency === 'weekly' ? 20 : 15;
+                            $rewardCoins = $habit->frequency === 'weekly' ? 4 : 3;
+                            $streak = $habit->currentStreak();
+                        @endphp
                         <div class="hf-panel flex overflow-hidden">
                             {{-- Barra de cor lateral --}}
                             <div class="w-2 shrink-0" style="background-color: {{ $habit->color }}"></div>
@@ -49,19 +55,27 @@
                                         </span>
                                     </div>
                                     <p class="mb-1 text-xs text-stone-500">{{ $habit->category->name }}</p>
+                                    <div class="mt-3 flex flex-wrap gap-2">
+                                        <span class="rounded-full bg-cyan-300/10 px-2.5 py-1 text-xs font-semibold text-cyan-100">
+                                            +{{ $rewardXp }} XP
+                                        </span>
+                                        <span class="rounded-full bg-amber-300/10 px-2.5 py-1 text-xs font-semibold text-amber-200">
+                                            +{{ $rewardCoins }} moedas
+                                        </span>
+                                    </div>
                                     @if($habit->description)
                                         <p class="mt-1 line-clamp-2 text-sm text-stone-400">{{ $habit->description }}</p>
                                     @endif
                                 </div>
 
                                 <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                                    <span class="text-xs {{ $habit->isCompletedToday() ? 'font-semibold text-cyan-300' : 'text-stone-400' }}">
-                                        Streak: {{ $habit->currentStreak() }} {{ $habit->currentStreak() === 1 ? 'dia' : 'dias' }}
+                                    <span class="text-xs {{ $completed ? 'font-semibold text-cyan-300' : 'text-stone-400' }}">
+                                        Combo: {{ $streak }} {{ $streak === 1 ? 'dia' : 'dias' }}
                                     </span>
                                     <div class="flex flex-wrap items-center gap-3">
-                                        @if($habit->isCompletedToday())
+                                        @if($completed)
                                             <span class="inline-flex items-center rounded-full bg-cyan-300/10 px-3 py-1 text-xs font-medium text-cyan-100">
-                                                Feito hoje
+                                                Recompensa coletada
                                             </span>
                                         @else
                                             <form action="{{ route('checkins.store') }}" method="POST" class="inline">
@@ -69,7 +83,7 @@
                                                 <input type="hidden" name="habit_id" value="{{ $habit->id }}">
                                                 <button type="submit"
                                                         class="inline-flex items-center rounded-full bg-cyan-400 px-3 py-1 text-xs font-semibold text-slate-950 shadow-[0_0_18px_rgba(34,211,238,0.25)] transition hover:bg-cyan-300">
-                                                    Check-in
+                                                    Concluir
                                                 </button>
                                             </form>
                                         @endif

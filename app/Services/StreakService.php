@@ -21,9 +21,11 @@ class StreakService
         $dates = $habit->checkins()
             ->orderBy('checked_date')
             ->pluck('checked_date')
-            ->map(fn($d) => Carbon::parse($d));
+            ->map(fn ($d) => Carbon::parse($d));
 
-        if ($dates->isEmpty()) return 0;
+        if ($dates->isEmpty()) {
+            return 0;
+        }
 
         $longest = 1;
         $current = 1;
@@ -45,14 +47,18 @@ class StreakService
         $dates = $habit->checkins()
             ->orderByDesc('checked_date')
             ->pluck('checked_date')
-            ->map(fn($d) => Carbon::parse($d));
+            ->map(fn ($d) => Carbon::parse($d));
 
-        if ($dates->isEmpty()) return 0;
+        if ($dates->isEmpty()) {
+            return 0;
+        }
 
         $mostRecent = $dates->first();
 
         // Se o check-in mais recente foi antes de ontem, streak quebrado
-        if ($mostRecent->lt(today()->subDay())) return 0;
+        if ($mostRecent->lt(today()->subDay())) {
+            return 0;
+        }
 
         // Começa a contar de hoje (se tem check-in hoje) ou de ontem
         $expected = $mostRecent->isToday() ? today() : today()->subDay();
@@ -76,21 +82,23 @@ class StreakService
         $weeks = $habit->checkins()
             ->orderByDesc('checked_date')
             ->pluck('checked_date')
-            ->map(fn($d) => Carbon::parse($d)->startOfWeek()->toDateString())
+            ->map(fn ($d) => Carbon::parse($d)->startOfWeek()->toDateString())
             ->unique()
             ->values();
 
-        if ($weeks->isEmpty()) return 0;
+        if ($weeks->isEmpty()) {
+            return 0;
+        }
 
         $currentWeekStart = Carbon::now()->startOfWeek()->toDateString();
-        $lastWeekStart    = Carbon::now()->subWeek()->startOfWeek()->toDateString();
+        $lastWeekStart = Carbon::now()->subWeek()->startOfWeek()->toDateString();
 
         // Streak só é válido se tem check-in na semana atual ou na anterior
         if ($weeks->first() !== $currentWeekStart && $weeks->first() !== $lastWeekStart) {
             return 0;
         }
 
-        $streak   = 1;
+        $streak = 1;
         $expected = Carbon::parse($weeks->first())->subWeek()->toDateString();
 
         for ($i = 1; $i < $weeks->count(); $i++) {

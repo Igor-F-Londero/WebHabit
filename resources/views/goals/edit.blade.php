@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-['Outfit'] text-2xl font-semibold leading-tight text-white">
-            Editar Meta: {{ $goal->title }}
+            Editar Chefe: {{ $goal->title }}
         </h2>
     </x-slot>
 
@@ -25,7 +25,7 @@
                         </div>
 
                         <div>
-                            <x-input-label for="habit_id" value="Hábito vinculado *" />
+                            <x-input-label for="habit_id" value="Missão vinculada *" />
                             <select id="habit_id" name="habit_id" required
                                 class="hf-select mt-1 block w-full">
                                 @foreach($habits as $habit)
@@ -39,7 +39,7 @@
                         </div>
 
                         <div>
-                            <x-input-label for="target_count" value="Meta de check-ins *" />
+                            <x-input-label for="target_count" value="Vida do chefe em check-ins *" />
                             <x-text-input id="target_count" name="target_count" type="number"
                                 class="mt-1 block w-full"
                                 :value="old('target_count', $goal->target_count)"

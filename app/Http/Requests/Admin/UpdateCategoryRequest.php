@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateCategoryRequest extends FormRequest
@@ -18,9 +17,9 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => 'required|string|max:100|unique:categories,name,'.$this->route('category')->id,
+            'name' => 'required|string|max:100|unique:categories,name,'.$this->route('category')->id,
             'description' => 'nullable|string|max:500',
-            'icon'        => 'nullable|string|max:50',
+            'icon' => 'nullable|string|max:50',
         ];
     }
 

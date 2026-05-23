@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Habit;
+use App\Services\GamificationService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class CheckinController extends Controller
 {
+    public function __construct(private readonly GamificationService $gamification) {}
+
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
@@ -34,8 +37,8 @@ class CheckinController extends Controller
         if ($already) {
             return response()->json([
                 'message' => $habit->frequency === 'weekly'
-                    ? 'Você já fez check-in neste hábito nesta semana!'
-                    : 'Você já fez check-in neste hábito hoje!',
+                    ? 'Você já concluiu esta missão nesta semana!'
+                    : 'Você já concluiu esta missão hoje!',
             ], 422);
         }
 
@@ -46,6 +49,8 @@ class CheckinController extends Controller
             'note' => $request->input('note'),
         ]);
 
+        $reward = $this->gamification->checkinReward($habit);
+
         return response()->json([
             'message' => 'Check-in registrado com sucesso.',
             'data' => [
@@ -54,6 +59,7 @@ class CheckinController extends Controller
                 'checked_date' => $checkin->checked_date->toDateString(),
                 'checked_at' => $checkin->checked_at->toIso8601String(),
                 'current_streak' => $habit->currentStreak(),
+                'reward' => $reward,
             ],
         ], 201);
     }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreHabitRequest extends FormRequest
@@ -18,10 +17,10 @@ class StoreHabitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'        => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
-            'frequency'   => 'required|in:daily,weekly',
-            'color'       => ['required', 'string', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'frequency' => 'required|in:daily,weekly',
+            'color' => ['required', 'string', 'regex:/^#[0-9A-Fa-f]{6}$/'],
             'description' => 'nullable|string|max:500',
         ];
     }
@@ -29,10 +28,10 @@ class StoreHabitRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name'        => 'nome',
+            'name' => 'nome',
             'category_id' => 'categoria',
-            'frequency'   => 'frequência',
-            'color'       => 'cor',
+            'frequency' => 'frequência',
+            'color' => 'cor',
             'description' => 'descrição',
         ];
     }

@@ -15,7 +15,7 @@ class Goal extends Model
     {
         return [
             'start_date' => 'date',
-            'end_date'   => 'date',
+            'end_date' => 'date',
         ];
     }
 
@@ -38,7 +38,9 @@ class Goal extends Model
 
     public function progressPercent(): float
     {
-        if ($this->target_count <= 0) return 0;
+        if ($this->target_count <= 0) {
+            return 0;
+        }
 
         return min(100, round(($this->checkinCount() / $this->target_count) * 100, 1));
     }
@@ -50,7 +52,9 @@ class Goal extends Model
 
     public function syncStatus(): void
     {
-        if ($this->status === 'completed') return;
+        if ($this->status === 'completed') {
+            return;
+        }
 
         if ($this->progressPercent() >= 100) {
             $this->update(['status' => 'completed']);
