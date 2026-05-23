@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany(Goal::class);
     }
 
+    public function rewardRedemptions()
+    {
+        return $this->hasMany(RewardRedemption::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

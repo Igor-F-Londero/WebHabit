@@ -69,57 +69,6 @@
                 </div>
             </div>
 
-            {{-- Tabela por hábito --}}
-            <div class="hf-panel overflow-hidden">
-                <div class="border-b border-white/10 px-6 py-4">
-                    <h3 class="font-semibold text-white">Desempenho por missão</h3>
-                    <p class="mt-0.5 text-xs text-stone-400">Ordenado do melhor para o pior</p>
-                </div>
-
-                @if($habitStats->isEmpty())
-                    <div class="p-8 text-center text-slate-400 sm:p-12">
-                        Nenhuma missão ativa para exibir.
-                    </div>
-                @else
-                    <div class="divide-y divide-cyan-300/10">
-                        @foreach($habitStats as $i => $stat)
-                            @php
-                                $rate = $stat['rate'];
-                                $barColor = $rate >= 70 ? 'bg-cyan-300' : ($rate >= 40 ? 'bg-fuchsia-400' : 'bg-rose-400');
-                                $rateColor = $rate >= 70 ? 'text-cyan-300' : ($rate >= 40 ? 'text-fuchsia-300' : 'text-rose-300');
-                            @endphp
-                            <div class="px-6 py-4">
-                                <div class="mb-1.5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                                    <div class="flex min-w-0 items-center gap-2">
-                                        <span class="w-4 shrink-0 text-xs text-stone-500">#{{ $i + 1 }}</span>
-                                        <div class="w-2 h-5 rounded-sm shrink-0"
-                                             style="background-color: {{ $stat['habit']->color }}"></div>
-                                        <p class="truncate text-sm font-medium text-white">
-                                            {{ $stat['habit']->name }}
-                                        </p>
-                                        <span class="shrink-0 rounded bg-white/[0.06] px-1.5 py-0.5 text-xs text-stone-400">
-                                            {{ $stat['habit']->frequency === 'daily' ? 'Diário' : 'Semanal' }}
-                                        </span>
-                                    </div>
-                                    <div class="flex shrink-0 items-center gap-3 sm:ml-4">
-                                        <span class="text-xs text-stone-400">
-                                            {{ $stat['checkins'] }}/{{ $stat['expected'] }}
-                                        </span>
-                                        <span class="text-sm font-bold {{ $rateColor }} w-12 text-right">
-                                            {{ $rate }}%
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="h-1.5 w-full rounded-full bg-white/[0.08]">
-                                    <div class="h-1.5 rounded-full {{ $barColor }} transition-all"
-                                         style="width: {{ $rate }}%"></div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-
         </div>
     </div>
 </x-app-layout>

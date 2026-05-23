@@ -11,6 +11,7 @@ use App\Http\Controllers\HabitController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\RewardRedemptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('habits', HabitController::class)->except(['show']);
     Route::resource('goals', GoalController::class)->except(['show']);
     Route::post('/checkins', [CheckinController::class, 'store'])->name('checkins.store');
+    Route::post('/rewards/redeem', [RewardRedemptionController::class, 'store'])->name('rewards.redeem');
 
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 

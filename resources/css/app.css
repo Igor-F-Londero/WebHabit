@@ -104,4 +104,213 @@
     .hf-game-progress-fill {
         @apply h-full rounded-full bg-[linear-gradient(90deg,#22d3ee,#a855f7,#ec4899,#fbbf24)] shadow-[0_0_22px_rgba(34,211,238,0.42)];
     }
+
+    .hf-sidebar-icon {
+        @apply flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-cyan-300/20 bg-slate-950/70 transition group-hover:border-cyan-300/35 group-hover:bg-cyan-300/10;
+    }
+
+    .hf-sidebar-icon svg {
+        @apply h-4 w-4;
+    }
+
+    .hf-mission-icon {
+        @apply relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-slate-950/75 shadow-[0_0_24px_rgba(34,211,238,0.08)];
+        border: 1px solid color-mix(in srgb, currentColor 38%, transparent);
+        box-shadow:
+            inset 0 0 28px color-mix(in srgb, currentColor 12%, transparent),
+            0 0 28px color-mix(in srgb, currentColor 14%, transparent);
+    }
+
+    .hf-mission-icon::after {
+        content: "";
+        position: absolute;
+        inset: 0.35rem;
+        border-radius: 0.65rem;
+        border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    }
+
+    .hf-mission-icon svg {
+        @apply relative z-10 h-7 w-7;
+    }
+
+    .hf-stat-card {
+        @apply relative overflow-hidden;
+    }
+
+    .hf-stat-card::after {
+        content: "";
+        position: absolute;
+        inset: auto -18% -45% auto;
+        width: 8rem;
+        height: 8rem;
+        border-radius: 9999px;
+        background: radial-gradient(circle, rgba(34,211,238,0.12), transparent 62%);
+        pointer-events: none;
+    }
+
+    .hf-stat-icon {
+        @apply pointer-events-none absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-xl border bg-slate-950/55 opacity-55;
+        border-color: color-mix(in srgb, currentColor 20%, transparent);
+    }
+
+    .hf-stat-icon svg {
+        @apply h-5 w-5;
+    }
+
+    .hf-boss-card {
+        @apply relative rounded-xl border border-fuchsia-300/25 bg-[radial-gradient(circle_at_82%_12%,rgba(168,85,247,0.34),transparent_34%),radial-gradient(circle_at_96%_70%,rgba(34,211,238,0.12),transparent_28%),linear-gradient(135deg,rgba(15,23,42,0.88),rgba(46,16,101,0.48))] shadow-[0_0_44px_rgba(168,85,247,0.14)] backdrop-blur;
+    }
+
+    .hf-boss-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.35;
+        background-image:
+            linear-gradient(rgba(217,70,239,0.16) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34,211,238,0.10) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(90deg, transparent, black 28%, black 76%, transparent);
+    }
+
+    .hf-boss-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            linear-gradient(115deg, transparent 0%, transparent 52%, rgba(168,85,247,0.16) 53%, transparent 70%),
+            radial-gradient(circle at 84% 34%, rgba(217,70,239,0.22), transparent 18%);
+    }
+
+    .hf-boss-illustration {
+        @apply pointer-events-none absolute -bottom-10 -right-8 z-0 hidden h-64 w-64 text-fuchsia-300 opacity-25 blur-[0.2px] md:block;
+        filter: drop-shadow(0 0 34px rgba(168,85,247,0.45));
+        transform: rotate(-10deg);
+    }
+
+    .hf-boss-illustration svg {
+        @apply h-full w-full;
+    }
+
+    .hf-boss-mark {
+        @apply relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-fuchsia-300/30 bg-fuchsia-300/10 text-fuchsia-100 shadow-[0_0_28px_rgba(217,70,239,0.18)];
+    }
+
+    .hf-boss-mark svg {
+        @apply h-7 w-7;
+    }
+
+    .hf-achievement-card {
+        @apply flex items-center gap-3 rounded-xl border border-cyan-300/10 bg-white/[0.035] p-3 shadow-[0_0_22px_rgba(34,211,238,0.055)];
+    }
+
+    .hf-achievement-medal {
+        @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border shadow-[0_0_24px_rgba(34,211,238,0.08)];
+    }
+
+    .hf-achievement-medal svg {
+        @apply h-6 w-6;
+    }
+
+    .hf-reward-shop {
+        @apply border-amber-300/20 bg-[radial-gradient(circle_at_92%_0%,rgba(251,191,36,0.12),transparent_30%),rgba(2,6,23,0.72)];
+    }
+
+    .hf-reward-card {
+        @apply flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.035] p-3 transition;
+    }
+
+    .hf-reward-card-ready {
+        @apply border-amber-300/25 bg-amber-300/[0.055] shadow-[0_0_26px_rgba(251,191,36,0.10)];
+    }
+
+    .hf-reward-icon {
+        @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-slate-950/70 shadow-[0_0_20px_rgba(251,191,36,0.08)];
+        border-color: color-mix(in srgb, currentColor 25%, transparent);
+    }
+
+    .hf-reward-icon svg {
+        @apply h-6 w-6;
+    }
+
+    .hf-reward-progress {
+        @apply h-1.5 overflow-hidden rounded-full bg-slate-900 ring-1 ring-white/10;
+    }
+
+    .hf-reward-progress-fill {
+        @apply h-full rounded-full bg-[linear-gradient(90deg,#f59e0b,#fbbf24,#22d3ee)] shadow-[0_0_16px_rgba(251,191,36,0.28)];
+    }
+
+    .hf-activity-card {
+        @apply flex items-center gap-3 rounded-xl border border-cyan-300/10 bg-cyan-300/[0.035] p-3 shadow-[0_0_22px_rgba(34,211,238,0.055)];
+    }
+
+    .hf-activity-card-amber {
+        @apply border-amber-300/15 bg-amber-300/[0.045] shadow-[0_0_22px_rgba(251,191,36,0.065)];
+    }
+
+    .hf-activity-icon {
+        @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border bg-slate-950/70;
+        border-color: color-mix(in srgb, currentColor 25%, transparent);
+    }
+
+    .hf-activity-icon svg {
+        @apply h-5 w-5;
+    }
+
+    .hf-inventory-card {
+        @apply border-cyan-300/20 bg-[radial-gradient(circle_at_88%_8%,rgba(34,211,238,0.13),transparent_30%),radial-gradient(circle_at_10%_100%,rgba(251,191,36,0.10),transparent_28%),rgba(2,6,23,0.72)];
+    }
+
+    .hf-inventory-sigil {
+        @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-slate-950/70 shadow-[0_0_24px_rgba(251,191,36,0.10)];
+        border-color: color-mix(in srgb, currentColor 25%, transparent);
+    }
+
+    .hf-inventory-sigil svg {
+        @apply h-6 w-6;
+    }
+
+    .hf-economy-tile {
+        @apply rounded-xl border border-white/10 bg-white/[0.035] p-3;
+    }
+
+    .hf-inventory-meter {
+        @apply h-2 overflow-hidden rounded-full bg-slate-900 ring-1 ring-white/10;
+    }
+
+    .hf-inventory-meter-fill {
+        @apply h-full rounded-full bg-[linear-gradient(90deg,#22d3ee,#fbbf24,#ec4899)] shadow-[0_0_16px_rgba(251,191,36,0.25)];
+    }
+
+    .hf-inventory-item {
+        @apply flex items-center gap-3 rounded-xl border border-amber-300/10 bg-amber-300/[0.035] p-3;
+    }
+
+    .hf-inventory-item-icon {
+        @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border bg-slate-950/70;
+        border-color: color-mix(in srgb, currentColor 25%, transparent);
+    }
+
+    .hf-inventory-item-icon svg {
+        @apply h-5 w-5;
+    }
+
+    .hf-mobile-questbar {
+        @apply fixed inset-x-3 bottom-3 z-50 grid grid-cols-5 gap-1 rounded-2xl border border-cyan-300/20 bg-slate-950/[0.88] p-2 shadow-[0_0_34px_rgba(34,211,238,0.18)] backdrop-blur-xl;
+    }
+
+    .hf-mobile-questbar-item {
+        @apply flex min-w-0 flex-col items-center gap-1 rounded-xl px-1 py-1.5 transition hover:bg-cyan-300/[0.055] hover:text-cyan-100;
+    }
+
+    .hf-mobile-questbar-icon {
+        @apply flex h-9 w-9 items-center justify-center rounded-xl border transition;
+    }
+
+    .hf-mobile-questbar-icon svg {
+        @apply h-4 w-4;
+    }
 }
