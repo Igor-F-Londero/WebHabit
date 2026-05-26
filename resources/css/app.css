@@ -207,6 +207,10 @@
         @apply h-full w-full object-cover object-center;
     }
 
+    .hf-boss-illustration svg {
+        @apply h-full w-full;
+    }
+
     .hf-boss-mark {
         @apply relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-fuchsia-300/30 bg-fuchsia-300/10 text-fuchsia-100 shadow-[0_0_28px_rgba(217,70,239,0.18)];
     }

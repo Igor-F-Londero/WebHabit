@@ -14,7 +14,7 @@ class HabitDemoSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::where('email', 'igor@habitflow.com')->first();
+        $user = User::where('email', 'igor@webhabit.com')->first();
 
         if (! $user) {
             return;

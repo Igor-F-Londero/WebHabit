@@ -9,14 +9,14 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::updateOrCreate(['email' => 'admin@habitflow.com'], [
-            'name' => 'Admin HabitFlow',
+        User::updateOrCreate(['email' => 'admin@webhabit.com'], [
+            'name' => 'Admin WebHabit',
             'password' => bcrypt('password'),
             'role' => 'admin',
             'active' => true,
         ]);
 
-        User::updateOrCreate(['email' => 'igor@habitflow.com'], [
+        User::updateOrCreate(['email' => 'igor@webhabit.com'], [
             'name' => 'Igor Londero',
             'password' => bcrypt('password'),
             'role' => 'user',

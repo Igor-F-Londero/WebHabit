@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'HabitFlow') }}</title>
+        <title>{{ config('app.name', 'WebHabit') }}</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600;outfit:500,600,700,800&display=swap" rel="stylesheet" />
@@ -22,7 +22,7 @@
                                 <span class="font-['Outfit'] text-xl font-bold text-cyan-100">HF</span>
                             </div>
                             <div>
-                                <p class="font-['Outfit'] text-2xl font-semibold tracking-tight text-white">HabitFlow</p>
+                                <p class="font-['Outfit'] text-2xl font-semibold tracking-tight text-white">WebHabit</p>
                                 <p class="text-xs uppercase tracking-[0.24em] text-slate-500">hub operacional</p>
                             </div>
                         </a>

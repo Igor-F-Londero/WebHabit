@@ -195,10 +195,9 @@ class GamificationService
         if ($goal) {
             $checkins = $goal->checkinCount();
             $progress = $goal->progressPercent();
-            $category = $goal->habit->category?->name ?? 'Missões';
 
             return [
-                'name' => $this->bossNameFor($category, $goal->habit->name),
+                'name' => 'Dragão da Procrastinação',
                 'subtitle' => 'Chefe Semanal',
                 'objective' => "Concluir {$goal->target_count} check-ins em {$goal->habit->name}",
                 'current' => $checkins,
@@ -208,8 +207,8 @@ class GamificationService
                 'reward_xp' => self::GOAL_XP,
                 'reward_coins' => self::GOAL_COINS,
                 'reward_label' => 'Conquista rara',
-                'element' => $category,
-                'icon' => $this->bossIconFor($category, $goal->habit->name),
+                'element' => $goal->habit->category?->name ?? 'Disciplina',
+                'icon' => 'dragon',
             ];
         }
 
@@ -231,35 +230,6 @@ class GamificationService
             'element' => 'Disciplina',
             'icon' => 'dragon',
         ];
-    }
-
-    /** Traduz categoria e hábito para o nome temático do chefe semanal. */
-    private function bossNameFor(string $category, string $habitName): string
-    {
-        $key = mb_strtolower($category.' '.$habitName);
-
-        return match (true) {
-            str_contains($key, 'estudo') || str_contains($key, 'faculdade') => 'Dragão da Procrastinação',
-            str_contains($key, 'hidrata') || str_contains($key, 'agua') || str_contains($key, 'água') => 'Leviatã da Sede',
-            str_contains($key, 'alimenta') => 'Guardião da Energia',
-            str_contains($key, 'exercicio') || str_contains($key, 'exercício') || str_contains($key, 'basquete') => 'Colosso do Cansaço',
-            str_contains($key, 'humor') => 'Sombra do Desânimo',
-            default => 'Dragão da Procrastinação',
-        };
-    }
-
-    /** Escolhe o ícone do chefe conforme o tipo de hábito enfrentado. */
-    private function bossIconFor(string $category, string $habitName): string
-    {
-        $key = mb_strtolower($category.' '.$habitName);
-
-        return match (true) {
-            str_contains($key, 'hidrata') || str_contains($key, 'agua') || str_contains($key, 'água') => 'leviathan',
-            str_contains($key, 'alimenta') => 'guardian',
-            str_contains($key, 'exercicio') || str_contains($key, 'exercício') || str_contains($key, 'basquete') => 'colossus',
-            str_contains($key, 'humor') => 'shadow',
-            default => 'dragon',
-        };
     }
 
     /** Gera a lista de conquistas disponíveis e seus critérios de desbloqueio. */
@@ -441,7 +411,7 @@ class GamificationService
         ])->all();
     }
 
-    /** Define o catálogo base da loja de recompensas do HabitFlow. */
+    /** Define o catálogo base da loja de recompensas do WebHabit. */
     private function rewardCatalog(): Collection
     {
         return collect([

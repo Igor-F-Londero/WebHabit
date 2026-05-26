@@ -35,7 +35,7 @@
                 class="flex items-center justify-end gap-3 text-right"
             >
                 <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/[0.08] text-cyan-100">
-                    <x-habitflow.icon name="clock" />
+                    <x-webhabit.icon name="clock" />
                 </span>
                 <div>
                     <p class="text-xs uppercase tracking-[0.24em] text-cyan-200/70">agora</p>
@@ -76,7 +76,7 @@
                         <div class="relative flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-cyan-300/20 bg-slate-950 shadow-[0_0_36px_rgba(34,211,238,0.14)]">
                             <img
                                 src="{{ asset('images/9c2cb117cadfb7bc8b91d332705effc4.jpg') }}"
-                                alt="Herói do HabitFlow"
+                                alt="Herói do WebHabit"
                                 class="h-full w-full object-cover object-top"
                             >
                             <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.05),rgba(2,6,23,0.30))]"></div>

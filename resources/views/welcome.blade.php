@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>HabitFlow</title>
+        <title>WebHabit</title>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600;outfit:500,600,700,800&display=swap" rel="stylesheet" />
@@ -20,7 +20,7 @@
                             HF
                         </span>
                         <span>
-                            <span class="block font-['Outfit'] text-lg font-semibold tracking-tight text-white">HabitFlow</span>
+                            <span class="block font-['Outfit'] text-lg font-semibold tracking-tight text-white">WebHabit</span>
                             <span class="block text-xs uppercase tracking-[0.22em] text-cyan-200/60">rotina em aventura</span>
                         </span>
                     </a>
@@ -61,7 +61,7 @@
                             </p>
 
                             <h1 class="font-['Outfit'] text-5xl font-black leading-[0.94] tracking-tight text-white sm:text-6xl lg:text-7xl">
-                                HabitFlow
+                                WebHabit
                             </h1>
 
                             <p class="mt-6 max-w-xl text-base leading-8 text-slate-300 sm:text-lg">

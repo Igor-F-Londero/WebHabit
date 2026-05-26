@@ -1,4 +1,4 @@
-# HabitFlow — Contexto Didatico Para Estudantes
+# WebHabit — Contexto Didatico Para Estudantes
 
 > Este arquivo explica o projeto como se fosse uma visita guiada.
 > A ideia e ajudar quem ainda nao vive no mundo da programacao a entender o que foi construido, por que foi construido e onde cada coisa mora.
@@ -7,9 +7,9 @@ Atualizado em: 2026-05-19
 
 ---
 
-## 1. O Que E O HabitFlow?
+## 1. O Que E O WebHabit?
 
-O HabitFlow e um sistema para acompanhar habitos, metas, check-ins e progresso.
+O WebHabit e um sistema para acompanhar habitos, metas, check-ins e progresso.
 
 Uma analogia simples:
 
@@ -52,7 +52,7 @@ Aqui ficam regras, controllers, models e middlewares.
 
 Analogia:
 
-Se o HabitFlow fosse um restaurante, `app/` seria a cozinha e a gerencia. E onde as decisoes acontecem.
+Se o WebHabit fosse um restaurante, `app/` seria a cozinha e a gerencia. E onde as decisoes acontecem.
 
 Arquivos importantes:
 
@@ -133,7 +133,7 @@ Nesta etapa, o projeto ganhou uma API autenticada com Sanctum.
 
 Analogia:
 
-Imagine que o HabitFlow tem uma porta principal, que e o site. A API e uma porta lateral, usada por aplicativos mobile ou outros sistemas. Mas essa porta precisa de cracha.
+Imagine que o WebHabit tem uma porta principal, que e o site. A API e uma porta lateral, usada por aplicativos mobile ou outros sistemas. Mas essa porta precisa de cracha.
 
 Implementacoes principais:
 
@@ -478,7 +478,7 @@ Ideias para evoluir o projeto:
 
 Analogia final:
 
-O HabitFlow hoje ja tem o predio construido, a fachada estilizada, o lobby funcionando e os principais comodos mobiliados.
+O WebHabit hoje ja tem o predio construido, a fachada estilizada, o lobby funcionando e os principais comodos mobiliados.
 
 As proximas fases seriam como instalar sistemas especiais: placar de pontos, trofeus, missoes avancadas e efeitos de feedback para deixar a experiencia mais viva.
 

@@ -30,14 +30,14 @@
                     <div class="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border border-cyan-300/35 bg-cyan-300/[0.06] shadow-[0_0_38px_rgba(34,211,238,0.18)]">
                         <img
                             src="{{ asset('images/9c2cb117cadfb7bc8b91d332705effc4.jpg') }}"
-                            alt="Herói do HabitFlow"
+                            alt="Herói do WebHabit"
                             class="h-full w-full object-cover object-top"
                         >
                         <span class="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_20%,transparent_0%,transparent_45%,rgba(2,6,23,0.34)_100%)]"></span>
                         <span class="absolute -top-1 h-3 w-3 rotate-45 border border-cyan-200 bg-slate-950"></span>
                         <span class="absolute -bottom-1 h-3 w-3 rotate-45 border border-cyan-200 bg-slate-950"></span>
                     </div>
-                    <span class="mt-3 font-['Outfit'] text-2xl font-semibold text-white">HabitFlow</span>
+                    <span class="mt-3 font-['Outfit'] text-2xl font-semibold text-white">WebHabit</span>
                     <span class="text-xs uppercase tracking-[0.36em] text-cyan-200/70">Guilda</span>
                 </a>
 
@@ -48,7 +48,7 @@
                             class="group flex items-center gap-3 rounded-lg border px-4 py-3 text-sm transition {{ $item['active'] ? 'border-cyan-300/60 bg-cyan-300/[0.12] text-cyan-100 shadow-[0_0_22px_rgba(34,211,238,0.14)]' : 'border-transparent text-slate-400 hover:border-cyan-300/20 hover:bg-cyan-300/[0.055] hover:text-cyan-100' }}"
                         >
                             <span class="hf-sidebar-icon {{ $item['active'] ? 'text-cyan-100' : 'text-slate-400 group-hover:text-cyan-100' }}">
-                                <x-habitflow.icon :name="$item['icon']" />
+                                <x-webhabit.icon :name="$item['icon']" />
                             </span>
                             <span>{{ $item['label'] }}</span>
                         </a>
@@ -63,7 +63,7 @@
                         <a href="{{ route('home') }}" class="flex items-center gap-3">
                             <span class="flex h-11 w-11 items-center justify-center rounded-lg border border-cyan-300/25 bg-cyan-300/10 font-['Outfit'] font-black text-white">HF</span>
                             <span>
-                                <span class="block font-['Outfit'] text-lg font-semibold text-white">HabitFlow</span>
+                                <span class="block font-['Outfit'] text-lg font-semibold text-white">WebHabit</span>
                                 <span class="block text-xs uppercase tracking-[0.24em] text-cyan-200/65">Guilda</span>
                             </span>
                         </a>
@@ -135,7 +135,7 @@
                                 <div class="hidden h-32 items-center justify-center rounded-full border border-cyan-300/15 bg-cyan-300/[0.035] md:flex">
                                     <div class="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-cyan-300/30 bg-slate-950/80 font-['Outfit'] text-2xl font-black text-cyan-100 shadow-[0_0_34px_rgba(34,211,238,0.18)]">
                                         <span class="absolute inset-3 text-cyan-300/20">
-                                            <x-habitflow.icon name="guardian" />
+                                            <x-webhabit.icon name="guardian" />
                                         </span>
                                         <span class="relative z-10">{{ $game['quest_done'] }}/{{ $game['quest_total'] }}</span>
                                     </div>
@@ -155,25 +155,25 @@
 
                         <div class="grid self-start gap-3 sm:grid-cols-2">
                             <div class="hf-game-card hf-game-card-amber hf-stat-card min-h-28 p-3">
-                                <span class="hf-stat-icon text-amber-200"><x-habitflow.icon name="shop" /></span>
+                                <span class="hf-stat-icon text-amber-200"><x-webhabit.icon name="shop" /></span>
                                 <p class="text-xs uppercase tracking-[0.2em] text-amber-200/80">Moedas</p>
                                 <p class="mt-1 font-['Outfit'] text-3xl font-black text-amber-300">{{ $game['coins'] }}</p>
                                 <p class="mt-1 text-xs text-slate-400">para recompensas</p>
                             </div>
                             <div class="hf-game-card hf-game-card-purple hf-stat-card min-h-28 p-3">
-                                <span class="hf-stat-icon text-fuchsia-200"><x-habitflow.icon name="flame" /></span>
+                                <span class="hf-stat-icon text-fuchsia-200"><x-webhabit.icon name="flame" /></span>
                                 <p class="text-xs uppercase tracking-[0.2em] text-fuchsia-200/80">Combo</p>
                                 <p class="mt-1 font-['Outfit'] text-3xl font-black text-fuchsia-200">{{ $game['best_streak'] }}</p>
                                 <p class="mt-1 text-xs text-slate-400">melhor streak</p>
                             </div>
                             <div class="hf-game-card hf-stat-card min-h-28 p-3">
-                                <span class="hf-stat-icon text-emerald-200"><x-habitflow.icon name="mission" /></span>
+                                <span class="hf-stat-icon text-emerald-200"><x-webhabit.icon name="mission" /></span>
                                 <p class="text-xs uppercase tracking-wide text-slate-500">Check-ins hoje</p>
                                 <p class="mt-1 font-['Outfit'] text-3xl font-black text-white">{{ $checkinsToday }}</p>
                                 <p class="text-xs text-slate-400">de {{ $todayHabits->count() }} missões</p>
                             </div>
                             <div class="hf-game-card hf-stat-card min-h-28 p-3">
-                                <span class="hf-stat-icon text-fuchsia-200"><x-habitflow.icon name="spark" /></span>
+                                <span class="hf-stat-icon text-fuchsia-200"><x-webhabit.icon name="spark" /></span>
                                 <p class="text-xs uppercase tracking-wide text-slate-500">XP total</p>
                                 <p class="mt-1 font-['Outfit'] text-3xl font-black text-fuchsia-200">{{ $game['total_xp'] }}</p>
                                 <p class="text-xs text-slate-400">{{ $currentLevelXp }}/{{ $nextLevelXp }} no nível</p>
@@ -202,7 +202,7 @@
                                         <div class="rounded-xl border border-white/10 bg-white/[0.035] p-3 shadow-[inset_3px_0_0_0_var(--quest-color)]" style="--quest-color: {{ $quest['color'] }}">
                                             <div class="flex items-start gap-3">
                                                 <div class="hf-mission-icon" style="color: {{ $quest['color'] }}">
-                                                    <x-habitflow.icon :name="$quest['icon'] ?? 'mission'" />
+                                                    <x-webhabit.icon :name="$quest['icon'] ?? 'mission'" />
                                                 </div>
                                                 <div class="min-w-0 flex-1">
                                                     <div class="flex flex-wrap items-center gap-2">
@@ -237,7 +237,11 @@
                         <div class="space-y-4">
                             <section class="hf-boss-card overflow-hidden p-4">
                                 <div class="hf-boss-illustration">
-                                    <img src="{{ asset('images/the-dragon-boss-is-massive-v0-a4qhhsi7z2041.webp') }}" alt="" aria-hidden="true">
+                                    @if($boss['name'] === 'Dragão da Procrastinação')
+                                        <img src="{{ asset('images/the-dragon-boss-is-massive-v0-a4qhhsi7z2041.webp') }}" alt="" aria-hidden="true">
+                                    @else
+                                        <x-webhabit.icon :name="$boss['icon'] ?? 'dragon'" />
+                                    @endif
                                 </div>
                                 <div class="relative z-10">
                                     <div class="mb-3 flex items-start justify-between gap-4">
@@ -248,7 +252,7 @@
                                             </h2>
                                         </div>
                                         <div class="hf-boss-mark">
-                                            <x-habitflow.icon :name="$boss['icon'] ?? 'dragon'" />
+                                            <x-webhabit.icon :name="$boss['icon'] ?? 'dragon'" />
                                         </div>
                                     </div>
 
@@ -301,7 +305,7 @@
                                     @foreach($rewards as $reward)
                                         <div class="hf-reward-card {{ $reward['available'] ? 'hf-reward-card-ready' : '' }}">
                                             <div class="hf-reward-icon {{ $reward['available'] ? 'text-amber-200' : 'text-slate-500' }}">
-                                                <x-habitflow.icon :name="$reward['icon'] ?? 'shop'" />
+                                                <x-webhabit.icon :name="$reward['icon'] ?? 'shop'" />
                                             </div>
                                             <div class="min-w-0 flex-1">
                                                 <div class="flex flex-wrap items-center gap-2">
@@ -352,7 +356,7 @@
                     aria-current="{{ $item['active'] ? 'page' : 'false' }}"
                 >
                     <span class="hf-mobile-questbar-icon {{ $item['active'] ? 'border-cyan-300/55 bg-cyan-300/15 text-cyan-100 shadow-[0_0_18px_rgba(34,211,238,0.22)]' : 'border-cyan-300/15 bg-slate-950 text-slate-400' }}">
-                        <x-habitflow.icon :name="$item['icon']" />
+                        <x-webhabit.icon :name="$item['icon']" />
                     </span>
                     <span class="text-[10px] font-semibold leading-none">{{ $item['label'] }}</span>
                 </a>

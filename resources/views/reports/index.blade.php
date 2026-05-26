@@ -186,7 +186,7 @@
                             @foreach($recentActivity as $activity)
                                 <div class="hf-activity-card {{ $activity['tone'] === 'amber' ? 'hf-activity-card-amber' : '' }}">
                                     <div class="hf-activity-icon {{ $activity['tone'] === 'amber' ? 'text-amber-200' : 'text-cyan-200' }}">
-                                        <x-habitflow.icon :name="$activity['icon'] ?? 'mission'" />
+                                        <x-webhabit.icon :name="$activity['icon'] ?? 'mission'" />
                                     </div>
                                     <div class="min-w-0 flex-1">
                                         <div class="flex flex-wrap items-center justify-between gap-2">
@@ -214,7 +214,7 @@
                         @foreach($recentAchievements as $achievement)
                             <div class="hf-achievement-card">
                                 <div class="hf-achievement-medal {{ $achievement['unlocked'] ? 'border-cyan-300/35 bg-cyan-300/10 text-cyan-100' : 'border-slate-700 bg-slate-900 text-slate-500' }}">
-                                    <x-habitflow.icon :name="$achievement['icon'] ?? 'trophy'" />
+                                    <x-webhabit.icon :name="$achievement['icon'] ?? 'trophy'" />
                                 </div>
                                 <div class="min-w-0 flex-1">
                                     <p class="truncate text-sm font-semibold text-white">{{ $achievement['name'] }}</p>

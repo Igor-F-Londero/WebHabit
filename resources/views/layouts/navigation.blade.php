@@ -8,7 +8,7 @@
                             <span class="font-['Outfit'] text-sm font-bold text-cyan-100">HF</span>
                         </div>
                         <div class="hidden sm:block">
-                            <div class="font-['Outfit'] text-base font-semibold text-white">HabitFlow</div>
+                            <div class="font-['Outfit'] text-base font-semibold text-white">WebHabit</div>
                             <div class="text-[10px] uppercase tracking-[0.24em] text-stone-500">guilda</div>
                         </div>
                     </a>
