@@ -10,6 +10,7 @@ use Illuminate\View\View;
 
 class GoalController extends Controller
 {
+    /** Lista os chefes/metas do usuário e sincroniza o status de cada um. */
     public function index(): View
     {
         $goals = auth()->user()
@@ -23,6 +24,7 @@ class GoalController extends Controller
         return view('goals.index', compact('goals'));
     }
 
+    /** Exibe o formulário para criar um novo chefe/meta. */
     public function create(): View
     {
         $habits = auth()->user()->habits()->orderBy('name')->get();
@@ -30,6 +32,7 @@ class GoalController extends Controller
         return view('goals.create', compact('habits'));
     }
 
+    /** Persiste um novo chefe/meta ligado a um hábito do próprio usuário. */
     public function store(StoreGoalRequest $request): RedirectResponse
     {
         $data = $request->validated();
@@ -46,6 +49,7 @@ class GoalController extends Controller
             ->with('success', 'Chefe criado com sucesso!');
     }
 
+    /** Exibe a edição de um chefe/meta existente. */
     public function edit(Goal $goal): View
     {
         abort_if($goal->user_id !== auth()->id(), 403);
@@ -55,6 +59,7 @@ class GoalController extends Controller
         return view('goals.edit', compact('goal', 'habits'));
     }
 
+    /** Atualiza os dados do chefe/meta selecionado. */
     public function update(UpdateGoalRequest $request, Goal $goal): RedirectResponse
     {
         abort_if($goal->user_id !== auth()->id(), 403);
@@ -65,6 +70,7 @@ class GoalController extends Controller
             ->with('success', 'Chefe atualizado com sucesso!');
     }
 
+    /** Remove um chefe/meta do usuário. */
     public function destroy(Goal $goal): RedirectResponse
     {
         abort_if($goal->user_id !== auth()->id(), 403);

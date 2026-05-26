@@ -15,7 +15,7 @@ class ProfileController extends Controller
     public function __construct(private readonly GamificationService $gamification) {}
 
     /**
-     * Display the user's profile form.
+     * Exibe a página do perfil com o inventário e o progresso do herói.
      */
     public function edit(Request $request): View
     {
@@ -28,7 +28,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * Atualiza os dados básicos do perfil e reinvalida a confirmação de e-mail quando necessário.
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
@@ -44,7 +44,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * Remove a conta do usuário e encerra a sessão com segurança.
      */
     public function destroy(Request $request): RedirectResponse
     {

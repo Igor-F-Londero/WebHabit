@@ -83,7 +83,7 @@
                     <div class="flex items-center gap-4 mt-6">
                         <x-primary-button>Criar Chefe</x-primary-button>
                         <a href="{{ route('goals.index') }}"
-                           class="hf-subtle-link">
+                        class="hf-subtle-link">
                             Cancelar
                         </a>
                     </div>

@@ -14,6 +14,7 @@ class ReportController extends Controller
     {
     }
 
+    /** Consolida métricas de hábitos, heatmap e ranking para a página de relatórios. */
     public function index(Request $request): View
     {
         $user = auth()->user();

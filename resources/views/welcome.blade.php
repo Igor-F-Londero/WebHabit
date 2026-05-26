@@ -101,36 +101,37 @@
 
                         <div class="relative">
                             <div class="relative overflow-hidden rounded-xl border border-cyan-300/15 bg-slate-950/80 shadow-[0_0_70px_rgba(34,211,238,0.12)] backdrop-blur">
-                                <img
-                                    src="{{ asset('images/dashboard-analytics-3d.png') }}"
-                                    alt="Dashboard 3D com gráficos, check-ins e indicadores de progresso"
-                                    class="aspect-[4/5] w-full object-cover sm:aspect-[16/9]"
-                                >
+                                <div
+                                    class="absolute inset-0 bg-cover bg-center"
+                                    style="background-image: url('{{ asset('images/08-11-maneiras-de-ser-um-jogador-de-RPG-melhor.png') }}');"
+                                    aria-hidden="true"
+                                ></div>
+                                <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.18),rgba(2,6,23,0.76)),linear-gradient(90deg,rgba(2,6,23,0.75),rgba(2,6,23,0.18))]"></div>
 
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/10 to-transparent"></div>
+                                <div class="relative aspect-[4/5] w-full sm:aspect-[16/9]">
+                                    <div class="absolute left-4 right-4 top-4 flex items-center justify-between gap-3">
+                                        <div class="rounded-lg border border-cyan-300/20 bg-slate-950/75 px-4 py-3 shadow-[0_0_24px_rgba(34,211,238,0.12)] backdrop-blur">
+                                            <p class="text-xs uppercase tracking-[0.2em] text-cyan-200/70">campanha</p>
+                                            <h2 class="mt-1 font-['Outfit'] text-2xl font-bold text-white">Nível 8</h2>
+                                        </div>
+                                        <span class="rounded-lg border border-emerald-300/20 bg-emerald-300/10 px-3 py-2 text-xs font-semibold text-emerald-200 backdrop-blur">
+                                            4 de 5 missões
+                                        </span>
+                                    </div>
 
-                                <div class="absolute left-4 right-4 top-4 flex items-center justify-between gap-3">
-                                    <div class="rounded-lg border border-cyan-300/20 bg-slate-950/75 px-4 py-3 shadow-[0_0_24px_rgba(34,211,238,0.12)] backdrop-blur">
-                                        <p class="text-xs uppercase tracking-[0.2em] text-cyan-200/70">campanha</p>
-                                        <h2 class="mt-1 font-['Outfit'] text-2xl font-bold text-white">Nível 8</h2>
-                                    </div>
-                                    <span class="rounded-lg border border-emerald-300/20 bg-emerald-300/10 px-3 py-2 text-xs font-semibold text-emerald-200 backdrop-blur">
-                                        4 de 5 missões
-                                    </span>
-                                </div>
-
-                                <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2 sm:gap-3">
-                                    <div class="rounded-lg border border-white/10 bg-slate-950/78 p-3 backdrop-blur sm:p-4">
-                                        <p class="text-xs text-slate-400">XP</p>
-                                        <p class="mt-1 font-['Outfit'] text-2xl font-bold text-cyan-200 sm:text-3xl">1240</p>
-                                    </div>
-                                    <div class="rounded-lg border border-white/10 bg-slate-950/78 p-3 backdrop-blur sm:p-4">
-                                        <p class="text-xs text-slate-400">Combo</p>
-                                        <p class="mt-1 font-['Outfit'] text-2xl font-bold text-white sm:text-3xl">21</p>
-                                    </div>
-                                    <div class="rounded-lg border border-white/10 bg-slate-950/78 p-3 backdrop-blur sm:p-4">
-                                        <p class="text-xs text-slate-400">Moedas</p>
-                                        <p class="mt-1 font-['Outfit'] text-2xl font-bold text-fuchsia-200 sm:text-3xl">148</p>
+                                    <div class="absolute bottom-4 left-4 right-4 grid grid-cols-3 gap-2 sm:gap-3">
+                                        <div class="rounded-lg border border-white/10 bg-slate-950/78 p-3 backdrop-blur sm:p-4">
+                                            <p class="text-xs text-slate-400">XP</p>
+                                            <p class="mt-1 font-['Outfit'] text-2xl font-bold text-cyan-200 sm:text-3xl">1240</p>
+                                        </div>
+                                        <div class="rounded-lg border border-white/10 bg-slate-950/78 p-3 backdrop-blur sm:p-4">
+                                            <p class="text-xs text-slate-400">Combo</p>
+                                            <p class="mt-1 font-['Outfit'] text-2xl font-bold text-white sm:text-3xl">21</p>
+                                        </div>
+                                        <div class="rounded-lg border border-white/10 bg-slate-950/78 p-3 backdrop-blur sm:p-4">
+                                            <p class="text-xs text-slate-400">Moedas</p>
+                                            <p class="mt-1 font-['Outfit'] text-2xl font-bold text-fuchsia-200 sm:text-3xl">148</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

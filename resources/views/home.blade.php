@@ -64,8 +64,15 @@
             @endif
 
             <section class="grid gap-4 lg:grid-cols-[1.45fr_0.55fr]">
-                <div class="hf-panel-pad overflow-hidden">
-                    <div class="flex flex-col gap-6 md:flex-row md:items-center">
+                <div class="hf-panel-pad relative overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-cover bg-center opacity-35"
+                        style="background-image: url('{{ asset('images/08-11-maneiras-de-ser-um-jogador-de-RPG-melhor.png') }}');"
+                        aria-hidden="true"
+                    ></div>
+                    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(2,6,23,0.92),rgba(2,6,23,0.72),rgba(2,6,23,0.9))]"></div>
+
+                    <div class="relative flex flex-col gap-6 md:flex-row md:items-center">
                         <div class="relative flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-cyan-300/20 bg-slate-950 shadow-[0_0_36px_rgba(34,211,238,0.14)]">
                             <img
                                 src="{{ asset('images/9c2cb117cadfb7bc8b91d332705effc4.jpg') }}"

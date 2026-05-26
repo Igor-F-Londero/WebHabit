@@ -10,6 +10,7 @@ class DashboardController extends Controller
 {
     public function __construct(private readonly GamificationService $gamification) {}
 
+    /** Monta o cockpit principal com missões de hoje e resumo da gamificação. */
     public function index(): View
     {
         $user = auth()->user();

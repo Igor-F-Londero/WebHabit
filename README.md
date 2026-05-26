@@ -1,6 +1,6 @@
 # HabitFlow
 
-Aplicação web para acompanhamento de hábitos, check-ins e metas pessoais, com área administrativa e autenticação baseada em roles.
+Aplicação web gamificada para acompanhar hábitos, check-ins, metas pessoais e progresso do herói, com identidade visual própria, área administrativa e autenticação baseada em roles.
 
 ## Stack
 
@@ -20,11 +20,13 @@ Aplicação web para acompanhamento de hábitos, check-ins e metas pessoais, com
 - Check-in diário e semanal
 - Cálculo de streak diário e semanal
 - CRUD de metas com progresso e status
-- Dashboard do usuário com resumo, gráfico e heatmap
+- Home pública/privada com visão resumida da campanha do herói
+- Dashboard do usuário com missões, chefe semanal, recompensas e visual gamificado
+- Relatórios do usuário com gráficos, heatmap e ranking de combos
 - Dashboard admin com métricas e gráficos
-- Relatórios do usuário e admin
 - Gestão admin de categorias e usuários
 - API JSON autenticada com Sanctum para hábitos, check-ins e stats
+- Assets visuais próprios para herói, dragão, escudos, medalhas e ícones
 
 ## Ambiente local
 
@@ -80,5 +82,6 @@ $user->createToken('mobile')->plainTextToken;
 
 ## Pendências principais
 
-- Substituir a landing page padrão
+- Refinar os assets próprios do dragão, do herói e das medalhas
 - Ampliar a cobertura de testes para regras de negócio e fluxos principais
+- Evoluir a API para novos relatórios e integrações futuras

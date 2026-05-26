@@ -19,6 +19,9 @@ class GamificationService
 
     public const GOAL_COINS = 25;
 
+    /**
+     * Consolida o estado gamificado do usuário para dashboard, home, perfil e relatórios.
+     */
     public function forUser(User $user): array
     {
         $activeHabits = $user->habits()
@@ -94,6 +97,7 @@ class GamificationService
         ];
     }
 
+    /** Calcula a recompensa base de um check-in, com bônus para hábitos semanais. */
     public function checkinReward(?Habit $habit = null): array
     {
         $weeklyBonus = $habit?->frequency === 'weekly' ? 5 : 0;
@@ -104,6 +108,7 @@ class GamificationService
         ];
     }
 
+    /** Monta a lista de missões ativas com progresso, dificuldade e recompensa. */
     private function quests(Collection $habits): Collection
     {
         return $habits->map(function (Habit $habit) {
@@ -131,6 +136,7 @@ class GamificationService
         })->values();
     }
 
+    /** Escolhe o ícone da missão com base na categoria e no nome do hábito. */
     private function questIconFor(string $category, string $habitName): string
     {
         $key = mb_strtolower($category.' '.$habitName);
@@ -147,6 +153,7 @@ class GamificationService
         };
     }
 
+    /** Converte XP acumulado em nível, progresso interno e XP necessário para o próximo nível. */
     private function levelFromXp(int $xp): array
     {
         $level = 1;
@@ -167,6 +174,7 @@ class GamificationService
         ];
     }
 
+    /** Define o título de patente do jogador de acordo com o nível atual. */
     private function rankForLevel(int $level): string
     {
         return match (true) {
@@ -178,6 +186,7 @@ class GamificationService
         };
     }
 
+    /** Monta o chefe semanal principal da campanha com base nas metas ativas. */
     private function weeklyBoss(Collection $activeGoals, Collection $activeHabits): array
     {
         /** @var Goal|null $goal */
@@ -224,6 +233,7 @@ class GamificationService
         ];
     }
 
+    /** Traduz categoria e hábito para o nome temático do chefe semanal. */
     private function bossNameFor(string $category, string $habitName): string
     {
         $key = mb_strtolower($category.' '.$habitName);
@@ -238,6 +248,7 @@ class GamificationService
         };
     }
 
+    /** Escolhe o ícone do chefe conforme o tipo de hábito enfrentado. */
     private function bossIconFor(string $category, string $habitName): string
     {
         $key = mb_strtolower($category.' '.$habitName);
@@ -251,6 +262,7 @@ class GamificationService
         };
     }
 
+    /** Gera a lista de conquistas disponíveis e seus critérios de desbloqueio. */
     private function achievements(int $totalCheckins, int $checkinsThisWeek, int $bestStreak, int $activeHabits, int $completedGoals): array
     {
         return [
@@ -311,6 +323,7 @@ class GamificationService
         ];
     }
 
+    /** Retorna as conquistas desbloqueadas mais recentes para exibição rápida. */
     private function recentAchievements(array $achievements): array
     {
         $unlocked = collect($achievements)
@@ -326,6 +339,7 @@ class GamificationService
         return collect($achievements)->take(3)->values()->all();
     }
 
+    /** Monta a linha do tempo do herói com check-ins e resgates recentes. */
     private function recentActivity(User $user): array
     {
         $checkins = Checkin::with(['habit.category'])
@@ -377,6 +391,7 @@ class GamificationService
             ->all();
     }
 
+    /** Consolida saldo, itens resgatados e proporção de uso das moedas. */
     private function inventory(User $user, Collection $rewardCatalog, int $earnedCoins, int $spentCoins, int $coins): array
     {
         $catalogByKey = $rewardCatalog->keyBy('key');
@@ -415,6 +430,7 @@ class GamificationService
         ];
     }
 
+    /** Expande o catálogo de recompensas disponíveis na loja do jogo. */
     private function rewards(int $coins, ?Collection $rewardCatalog = null): array
     {
         return ($rewardCatalog ?? $this->rewardCatalog())->map(fn (array $reward) => [
@@ -425,6 +441,7 @@ class GamificationService
         ])->all();
     }
 
+    /** Define o catálogo base da loja de recompensas do HabitFlow. */
     private function rewardCatalog(): Collection
     {
         return collect([
@@ -463,6 +480,7 @@ class GamificationService
         ]);
     }
 
+    /** Extrai as iniciais do nome do usuário para o avatar do sistema. */
     private function initials(string $name): string
     {
         $parts = collect(preg_split('/\s+/', trim($name)) ?: [])

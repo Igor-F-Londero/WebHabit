@@ -10,6 +10,7 @@ class HomeController extends Controller
 {
     public function __construct(private readonly GamificationService $gamification) {}
 
+    /** Carrega a home com os indicadores gerais da campanha do usuário. */
     public function __invoke(): View
     {
         $user = auth()->user();
