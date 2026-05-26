@@ -25,18 +25,17 @@ class HomeTest extends TestCase
 
         $response->assertOk();
         $response->assertSee('Escolha sua próxima missão');
-        $response->assertSee('Cockpit');
-        $response->assertSee('Missões');
+        $response->assertSee('status do personagem');
+        $response->assertSee('Missões de hoje');
     }
 
-    public function test_admin_home_shows_operation_card(): void
+    public function test_admin_can_view_home(): void
     {
         $admin = User::factory()->create(['role' => 'admin']);
 
         $response = $this->actingAs($admin)->get('/home');
 
         $response->assertOk();
-        $response->assertSee('Guilda');
-        $response->assertSee('modo admin');
+        $response->assertSee('Escolha sua próxima missão');
     }
 }

@@ -15,59 +15,6 @@
 
     @php
         $unlockedAchievements = collect($game['achievements'])->where('unlocked', true)->count();
-        $cards = [
-            [
-                'title' => 'Cockpit',
-                'label' => 'Campanha',
-                'copy' => 'Resumo diário, streaks, check-ins e mapa de atividade.',
-                'href' => route('dashboard'),
-                'image' => 'images/home-cards/cockpit.svg',
-                'metric' => $game['quest_done'] . '/' . $game['quest_total'] . ' missões',
-            ],
-            [
-                'title' => 'Missões',
-                'label' => 'Missões recorrentes',
-                'copy' => 'Crie, edite e conclua missões diárias ou semanais.',
-                'href' => route('habits.index'),
-                'image' => 'images/home-cards/habits.svg',
-                'metric' => $activeHabits . ' ativos',
-            ],
-            [
-                'title' => 'Chefes',
-                'label' => 'Chefes',
-                'copy' => 'Acompanhe objetivos com prazo e contagem de execução.',
-                'href' => route('goals.index'),
-                'image' => 'images/home-cards/goals.svg',
-                'metric' => $activeGoals . ' em batalha',
-            ],
-            [
-                'title' => 'Relatório',
-                'label' => 'Guilda de dados',
-                'copy' => 'Veja padrões, taxa de consistência e sinais de queda.',
-                'href' => route('reports.index'),
-                'image' => 'images/home-cards/reports.svg',
-                'metric' => $bestStreak . ' dias no combo',
-            ],
-            [
-                'title' => 'Herói',
-                'label' => 'Herói',
-                'copy' => 'Atualize dados, senha e preferências da sua conta.',
-                'href' => route('profile.edit'),
-                'image' => 'images/home-cards/profile.svg',
-                'metric' => auth()->user()->name,
-            ],
-        ];
-
-        if (auth()->user()?->isAdmin()) {
-            $cards[] = [
-                'title' => 'Guilda',
-                'label' => 'Guilda',
-                'copy' => 'Gerencie usuários, categorias e relatórios da plataforma.',
-                'href' => route('admin.dashboard'),
-                'image' => 'images/home-cards/admin.svg',
-                'metric' => 'modo admin',
-            ];
-        }
     @endphp
 
     <div class="hf-page">
@@ -256,48 +203,6 @@
                         </div>
                     @endforeach
                 </div>
-            </section>
-
-            <section class="grid auto-rows-[17.5rem] gap-4 sm:auto-rows-[19rem] md:grid-cols-2">
-                @foreach($cards as $index => $card)
-                    <a
-                        href="{{ $card['href'] }}"
-                        class="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-black shadow-2xl shadow-black/30 outline-none transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:shadow-[0_0_48px_rgba(34,211,238,0.18)] focus-visible:ring-2 focus-visible:ring-cyan-300 {{ $index === 0 ? 'md:row-span-2' : '' }}"
-                    >
-                        <img
-                            src="{{ asset($card['image']) }}"
-                            alt=""
-                            class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                            loading="lazy"
-                        >
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-                        <div class="absolute inset-0 bg-black/10 transition group-hover:bg-black/0"></div>
-
-                        <div class="relative flex h-full flex-col justify-between p-5 sm:p-6">
-                            <div class="flex flex-wrap items-start justify-between gap-3">
-                                <span class="rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs uppercase tracking-[0.18em] text-white/80 backdrop-blur">
-                                    {{ $card['label'] }}
-                                </span>
-                                <span class="max-w-full truncate rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-100 backdrop-blur sm:max-w-[12rem]">
-                                    {{ $card['metric'] }}
-                                </span>
-                            </div>
-
-                            <div>
-                                <h3 class="font-['Outfit'] text-4xl font-medium leading-none text-white drop-shadow-[0_0_18px_rgba(0,0,0,0.55)] sm:text-5xl">
-                                    {{ $card['title'] }}
-                                </h3>
-                                <p class="mt-3 max-w-md text-sm leading-6 text-zinc-200 opacity-90">
-                                    {{ $card['copy'] }}
-                                </p>
-                                <div class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
-                                    Acessar
-                                    <span class="transition group-hover:translate-x-1">→</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
             </section>
         </div>
     </div>

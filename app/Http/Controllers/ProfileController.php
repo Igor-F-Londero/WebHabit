@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Services\GamificationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,13 +12,18 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function __construct(private readonly GamificationService $gamification) {}
+
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): View
     {
+        $game = $this->gamification->forUser($request->user());
+
         return view('profile.edit', [
             'user' => $request->user(),
+            'game' => $game,
         ]);
     }
 

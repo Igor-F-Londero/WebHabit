@@ -114,7 +114,7 @@
     }
 
     .hf-mission-icon {
-        @apply relative flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-slate-950/75 shadow-[0_0_24px_rgba(34,211,238,0.08)];
+        @apply relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-950/75 shadow-[0_0_24px_rgba(34,211,238,0.08)];
         border: 1px solid color-mix(in srgb, currentColor 38%, transparent);
         box-shadow:
             inset 0 0 28px color-mix(in srgb, currentColor 12%, transparent),
@@ -130,7 +130,19 @@
     }
 
     .hf-mission-icon svg {
-        @apply relative z-10 h-7 w-7;
+        @apply relative z-10 h-6 w-6;
+    }
+
+    .hf-missions-panel {
+        @apply h-auto;
+    }
+
+    .hf-missions-panel > div:last-child {
+        align-items: stretch;
+    }
+
+    .hf-missions-panel [style*="--quest-color"] {
+        @apply flex min-h-[7.5rem] flex-col justify-between;
     }
 
     .hf-stat-card {
@@ -149,12 +161,12 @@
     }
 
     .hf-stat-icon {
-        @apply pointer-events-none absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-xl border bg-slate-950/55 opacity-55;
+        @apply pointer-events-none absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-xl border bg-slate-950/55 opacity-55;
         border-color: color-mix(in srgb, currentColor 20%, transparent);
     }
 
     .hf-stat-icon svg {
-        @apply h-5 w-5;
+        @apply h-4 w-4;
     }
 
     .hf-boss-card {
@@ -185,21 +197,22 @@
     }
 
     .hf-boss-illustration {
-        @apply pointer-events-none absolute -bottom-10 -right-8 z-0 hidden h-64 w-64 text-fuchsia-300 opacity-25 blur-[0.2px] md:block;
-        filter: drop-shadow(0 0 34px rgba(168,85,247,0.45));
-        transform: rotate(-10deg);
+        @apply pointer-events-none absolute inset-y-0 right-0 z-0 hidden h-full w-[62%] opacity-55 md:block;
+        filter: saturate(1.18) contrast(1.08) drop-shadow(0 0 34px rgba(168,85,247,0.38));
+        mix-blend-mode: screen;
+        mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.28) 18%, black 42%);
     }
 
-    .hf-boss-illustration svg {
-        @apply h-full w-full;
+    .hf-boss-illustration img {
+        @apply h-full w-full object-cover object-center;
     }
 
     .hf-boss-mark {
-        @apply relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-fuchsia-300/30 bg-fuchsia-300/10 text-fuchsia-100 shadow-[0_0_28px_rgba(217,70,239,0.18)];
+        @apply relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-fuchsia-300/30 bg-fuchsia-300/10 text-fuchsia-100 shadow-[0_0_28px_rgba(217,70,239,0.18)];
     }
 
     .hf-boss-mark svg {
-        @apply h-7 w-7;
+        @apply h-6 w-6;
     }
 
     .hf-achievement-card {
@@ -219,7 +232,7 @@
     }
 
     .hf-reward-card {
-        @apply flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.035] p-3 transition;
+        @apply flex min-h-[7.5rem] items-start gap-3 rounded-xl border border-white/10 bg-white/[0.035] p-3 transition;
     }
 
     .hf-reward-card-ready {
@@ -227,12 +240,12 @@
     }
 
     .hf-reward-icon {
-        @apply flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-slate-950/70 shadow-[0_0_20px_rgba(251,191,36,0.08)];
+        @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border bg-slate-950/70 shadow-[0_0_20px_rgba(251,191,36,0.08)];
         border-color: color-mix(in srgb, currentColor 25%, transparent);
     }
 
     .hf-reward-icon svg {
-        @apply h-6 w-6;
+        @apply h-5 w-5;
     }
 
     .hf-reward-progress {

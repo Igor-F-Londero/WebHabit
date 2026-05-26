@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 520" role="img" aria-label="Dragao da campanha HabitFlow">
+  <defs>
+    <linearGradient id="dragonGlow" x1="122" y1="95" x2="622" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee"/>
+      <stop offset="0.48" stop-color="#a855f7"/>
+      <stop offset="1" stop-color="#ec4899"/>
+    </linearGradient>
+    <radialGradient id="wingShade" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(420 220) rotate(44) scale(280 210)">
+      <stop stop-color="#c084fc" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#581c87" stop-opacity="0.08"/>
+    </radialGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.67 0 0 0 0 0.22 0 0 0 0 1 0 0 0 0.68 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g fill="none" stroke="url(#dragonGlow)" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)">
+    <path d="M84 365c66 20 118 10 157-27 34-32 75-49 123-47 55 3 94 31 116 84" stroke-width="26"/>
+    <path d="M111 355c-31 30-59 44-84 42 24-27 39-55 44-85 11 21 24 35 40 43Z" fill="#111827" fill-opacity="0.58" stroke-width="13"/>
+    <path d="M279 306c-34 58-54 111-58 159 42-20 75-52 100-96" fill="#17102c" fill-opacity="0.72" stroke-width="18"/>
+    <path d="M349 300c-12 63-3 111 27 145 14-42 36-78 66-108" fill="#17102c" fill-opacity="0.64" stroke-width="17"/>
+
+    <path d="M355 288c-19-74-8-142 33-205 13 63 42 111 88 145 27 20 44 45 51 74-68-33-126-38-172-14Z" fill="url(#wingShade)" stroke-width="16"/>
+    <path d="M397 115c9 69 31 122 66 158" stroke-width="11" opacity="0.72"/>
+    <path d="M437 195c-33 18-59 49-79 93" stroke-width="9" opacity="0.58"/>
+
+    <path d="M462 342c45-3 82-22 110-58" stroke-width="23"/>
+    <path d="M558 286c21-8 47-5 79 9-25 7-42 20-51 39 27 5 50 20 69 45-33-6-61-2-84 13-20-29-41-45-63-48" fill="#111827" fill-opacity="0.76" stroke-width="15"/>
+    <path d="M582 272c13-28 37-50 72-66-8 29-6 55 7 78" fill="#111827" fill-opacity="0.66" stroke-width="13"/>
+    <path d="M568 279c-13-25-30-46-52-63 31 1 58 12 81 34" fill="#111827" fill-opacity="0.66" stroke-width="13"/>
+
+    <path d="M625 322h.1" stroke="#f0abfc" stroke-width="18"/>
+    <path d="M653 361c21 9 39 28 54 57-29-8-53-9-72-2" stroke-width="10"/>
+    <path d="M514 363c-18 22-28 48-31 78" stroke-width="12"/>
+    <path d="M453 349c-18 26-27 55-26 86" stroke-width="12"/>
+
+    <path d="M302 321c-28 4-54-5-78-28 17 6 34 5 51-4" stroke-width="12" opacity="0.76"/>
+    <path d="M250 335c-16 26-21 53-16 81" stroke-width="11"/>
+  </g>
+</svg>
