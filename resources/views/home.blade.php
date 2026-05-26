@@ -1,15 +1,48 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
                 <p class="text-xs uppercase tracking-[0.24em] text-cyan-200/70">hub de aventura</p>
                 <h2 class="font-['Outfit'] text-3xl font-black leading-tight text-white">
                     Escolha sua próxima missão
                 </h2>
             </div>
-            <p class="text-sm text-slate-400">
-                {{ now()->translatedFormat('d M Y') }}
-            </p>
+            <div
+                x-data="{
+                    now: new Date('{{ now()->toIso8601String() }}'),
+                    timer: null,
+                    init() {
+                        this.timer = setInterval(() => {
+                            this.now = new Date();
+                        }, 1000);
+                    },
+                    dateLabel() {
+                        return new Intl.DateTimeFormat('pt-BR', {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric',
+                        }).format(this.now);
+                    },
+                    timeLabel() {
+                        return new Intl.DateTimeFormat('pt-BR', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit',
+                        }).format(this.now);
+                    },
+                }"
+                x-init="init()"
+                class="flex items-center justify-end gap-3 text-right"
+            >
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/[0.08] text-cyan-100">
+                    <x-habitflow.icon name="clock" />
+                </span>
+                <div>
+                    <p class="text-xs uppercase tracking-[0.24em] text-cyan-200/70">agora</p>
+                    <p class="mt-1 font-['Outfit'] text-xl font-semibold text-white" x-text="dateLabel()"></p>
+                    <p class="mt-1 font-['Outfit'] text-sm font-semibold text-cyan-200" x-text="timeLabel()"></p>
+                </div>
+            </div>
         </div>
     </x-slot>
 
@@ -33,26 +66,13 @@
             <section class="grid gap-4 lg:grid-cols-[1.45fr_0.55fr]">
                 <div class="hf-panel-pad overflow-hidden">
                     <div class="flex flex-col gap-6 md:flex-row md:items-center">
-                        <div class="relative flex h-32 w-32 shrink-0 items-center justify-center rounded-xl border border-cyan-300/20 bg-slate-950 shadow-[0_0_36px_rgba(34,211,238,0.14)]">
-                            <div class="absolute inset-3 rounded-lg bg-[linear-gradient(135deg,_rgba(34,211,238,0.18),_rgba(217,70,239,0.14))]"></div>
-                            <div class="relative grid h-20 w-20 grid-cols-4 grid-rows-4 gap-1">
-                                <span class="rounded-sm bg-cyan-200"></span>
-                                <span class="rounded-sm bg-cyan-300"></span>
-                                <span class="rounded-sm bg-cyan-300"></span>
-                                <span class="rounded-sm bg-cyan-200"></span>
-                                <span class="rounded-sm bg-slate-700"></span>
-                                <span class="rounded-sm bg-slate-100"></span>
-                                <span class="rounded-sm bg-slate-100"></span>
-                                <span class="rounded-sm bg-slate-700"></span>
-                                <span class="rounded-sm bg-fuchsia-300"></span>
-                                <span class="rounded-sm bg-cyan-400"></span>
-                                <span class="rounded-sm bg-cyan-400"></span>
-                                <span class="rounded-sm bg-fuchsia-300"></span>
-                                <span class="rounded-sm bg-slate-800"></span>
-                                <span class="rounded-sm bg-amber-300"></span>
-                                <span class="rounded-sm bg-amber-300"></span>
-                                <span class="rounded-sm bg-slate-800"></span>
-                            </div>
+                        <div class="relative flex h-32 w-32 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-cyan-300/20 bg-slate-950 shadow-[0_0_36px_rgba(34,211,238,0.14)]">
+                            <img
+                                src="{{ asset('images/9c2cb117cadfb7bc8b91d332705effc4.jpg') }}"
+                                alt="Herói do HabitFlow"
+                                class="h-full w-full object-cover object-top"
+                            >
+                            <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.05),rgba(2,6,23,0.30))]"></div>
                             <span class="absolute bottom-3 rounded-md border border-white/10 bg-slate-950/90 px-2 py-1 font-['Outfit'] text-xs font-black text-white">
                                 {{ $game['avatar_initials'] }}
                             </span>
