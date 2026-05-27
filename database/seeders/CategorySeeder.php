@@ -25,6 +25,7 @@ class CategorySeeder extends Seeder
             ['name' => 'Tarefas de Faculdade',  'icon' => 'ti-school',        'description' => 'Atividades, trabalhos e prazos acadêmicos'],
         ];
 
+        // Usa updateOrCreate para evitar duplicatas e permitir re-seeding sem erros
         foreach ($categories as $category) {
             Category::updateOrCreate(
                 ['name' => $category['name']],

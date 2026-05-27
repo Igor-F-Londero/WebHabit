@@ -17,7 +17,7 @@ class HomeController extends Controller
 
         $activeHabits = $user->habits()->where('active', true)->count();
         $activeGoals = $user->goals()->where('status', 'active')->count();
-        $checkinsToday = Checkin::whereHas('habit', fn ($query) => $query->where('user_id', $user->id))
+        $checkinsToday = Checkin::whereHas('habit', fn ($query) => $query->where('user_id', $user->id)) //whereHas para filtrar checkins relacionados aos hábitos do usuário
             ->whereDate('checked_date', today())
             ->count();
 

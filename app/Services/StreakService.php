@@ -100,7 +100,8 @@ class StreakService
 
         $streak = 1;
         $expected = Carbon::parse($weeks->first())->subWeek()->toDateString();
-
+        
+        // Conta semanas consecutivas para trás
         for ($i = 1; $i < $weeks->count(); $i++) {
             if ($weeks[$i] === $expected) {
                 $streak++;
